@@ -1,0 +1,46 @@
+project:
+  type: book
+  output-dir: site
+
+book:
+  title: "宇宙空間物理学II"
+  author: "天野孝伸"
+  date: "2024/3/28"
+  chapters:
+    - index.qmd
+    - chap01.qmd
+    - chap02.qmd
+    - chap03.qmd
+    - chap04.qmd
+    - chap05.qmd
+    - references.qmd
+
+bibliography: bibliography.bib
+
+execute:
+  echo: false
+format:
+  html:
+    theme: cosmo
+  #pdf:
+  #  pdf-engine: lualatex
+  #  documentclass: ltjsarticle
+  #  include-in-header:
+  #    - text: |
+  #        \newcommand{\bm}[1]{\symbfit{#1}}
+  #  mathspec: true
+crossref:
+  fig-title: 図
+  fig-prefix: 図
+  tbl-title: 表
+  tbl-prefix: 表
+  eq-prefix: 式
+  exr-title: 演習問題
+format-links: false
+number-sections: true
+number-depth: 2
+jupyter: python3
+
+
+
+

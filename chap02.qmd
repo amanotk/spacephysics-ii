@@ -1,0 +1,635 @@
+{{< include macros.qmd >}}
+
+# 単一粒子の運動
+
+## 荷電粒子の運動方程式
+プラズマのダイナミクスは，電磁場と荷電粒子の作る電荷や電流が自己無撞着に発展することによって記述される．しかし，これは複雑過ぎるので，まずは与えられた電磁場のもとでの非相対論的な荷電粒子の運動について考えよう．
+$$
+\frac{d\bm{x}}{dt} = \bm{v}, \quad
+\frac{d\bm{v}}{dt} = \frac{q}{m} \left( \bm{E} + \bm{v} \times \bm{B} \right)
+$$
+
+
+## ジャイロ運動
+$\bm{E} = 0$ および $\bm{B} = B \bm{e}_z$ とすると運動方程式は簡単に解ける．
+$$
+\begin{cases}
+v_x = - v_{\perp} \cos \Omega_c t \\
+v_y = + v_{\perp} \sin \Omega_c t \\
+v_z = v_{\parallel}
+\end{cases}
+\quad \quad
+\begin{cases}
+x = - r_g \sin \Omega_c t + x_0 \\
+y = - r_g \cos \Omega_c t + y_0 \\
+z = v_{\parallel} t + z_0
+\end{cases}
+$$
+これより荷電粒子は磁場に対して垂直な面内では旋回運動をすることが分かる（@fig-helix 参照）．これをジャイロ運動（もしくはサイクロトロン運動，ラーマー運動）と呼ぶ．ここで，$\Omega_c = q B/m$をジャイロ周波数，$r_g = v_{\perp}/\Omega_c$をジャイロ半径である．このとき，$\Omega_c$は符号付きで定義されていることに注意しよう．
+
+```{python}
+#| label: fig-helix
+#| fig-cap: 一様磁場中での荷電粒子の運動
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+
+t = np.linspace(0.0, 8*np.pi, 200)
+vpara = 1.0
+vperp = 1.0
+rg = vperp
+x =-rg * np.sin(t)
+y =-rg * np.cos(t)
+z = vpara * t
+
+ax.plot(x, y, z)
+ax.set_xlabel(r"$x$")
+ax.set_ylabel(r"$y$")
+ax.set_zlabel(r"$z$")
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+ax.set_zticklabels([])
+ax.zaxis.labelpad =-10.0 # hack needed
+plt.show()
+```
+
+また，ピッチ角$\alpha$は @fig-pitch-angle に示すように磁力線に平行な速度成分$v_{\parallel}$と垂直な速度成分$v_{\perp}$を用いて $\tan \alpha = v_{\perp}/v_{\parallel}$によって定義される．
+
+```{python}
+#| label: fig-pitch-angle
+#| fig-cap: ピッチ角の定義
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+fig = plt.figure()
+ax = plt.subplot()
+
+kwargs = {
+  'color' : 'k',
+  'arrowstyle' : '-|>',
+  'mutation_scale' : 20,
+}
+
+patches = [
+  patches.FancyArrowPatch((0, -0.3), (0, 1), **kwargs),
+  patches.FancyArrowPatch((-0.3, 0), (1, 0), **kwargs),
+  patches.FancyArrowPatch((0, 0), (0.5, 0.5), arrowstyle='->', mutation_scale=20),
+  patches.Wedge((0, 0), 0.2, 0, 45)
+]
+for p in patches:
+  ax.add_patch(p)
+
+ax.text(0.5, 0.5, r"$(v_{\parallel}, v_{\perp})$")
+ax.text(0.9, 0.1, r"$v_{\parallel}$")
+ax.text(0.1, 0.9, r"$v_{\perp}$")
+ax.text(0.2, 0.1, r"$\alpha$")
+ax.set_aspect('equal')
+plt.axis('off')
+plt.xlim(-0.3, +1)
+plt.ylim(-0.3, +1)
+plt.show()
+```
+
+::: {#exr-typical-values}
+磁場強度を $B = 10 \, {\rm nT}$ , エネルギー $W_{\perp} = 1 \, {\rm keV}$ とし，電子および陽子のジャイロ周波数 $\Omega_{c}$ およびジャイロ半径 $r_g = v_{\perp}/\Omega_{c}$ をそれぞれ求めよ．ただし， $v_{\perp} = \sqrt{2 q W_{\perp} / m}$ とする．
+:::
+
+### 第一断熱不変量
+
+一般化座標 $(p, q)$ で定義される力学系において，運動が周期的な場合に以下の積分を定義する．
+$$
+J = \oint p dq
+$$
+このとき，外部からの十分ゆっくりとした摂動に対しては$J$を近似的に一定とみなすことができる．このような$J$を断熱不変量と呼ぶ．
+
+荷電粒子のジャイロ運動について定義される断熱不変量を第一断熱不変量$J_1$と呼ぶ．これは
+$$
+J_1 = \frac{\pi m}{q} \frac{m v_{\perp}^2}{2 B} \equiv \frac{\pi m}{q} \mu
+$$ {#eq-first-adiabatic-invariant}
+となることが簡単に示せる．ここで $\mu$ を磁気モーメントと呼ぶ．$\mu$は$J_1$と定数倍だけしか違わないので，$\mu$を第一断熱不変量と呼ぶことも多い．
+
+::: {#exr-adiabatic-invariant}
+調和振動子
+$$
+\frac{dq}{dt} = p, \quad \frac{dp}{dt} = - \omega^2 q
+$$
+について考える．
+
+1. 断熱不変量 $J$ を求めよ．
+1. 調和振動子の周波数が $\omega = \omega(t)$ のように時間の関数として周期よりも十分ゆっくり変化する場合に断熱不変量 $J$ が保存することを示せ．ここで
+$$
+q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
+$$
+のような解の形(いわゆるWKB近似)を仮定するとよい．
+:::
+
+::: {#exr-first-adiabatic-invariant}
+第一断熱不変量が @eq-first-adiabatic-invariant で与えられることを示せ．
+:::
+
+::: {#exr-magnetic-flux-thgough-gyroarea}
+第一断熱不変量 @eq-first-adiabatic-invariant は荷電粒子のジャイロ運動が囲む面積を貫く磁束に比例することを示せ．
+:::
+
+::: {#exr-magnetic-moment}
+一般に電流密度$\bm{J}(\bm{x})$によって作られる磁気双極子モーメントは
+$$
+\bm{m} = \frac{1}{2} \int_{V} \bm{x}' \times \bm{J} (\bm{x}') d^3 x'
+$$
+と与えられる．ここで積分は全空間での積分を表わす．
+
+これを用いて，$v_{\parallel} = 0$, $v_{\perp} \neq 0$の荷電粒子が作るループ状の電流が作る磁気双極子モーメントの大きさが$\mu$に対応している，すなわち
+$$
+|\bm{m}| = \mu = \frac{m v_{\perp}^2}{2 B}
+$$
+であることを示せ．
+:::
+
+## バウンス運動
+@fig-magnetic-bottle に示すような時間的に定常な「磁気ボトル」形状を考える．
+
+![磁気ボトル [@GurnettBattacharjee2017]](figures/magnetic_bottle.png){width=80% #fig-magnetic-bottle}
+
+磁気ボトル中の荷電粒子の運動について，(ジャイロ半径) $\ll$ (空間スケール)が成り立つとき，磁力線平行方向の運動方程式は
+$$
+m \frac{d v_{\parallel}}{dt} \approx
+\underbrace{- \mu \frac{\partial B}{\partial s}}_{\text{磁気ミラー力}}
+$$ {#eq-mirror-force}
+と書ける．ここで$s$は磁力線に沿って定義した座標．荷電粒子は磁場が強い方から弱い方に向かって実効的な力を受ける．これを磁気ミラー力と呼ぶ．
+
+::: {#exr-mirror-force}
+時間的に定常な磁場構造の中では荷電粒子のエネルギーは保存する．このことと， (ジャイロ半径) $\ll$ (空間スケール) を仮定することで @eq-mirror-force を示せ．
+:::
+
+### ミラー反射
+ピッチ角の大きな粒子は磁場強度の強い領域で磁気ミラー力で反射され捕捉される．
+ピッチ角と反射点(ミラー点)の磁場強度$B_m$の関係はエネルギー保存則と第1断熱不変量の保存から
+$$
+\sin \alpha_0 = \sqrt{\frac{B_0}{B_m}}
+$$ {#eq-loss-cone-angle}
+となることが分かる．ただし $B_0$ は磁場強度が最小の点での値を表す．このピッチ角の条件はエネルギーに依存しないことに注意しよう．
+
+::: {#exr-loss-cone-angle}
+@eq-loss-cone-angle を示せ．
+:::
+
+### 第2断熱不変量
+$$
+J_2 = \oint m v_{\parallel} d s \sim m v_{\parallel} l
+$$
+は十分ゆっくり $l$ を変化させたときに保存する．ここで $l$ はミラー点間の距離．
+
+## ドリフト運動
+
+### 電場ドリフト
+
+一様な電場および磁場中 ($\bm{E} = E \bm{e}_y$ および $\bm{B} = B \bm{e}_z$) での運動は簡単に解けて
+$$
+\begin{cases}
+v_x = - v_{\perp} \cos \Omega_c t + \frac{E}{B} \\
+v_y = + v_{\perp} \sin \Omega_c t
+\end{cases}
+$$ {#eq-exb-drift}
+となり，$x$方向に速さ$E/B$でドリフト運動する．これを電場ドリフト，または $\bm{E} \times \bm{B}$ ドリフトと呼ぶ．ベクトル形式では
+$$
+\bm{v}_E = \frac{\bm{E} \times \bm{B}}{B^2}
+$$
+となる．粒子軌道の例は @fig-exb-drift のようになる．
+
+* 電場ドリフトは(ローレンツ変換に由来するため)電荷，質量，エネルギーなどの物理量に依存しない．
+* MHDの速度は電場ドリフトに対応する．
+
+```{python}
+#| label: fig-exb-drift
+#| fig-cap: 電場ドリフト
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+fig = plt.figure()
+ax = plt.subplot()
+
+def exb_drift(x0, y0, tmax, wc, vexb, vperp):
+  dt = 0.01 * np.abs(wc)
+  Nt = int(tmax / dt) + 1
+  tt = np.linspace(0.0, tmax, Nt)
+  rg = vperp / wc
+  x = x0 - rg * np.sin(wc*tt) + vexb * tt
+  y = y0 - rg * np.cos(wc*tt)
+  return x, y
+
+# proton
+ax.plot(*exb_drift(0.2, 0.2, 20, +1.0, 0.1, 1.0), label='proton')
+
+# electron
+ax.plot(*exb_drift(0.2, 1.5, 20, -5.0, 0.1, 1.0), label='electron')
+
+kwargs = {
+  'color' : 'k',
+  'arrowstyle' : '-|>',
+  'mutation_scale' : 20,
+}
+
+patches = [
+  patches.FancyArrowPatch((-1, -1), (-1, 0), **kwargs),
+  patches.FancyArrowPatch((-1, -1), (0, -1), **kwargs),
+  patches.Wedge((-1, -1), 0.08, 0, 360, color='k', width=0.002),
+  patches.Wedge((-1, -1), 0.04, 0, 360, color='k', width=0.04)
+]
+for p in patches:
+  ax.add_patch(p)
+
+ax.text(0.2, -1, r"$x$")
+ax.text(-1, 0.2, r"$y$")
+ax.text(-1.2, -1.2, r"$z$")
+ax.set_aspect('equal')
+plt.axis('off')
+plt.legend()
+plt.show()
+```
+
+::: {#exr-exb-drift}
+@eq-exb-drift を示せ．
+:::
+
+### 一般の力によるドリフト
+$q \bm{E}$ の代わりに $\bm{F}$ とすれば
+$$
+\bm{v}_F = \frac{\bm{F} \times \bm{B}}{q B^2}
+$$
+を得る．
+
+### 磁場勾配ドリフト
+$\bm{E} = \bm{0}$ かつ $\bm{B} = B(y) \bm{e}_z$ (すなわち $\nabla B \parallel \hat{e}_y$ )のような勾配があるとき，粒子は平均的な力
+$$
+\left< F_x \right> = 0
+\quad \quad
+\left< F_y \right> = - \frac{1}{2} m v_{\perp}^2 \frac{1}{B} \frac{\partial B}{\partial y}
+= - \mu \frac{\partial B}{\partial y}
+$$ {#eq-gradb-force}
+を感じてドリフト運動する．
+$$
+\bm{v}_{G} = \frac{\mu}{q} \frac{\bm{B} \times \nabla B}{B^2}
+$$
+これを磁場勾配ドリフトと呼ぶ．
+
+::: {#exr-gradb-drift}
+@eq-gradb-force を示せ．ただし $\bm{E} = \bm{0}$ とし，磁場勾配の空間スケールは粒子のジャイロ半径よりも十分大きいと仮定せよ．
+:::
+
+### 磁場曲率ドリフト
+曲がった磁力線に沿って運動する粒子は遠心力
+$$
+F_c = - m \frac{v_{\parallel}^2}{R_c} \bm{e}_c
+$$
+を感じる．ここで $R_c$ は曲率半径，$\bm{e}_c$ は曲率中心に向かう単位ベクトル．この力によって粒子はドリフト運動する．
+$$
+\bm{v}_{C} = \frac{m v_{\parallel}^2}{q B} \bm{b} \times (\bm{b} \cdot \nabla) \bm{b}
+$$
+これを磁場曲率ドリフトと呼ぶ．ただし $\bm{b} = \bm{B} / B$ は磁場の単位ベクトルである．
+
+![磁場曲率ドリフト [@GurnettBattacharjee2017]](figures/curvature_b.png){width=80% #fig-curv-drift}
+
+::: {#exr-curv-vector}
+$$
+\bm{\kappa} = \frac{\bm{e}_c}{R_c} = (\bm{b} \cdot \nabla) \bm{b}
+$$
+で定義される$\bm{\kappa}$は磁力線の曲率ベクトルを表わす．このことを確かめよ．
+:::
+
+### 分極ドリフト（慣性ドリフト）
+磁場は一様かつ一定とし，空間的に一定の電場がゆっくりと時間変化するとき，運動方程式から
+$$
+\begin{aligned}
+\frac{\bm{E} \times \bm{B}}{B^2} -
+\frac{m}{q B^2} \frac{d \bm{v}}{dt} \times B
+= - \bm{b} \times (\bm{b} \times \bm{v})
+= (\bm{I} - \bm{b} \bm{b}) \cdot \bm{v} = \text{速度の垂直成分}
+\end{aligned}
+$$
+ここで速度を電場ドリフトとジャイロ運動に分解し，ジャイロ周期で平均をとれば
+$$
+\left< \bm{v}_{\perp} \right> =
+\bm{v}_E - \frac{m}{q B^2} \frac{d \bm{v}_E}{dt} \times B
+$$
+となる．第1項は電場ドリフト．第2項の
+$$
+\bm{v}_P = \frac{m}{qB} \bm{b} \times \frac{d \bm{v}_E}{dt}
+$$
+は分極ドリフトと呼ばれる．
+
+### ドリフト運動のまとめ
+| 名前             | 実効的な力    | ドリフト速度  | 備考              |
+|------------------|---------------|---------------|-------------------|
+| 電場ドリフト     | $q \bm{E}$    | $\frac{\bm{E} \times \bm{B}}{B^2}$                                    | 電荷や質量によらない |
+| 磁場勾配ドリフト | $- \mu \nabla B$                   | $\frac{m v_{\perp}^2}{2 q B} \bm{b} \times \nabla \ln B$         | 垂直エネルギーに比例 |
+| 磁場曲率ドリフト | $- m v_{\parallel} (\bm{b} \cdot \nabla) \bm{b}$ | $\frac{m v_{\parallel}^2}{q B} \bm{b} \times (\bm{b} \cdot \nabla) \bm{b}$ | 平行エネルギーに比例 |
+| 分極ドリフト     | $m \frac{d \bm{v}_E}{dt}$                 | $\frac{m}{q B} b \times \frac{d \bm{v}_E}{dt}$                   | 質量に比例           |
+
+
+### 第3断熱不変量
+軸対称な磁場中では粒子の磁場勾配・曲率ドリフトの軌道は閉じるので断熱不変量を定義できる．
+ジャイロ運動に対して定義された第1断熱不変量は
+$$
+J_1 \propto \pi r_g^2 B
+$$
+であったが，これはジャイロ運動が囲む領域を貫く磁束に対応している．
+ドリフト運動についても同様にドリフト軌道が囲む領域を貫く磁束
+$$
+J_3 = \int \bm{B} \cdot d\bm{S} = \int_0^{R} 2 \pi r B_z(r) dr
+$$
+が保存する．これを第3断熱不変量と呼ぶ．ただし $R$ はドリフト軌道の対称軸からの距離である．
+
+## 荷電粒子の運動のまとめ
+軸対称な磁場のもとでは荷電粒子は @fig-three-motions に示すような3つの周期運動をし，それぞれに対して断熱不変量が定義できる．
+
+![荷電粒子の3つの周期運動 [@KivelsonRussell1995]](figures/three_motions.png){width=80% #fig-three-motions}
+
+微小パラメータを $\epsilon = r_g/L \ll 1$ と定義すると，3つの運動の時間スケールがそれぞれ $\epsilon$ のオーダーだけ異なる．従って第1断熱不変量は最も保存されやすく，逆に第3断熱不変量は最も保存されにくい．
+
+3つの周期運動の地球磁気圏における典型的な時間スケールは @fig-typical-frequency のようになる．
+
+![地球磁気圏における3つの周期運動の周波数 [@KivelsonRussell1995]](figures/three_frequencies.png){width=80% #fig-typical-frequency}
+
+::: {#exr-three-motion-timescale}
+双極子磁場のような軸対称な磁場構造中における十分エネルギーの小さな荷電粒子は，ジャイロ運動，バウンス運動，ドリフト運動，の時間スケールの異なる3つの周期運動をする．粒子のジャイロ半径 $r_g$ と系の典型的な空間スケール $L$ の比を $\epsilon = r_g/L (\ll 1)$ とするとき，3つの周期運動の時間スケール $T_\text{gyro}, T_\text{bounce}, T_\text{drift}$ がそれぞれ，$\Omega_c T_\text{gyro} \sim O(1)$，$\Omega_c T_\text{bounce} \sim O(\epsilon^{-1})$, $\Omega_c T_\text{drift} \sim O(\epsilon^{-2})$ となることを確かめよ．
+:::
+
+::: {#exr-axisymmetric-problem}
+円筒座標系$(r, \phi, z)$を用いて，時間定常で軸対称なベクトルポテンシャル
+$$
+A = A_{\phi} \bm{e}_{\phi} = \frac{1}{2} r
+\left[ 1 + \left(\frac{z}{L}\right)^2 \right] B_0 \bm{e}_{\phi}
+$$
+で与えられる磁場中の荷電粒子の運動について考える．ただし粒子のエネルギーは十分小さく，軌道は $r \ll L$, $\left| z \right| \ll L$ に限られると仮定してよい．
+
+1. このとき荷電粒子の第1断熱不変量$\mu$が保存することを説明せよ．
+1. $\mu = {\rm const.}$のとき, $r = 0$近傍の粒子の$z$方向の運動の周期を求めよ．
+1. 十分ゆっくりと$L$を時間変化させた場合の粒子のエネルギー，速度の変化について議論せよ．
+:::
+
+::: {#exr-drift-energy-gain}
+電磁場が $B = B(x) \, \bm{e}_z$, $E = E_0 \, \bm{e}_y$ で与えられる場合を考える．
+
+1. 磁場は一定( $B(x) = B = {\rm const.}$ )と仮定し，電場ドリフトの向きおよび大きさを求めよ．
+1. 電場がない場合( $E_0 = 0$) を考え， $x = 0$ の十分近傍の磁場を以下のように近似する．
+$$
+B(x) \simeq B_0 + \frac{\partial B}{\partial x} \Biggr|_{x=0} x
+$$
+このとき，磁場勾配ドリフトの向きおよび大きさを求めよ．ただしジャイロ半径は勾配のスケール長よりも十分小さいと仮定せよ．
+1. 初期に $x = 0$ にあった粒子が電場ドリフトによって $x = x_1$ まで移動した．この位置での磁場強度を $B (x_1) = B_1$ とし，第1断熱不変量の保存を仮定することで，粒子の垂直エネルギーの増加分を求めよ．
+1. 粒子が電場ドリフトで $x = 0$ から $x_1$ に移動する間に磁場勾配ドリフトで粒子は電場方向にも移動する．この電場方向への移動に伴う粒子のエネルギーの変化分を求め，前問の答えと一致することを示せ．
+:::
+
+## 磁気圏物理学への応用
+### Dungeyの開いた磁気圏モデル
+太陽風の磁場（惑星間空間磁場）が南向きのとき
+
+1. 地球磁気圏と太陽風の昼側境界(磁気圏界面)に反平行磁場ができる
+1. 磁気リコネクションが発生
+1. 地球につながった磁力線が尾部に運ばれる
+1. 尾部に反平行磁場の領域が形成
+1. 尾部でも磁気リコネクションが発生
+1. 地球向きの対流が発生
+
+のように磁気圏全体の巨視的な対流が駆動される．これをDungeyサイクルと呼ぶ．
+
+![地球磁気圏の巨視的対流の模式図 [@GurnettBattacharjee2017]](figures/magnetosphere.png){#fig-magnetospheric-convection}
+
+### 内部磁気圏における粒子軌道(低エネルギー粒子)
+ゼロエネルギーの粒子の赤道面における輸送は$E \times B$ドリフトで決定される．磁気圏には地球の自転に起因する共回転電場と太陽風の持つ電場の2種類の電場がかかる．$E \times B$ドリフト速度は
+$$
+\bm{v}_E = \frac{\bm{B} \times \nabla \Phi}{B^2}
+$$
+であり，粒子軌道は静電ポテンシャル $\Phi$ の等高線に等しい．静電ポテンシャルを極座標で書くと
+$$
+\Phi = \Phi_{\rm c} + \Phi_{\rm sw} =
+- \frac{B_E \Omega_E R_E^3}{r} - r E_0 \sin \phi
+$$ {#eq-lowenergy-drift}
+となり，粒子軌道は @fig-lowenergy-drift のようになる．
+軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる．
+典型的なプラズマ圏の大きさは地球半径の数倍程度である．
+
+```{python}
+#| label: fig-lowenergy-drift
+#| fig-cap: 地球磁気圏内の低エネルギー粒子の軌道
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# constant quantities in MKS units
+mu0 = 1.257e-6
+W_E = 2*np.pi / (60*60*24)
+R_E = 6.37e+6
+V_E = R_E * W_E
+M_E = 7.8e+22
+B_E = mu0 / (4*np.pi) * M_E / R_E**3
+
+Vsw = 400 * 1e+3 # m/s
+Bsw = 1   * 1e-9 # T
+Esw = (Vsw/V_E) * (Bsw/B_E)
+
+fig = plt.figure()
+ax = plt.subplot()
+
+def potential(x, y):
+  r = np.sqrt(x**2 + y**2) + 1e-32
+  sinp = y / r
+  return - r * Esw * sinp - 1 / r
+
+N = 201j
+X, Y = np.mgrid[-10:+10:N,-10:+10:N]
+Z = potential(X, Y)
+
+# contour levels
+Nc = 15
+xc = np.ones(Nc) * 7.5
+yc = np.linspace(-9, +9, Nc)
+lv = sorted(potential(xc, yc))
+
+# separatrix
+separatrix = [potential(0, np.sqrt(1/Esw))]
+
+patches = [
+  patches.Wedge((0, 0), 1, -90, +90, fc='k', ec='k'),
+  patches.Wedge((0, 0), 1, +90, -90, fc='w', ec='k')
+]
+for p in patches:
+  ax.add_patch(p)
+
+plt.contour(-X, -Y, Z, 10, levels=lv, colors='k', linewidths=1)
+plt.contour(-X, -Y, Z, 10, levels=separatrix, colors='k', linewidths=1, linestyles='dashed')
+plt.gca().set_aspect("equal")
+plt.gca().set_xticks([-10, -5, 0, +5, +10])
+plt.gca().set_yticks([-10, -5, 0, +5, +10])
+
+# label
+xticklabels = reversed([label.get_text() for label in ax.get_xticklabels()])
+plt.gca().set_xticklabels(xticklabels)
+yticklabels = reversed([label.get_text() for label in ax.get_yticklabels()])
+plt.gca().set_yticklabels(yticklabels)
+
+plt.show()
+```
+
+::: {#exr-lowenergy-drift}
+@eq-lowenergy-drift を微分することによって，共回転電場に伴う電場と太陽風起源の電場によるドリフトが打ち消し合う淀み点の位置が $r = \left( B_E \Omega_E R_E^3 / E_0 \right)^{1/2}$, $\sin \phi = 1$ で与えられることを確かめよ．@fig-lowenergy-drift の点線は淀み点のポテンシャルを通る等高線である．
+:::
+
+### 内部磁気圏における粒子軌道(高エネルギー粒子)
+簡単のためピッチ角90度の粒子を考えると，赤道面内での磁場勾配ドリフトと電場ドリフトのみ考慮すればよい．$\mu = {\rm const.}$として，簡単のため電場を一定だと仮定すると
+$$
+v_{E} \propto \frac{E_0}{B} \propto r^3,
+\quad
+v_{G} \propto \mu \frac{1}{B} \frac{\partial B}{\partial r} \propto \frac{1}{r}
+$$
+となり，遠方では電場ドリフトが優勢だが，地球に近いほど磁場勾配ドリフトが優勢になることが分かる．
+ここで粒子のエネルギー太陽風電場の強さによって，粒子の到達できる限界の位置が決まっていることに注意．
+実際に典型的な粒子の軌道を図示したものが @fig-highenergy-drift である．
+
+```{python}
+#| label: fig-highenergy-drift
+#| fig-cap: 地球磁気圏内の低エネルギー粒子の軌道
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# constant quantities in MKS units
+mu0 = 1.257e-6
+qmi = 9.58e+7
+W_E = 2*np.pi / (60*60*24)
+R_E = 6.37e+6
+V_E = R_E * W_E
+K_E = 0.5 * V_E**2 / qmi
+M_E = 7.8e+22
+B_E = mu0 / (4*np.pi) * M_E / R_E**3
+
+Vsw = 400 * 1e+3 # m/s
+Bsw = 1   * 1e-9 # T
+Esw = (Vsw/V_E) * (Bsw/B_E)
+
+# energy at r = 6.6 R_E
+R0 = 10
+K0 = 10.0e+3
+B0 = B_E / R0**3 * 1e+9
+M0 = K0 / B0 / (K_E / B_E)
+
+fig, axs = plt.subplots(2, 1, figsize=(6, 8))
+
+def potential(x, y, q):
+  r = np.sqrt(x**2 + y**2) + 1e-32
+  sinp = y / r
+  return - r * Esw * sinp + q*M0 / r**3
+
+qq = [+1, -1]
+
+for i in range(len(qq)):
+  plt.sca(axs[i])
+
+  q = qq[i]
+  N = 201j
+  X, Y = np.mgrid[-10:+10:N,-10:+10:N]
+  Z = potential(X, Y, q)
+
+  # contour levels
+  Nc = 15
+  xc = np.ones(Nc) * 7.5
+  yc = np.linspace(-9, +9, Nc)
+  lv = sorted(potential(xc, yc, q))
+
+  # separatrix
+  separatrix = [potential(0, -q*(3*M0/Esw)**(0.25), q)]
+
+  patch_list = [
+    patches.Wedge((0, 0), 1, -90, +90, fc='k', ec='k'),
+    patches.Wedge((0, 0), 1, +90, -90, fc='w', ec='k')
+  ]
+  for p in patch_list:
+    axs[i].add_patch(p)
+
+  plt.contour(-X, -Y, Z, 10, levels=lv, colors='k', linewidths=1)
+  plt.contour(-X, -Y, Z, 10, levels=separatrix, colors='k', linewidths=1, linestyles='dashed')
+  plt.gca().set_aspect("equal")
+  plt.gca().set_xticks([-10, -5, 0, +5, +10])
+  plt.gca().set_yticks([-10, -5, 0, +5, +10])
+
+  # label
+  xticklabels = reversed([label.get_text() for label in axs[i].get_xticklabels()])
+  plt.gca().set_xticklabels(xticklabels)
+  yticklabels = reversed([label.get_text() for label in axs[i].get_yticklabels()])
+  plt.gca().set_yticklabels(yticklabels)
+
+  # title
+  if q > 0:
+    plt.title(r"Proton: E = {:4.1f} keV at r = {:3.0f} $R_E$".format(K0*1e-3, R0))
+  else:
+    plt.title(r"Electron: E = {:4.1f} keV at r = {:3.0f} $R_E$".format(K0*1e-3, R0))
+
+plt.show()
+```
+
+なお，電場ドリフトと磁場勾配ドリフトの和は
+$$
+\bm{v}_E + \bm{v}_G =
+\frac{\bm{B} \times \nabla \left(q \Phi + \frac{1}{2} m v_{\perp}^2 \right)}{q B^2}
+$$
+のように書けることから，粒子のドリフト軌道に沿って全エネルギー
+$K = \frac{1}{2} m v_{\perp}^2 + q \Phi$ は保存する．
+
+::: {#exr-highenergy-drift}
+第一断熱不変量 $\mu$ を保存しながらより磁場の大きい地球近傍に運ばれた粒子のエネルギーは増大することになる．このとき粒子のエネルギー増大（粒子がされた仕事）の起源は何か考えよ．
+:::
+
+### 磁気嵐
+太陽風の磁場が継続的に南向きになった場合などには，磁気圏全体に大きな電場（静電ポテンシャル）がかかり，大量のプラズマが磁気圏尾部から地球近傍に運ばれる．この粒子が磁場ドリフトによって地球を取り囲む円環状の大電流（リングカレント）を作り，近地球の宇宙空間に大きな擾乱を発生させる．これを磁気嵐と呼ぶ．
+
+地上での磁場変動$\Delta B$とリングカレントプラズマの全エネルギー$W_p$の間には
+$$
+\frac{\Delta B}{B_E} =- \frac{2}{3} \frac{W_p}{W_B}
+$$
+なる関係がある．これをDessler-Parker-Sckopke関係と呼ぶ．ただし
+$$
+W_B = \int d \phi \int d (\cos \theta) \int_{R_E}^{\infty} r^2 dr \frac{B^2}{2 \mu_0}
+$$ {#eq-dipole-field-energy}
+は双極子磁場のエネルギーを表す．
+
+Dessler-Parker-Sckopke関係を使うと地表面で観測された地磁気変動から宇宙空間に存在するプラズマ（リングカレント）の総エネルギーを概算することができる．
+
+::: {#exr-dessler-parker-sckopke}
+Dessler-Parker-Sckopke関係を示そう．
+
+1. 磁気流体力学の運動方程式
+$$
+\rho \frac{d \bm{v}}{d t} = - \nabla P + \bm{J} \times \bm{B}
+$$
+において，左辺が無視できる（時間定常で流体速度が十分に小さい）場合を考えると，磁場に垂直方向の電流が
+$$
+\bm{J}_{\perp} = \bm{b} \times \frac{\nabla P}{B}
+$$
+で表されることを示せ．
+1. 地球の磁場を双極子と近似しよう．このとき， @eq-dipole-field-energy で表される双極子磁場が持つエネルギーを宇宙空間全体( $r > R_E$ )で積分した量が
+$$
+W_B = \frac{4 \pi}{3 \mu_0} B_E^2 R_E^3
+$$
+と書けることを示せ．ただし $B_E$ は地球表面の赤道面における磁場強度で，双極子磁場は極座標で
+$$
+\bm{B} = - B_E \left( \frac{R_E}{r} \right)^3
+\left(
+  2 \cos \theta \, \bm{e}_r + \sin \theta \, \bm{e}_{\theta}
+\right)
+$$
+と表される．
+1. ビオ・サバールの法則を用いてDessler-Parker-Sckopke関係式を示せ．ただし軸対称性およびリングカレントプラズマが赤道面にのみ分布すること，すなわち円筒座標で
+$$
+P(r, \phi, z) = P(r) \delta(z)
+$$
+と表されると仮定してよい．このときリングカレントプラズマの全エネルギー $W_P$ は
+$$
+W_p = \int_{R_E}^{\infty} 2\pi r P(r) dr
+$$
+となる．ここで $P$ はプラズマの圧力であり，地球表面 $r = R_E$ および無限遠方 $r = \infty$ では $P = 0$ となることを仮定せよ．
+1. 赤道近傍の地表面で磁気嵐に伴う地磁気変動として$\Delta B \sim 300 \textrm{ nT}$が観測されたとしよう．このときのリングカレントを担うプラズマの全エネルギーを概算せよ．
+:::

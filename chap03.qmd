@@ -1,0 +1,545 @@
+{{< include macros.qmd >}}
+
+# 自己無撞着なプラズマの記述
+
+## 速度分布関数
+### 定義
+粒子の6次元位相空間座標は $(\bm{x}, \bm{v})$ である．この近傍に存在する粒子数を $d\Gamma$ としたとき
+$$
+d\Gamma = f(\bm{x}, \bm{v}) d\bm{x} d\bm{v}
+$$
+で定義される$f(\bm{x}, \bm{v})$を位相空間密度または速度分布関数と呼ぶ．ここで$\bm{v}$は独立変数であることに注意．
+
+### モーメント量
+$d\Gamma$を全位相空間で積分すれば全粒子数が，全速度空間で積分すれば粒子数密度が得られる．
+一般に速度分布関数を速度空間で積分したものをモーメント量と呼ぶ．低次のモーメント量は以下のように流体量と関連付けることができる．
+$$
+\begin{aligned}
+\text{数密度} \quad & n (\bm{x}) = \int f(\bm{x}, \bm{v}) d\bm{v}
+\\
+\text{平均速度} \quad
+& V (\bm{x}) = \frac{1}{n} \int \bm{v} f(\bm{x}, \bm{v}) d\bm{v}
+\\
+\text{圧力} \quad
+& \bm{P} (\bm{x}) = m \int (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) f(\bm{x}, \bm{v}) d\bm{v}
+\end{aligned}
+$$
+ここで圧力は一般には2階のテンソルである．
+
+### 熱平衡分布
+構成粒子同士の衝突が十分に起こると熱平衡状態になり，等エネルギー分配則が成り立つ．このときの分布は粒子数，運動量，エネルギーを一定に保った条件のもとで運動論的エントロピー
+$$
+S = - k_B \int f(\bm{v}) \ln f(\bm{v}) d\bm{v}
+$$ {#eq-kinetic-entropy}
+を最大化することで得られる．
+
+簡単のため速度空間1次元の場合について考え，Lagrange未定乗数法でエントロピーを最大化すると
+$$
+f_M(v) = \frac{n}{\sqrt{2 \pi v_{\rm th}^2}}
+\exp \left[ - \frac{(v - V)^2}{2 v_{\rm th}^2} \right]
+$$ {#eq-maxwellian-1d}
+が得られる．これをMaxwell分布などと呼ぶ．熱速度$v_{\rm th}$と温度$T$，圧力$P$の間の関係は $P = n k_B T = n m v_{\rm th}^2$．
+
+3次元には $f(\bm{v}) = f_M(v_x) f_M(v_y) f_M(v_z)$ と簡単に拡張できる．
+$$
+f(\bm{v}) = \frac{n}{ \left( 2 \pi v_{\rm th}^2 \right)^{3/2} }
+\exp \left[ - \frac{(\bm{v} - \bm{V})^2}{2 v_{\rm th}^2} \right]
+$$ {#eq-maxwellian-3d}
+
+::: {#exr-velocity-distribution-function}
+1. 1次元のMaxwell分布( @eq-maxwellian-1d )のモーメントを取ることにより，具体的に
+$$
+\begin{aligned}
+n &= \int f(v) dv
+\\
+n V &= \int v f(v) dv
+\\
+P &= m \int (v - V)^2 f(v) dv = n m v_{\rm th}^2
+\end{aligned}
+$$
+を示せ．
+
+1. 磁場中のプラズマでは温度が磁力線と平行方向と垂直方向で異なる（異方性のある）分布が安定に存在することがある．このとき静止した（平均速度 $\bm{V} = 0$の）プラズマの速度分布関数のモデルとして以下で定義されるbi-Maxwell分布を考えよう．
+$$
+f(v_{\parallel}, v_{\perp}) =
+\frac{n}{\sqrt{(2 \pi v_{\rm th, \parallel}^2) (2 \pi v_{\rm th}^2)^2}}
+\exp \left[
+	- \frac{v_{\parallel}^2}{2 v_{\rm th, \parallel}^2}
+	- \frac{v_{\perp}^2}{2 v_{\rm th, \perp}^2}
+\right]
+$$
+ここで平行方向と垂直方向の熱速度をそれぞれ$v_{\rm th, \parallel}$，$v_{\rm th,\perp}$とした．この速度分布関数の2次モーメントを取ることにより，圧力テンソルが以下の式で与えられることを示せ．
+$$
+\begin{aligned}
+\bm{P} =
+\begin{bmatrix}
+P_{\perp} & 0 & 0 \\
+0 & P_{\perp} & 0 \\
+0 & 0 & P_{\parallel}
+\end{bmatrix} =
+m \int \bm{v} \bm{v} f(\bm{v}) d^3 \bm{v}
+\end{aligned}
+$$
+ただし $P_{\perp} = n m v_{\rm th,\perp}^2$, $P_{\parallel} = n m v_{\rm th, \parallel}^2$ であり，磁場の方向はz軸方向とする．
+:::
+
+::: {#exr-maximum-entropy}
+1次元の速度分布関数 $f(v)$ について，0次，1次，2次モーメント（粒子数，運動量，エネルギー）一定の条件のもとで @eq-kinetic-entropy を最大化することで @eq-maxwellian-1d が得られることを示せ．
+:::
+
+## 速度分布関数の発展方程式
+### Klimontovich方程式
+
+最も原始的な分布関数の定義は位相空間上で個々の粒子が存在する点でのみ有限の値を持たせたもので，
+$$
+N(\bm{x}, \bm{v}, t) = \sum_{i=1}^{N} \delta (\bm{x} - \bm{x}_i) \delta (\bm{v} - \bm{v}_i)
+$$
+で定義される．これはKlimontovich分布関数と呼ばれる．
+
+微分方程式の解の一意性から，明らかにKlimontovich分布関数$N$は位相空間の粒子軌道に沿って一定となる．
+$$
+\frac{d}{dt} N =
+\frac{\partial}{\partial t} N +
+\dot{x}_i \frac{\partial}{\partial x_i} N +
+\dot{v}_i \frac{\partial}{\partial v_i} N = 0.
+$$
+これをKlimontovich方程式と呼ぶ．
+
+### Coulomb衝突
+簡単なオーダー評価から，Coulomb力による散乱は
+$$
+\frac{1}{2} m v^2 \sim \frac{1}{4\pi \epsilon_0} \frac{e^2}{r}
+$$ {#eq-collision-balance}
+のときに重要になると予想できる．ここで$r$はインパクトパラメータである．これを用いて大雑把に衝突周波数を評価すると
+$$
+\begin{aligned}
+\nu \sim 2 \times 10^{-6}
+\left( \frac{n}{5 \, {\rm cm^{-3}}} \right)
+\left( \frac{T}{10^{5} \, {\rm K}} \right)^{-3/2} \, {\rm s^{-1}}
+\end{aligned}
+$$ {#eq-collision-frequency}
+と書ける．例えば1AUにおける太陽風を考えればCoulomb衝突はほとんど無視できることが分かる．ただし，実際には多数回の少角度散乱の方が効くため，これよりも衝突の効果は一桁程度大きくなることが知られている．
+
+::: {#exr-coulomb-collision}
+@eq-collision-balance を用いて，衝突周波数をオーダー評価すると @eq-collision-frequency が得られることを示せ．
+:::
+
+### Boltzmann方程式とVlsaov方程式
+Klimontovich分布関数は古典論の範囲内では衝突の効果まで厳密に含んでいるが，なめらかな分布でないので数学的には扱いにくい．また，分布関数がミクロな粒子分布に依存し，「平均」的な分布関数を実現するミクロな状態は無数に存在する．
+
+一般に我々は粗視化した「平均」的な分布関数に興味があることが多いため，分布関数を「平均」成分と揺らぎ成分に分けて考える．
+$$
+N (\bm{x}, \bm{v}, t) = f(\bm{x}, \bm{v}, t) + \delta f(\bm{x}, \bm{v}, t)
+$$
+ここで揺らぎのアンサンブル平均は $\left< \delta f \right> = 0$ と仮定する．すなわち， $\left< N \right> = f$ である．
+
+対応する電磁場にもアンサンブル平均 $(\bm{E}, \bm{B})$ とミクロな場 $(\bm{E} + \delta \bm{E}, \bm{B} + \delta \bm{B})$ が存在する．
+運動方程式
+$$
+\bm{\dot{v}} =
+\frac{q}{m} \left( \bm{E} + \bm{v} \times \bm{B} \right) +
+\frac{q}{m} \left( \delta \bm{E} + \bm{v} \times \delta \bm{B} \right)
+$$
+をKlimontovich方程式に代入してアンサンブル平均を取ると
+$$
+\begin{aligned}
+& \frac{\partial f}{\partial t} +
+\bm{\dot{x}} \cdot \frac{\partial f}{\partial \bm{x}} +
+\frac{q}{m} \left(\bm{E} + \bm{v} \times \bm{B} \right) \cdot \frac{\partial f}{\partial \bm{v}}
+\\
+&= -
+\left<
+    \frac{q}{m} \left( \delta \bm{E} + \bm{v} \times \delta \bm{B} \right) \cdot
+    \frac{\partial}{\partial \bm{v}} \delta f
+\right>
+\equiv
+\left( \frac{\partial f}{\partial t} \right)_{\rm c}
+\end{aligned}
+$$ {#eq-ensemble-averaged-klimontovich}
+右辺の揺らぎの2次の相関は衝突の効果を表している．この方程式の衝突項が有限のときをBoltzmann方程式，衝突項が無視できるときをVlasov方程式と呼ぶ．
+
+高温・希薄で無衝突な宇宙空間プラズマはVlasov方程式を基礎方程式とする．
+(宇宙物理の応用では輻射・ニュートリノ輸送などはBoltzmann方程式で，ダークマターはVlasov方程式で扱われることが多い．)
+
+::: {#exr-ensemble-averaged-klimontovich}
+Klimontovich方程式のアンサンブル平均をとることで， @eq-ensemble-averaged-klimontovich が得られることを確かめよ．
+:::
+
+### Liouvilleの定理
+Vlasov方程式はHamiltonian $H$とPoisson括弧を用いて
+$$
+\frac{\partial f}{\partial t} + \left[ f, H \right] = \frac{d}{dt} f = 0
+$$
+書き直すことができる．すなわち$f$は運動の積分(位相空間上の粒子軌道に沿って一定)である．
+
+定義より $d\Gamma = f(\bm{x}, \bm{v}) d\bm{x} d\bm{v} = {\rm const.}$ なので，位相空間体積も一定となる．
+$$
+d \bm{x} d \bm{v} = {\rm const.}
+$$
+これをLiouvilleの定理と呼ぶ．正準変換の性質を用いるとLiouvilleの定理はHamilton系一般について成り立つことが示される．
+
+::: {#exr-liouville-theorem}
+位相空間座標 $(p, q)$ の関数として定義される任意の関数 $F(p, q)$ を考える．粒子の位相空間における軌道がハミルトニアン $H(p, q)$ で定義される正準方程式で与えられるとき，粒子の軌道にそって $F(p, q)$ が一定となる．すなわち
+$$
+\frac{d F}{d t} = \frac{\partial F}{\partial t} + [f, H] = 0
+$$
+が成り立つ．このことを示せ．
+:::
+
+## 自己無撞着な方程式系
+### 電流密度と電荷密度
+電荷密度$\rho$や電流密度$\bm{J}$は速度分布関数のモーメントで表される．
+$$
+\begin{aligned}
+& \rho(\bm{x}) = \sum_{s} q_s \int f_s(\bm{v}) d \bm{v}
+\\
+& \bm{J} (\bm{x}) = \sum_{s} q_s \int \bm{v} f_s(\bm{v}) d \bm{v}
+\end{aligned}
+$$
+したがって，分布関数が分かれば電荷密度・電流密度が求まり，Maxwell方程式によって電磁場の時間発展も求まる．
+
+### Vlasov-Maxwell系
+Vlasov方程式と近似なしのMaxewll方程式を連立させた系
+$$
+\begin{aligned}
+&\frac{\partial f_s}{\partial t} + \bm{v} \cdot \frac{\partial f_s}{\partial \bm{x}} +
+\frac{q}{m} \left( \bm{E} + \frac{\bm{v}}{c} \times \bm{B} \right)
+\cdot \frac{\partial f_s}{\partial \bm{v}} = 0,
+\\
+&\epsilon_0 \frac{\partial \bm{E}}{\partial t} = \nabla \times \bm{B} - \mu_0 \bm{J},
+\\
+&\frac{\partial \bm{B}}{\partial t} = - \nabla \times \bm{E},
+\\
+&\nabla \cdot \bm{E} = \frac{\rho}{\epsilon_0},
+\\
+&\nabla \cdot \bm{B} = 0,
+\end{aligned}
+$$
+は無衝突プラズマのダイナミクスを記述する最も基礎的な方程式系である．
+
+### Vlasov-Poisson系（静電近似）
+磁場揺らぎの効果を無視すると電場は静電ポテンシャルのみで書き表される: $\bm{E} = - \nabla \phi$．さらに，簡単のため背景磁場と平行方向の位置および速度$(x, v)$を考えると，基礎方程式は
+$$
+\begin{aligned}
+&\frac{\partial f}{\partial t} + v \frac{\partial f}{\partial x} +
+\frac{q}{m} E \frac{\partial f}{\partial v} = 0,
+\\
+&\nabla^2 \phi = - \frac{\rho}{\epsilon_0}.
+\end{aligned}
+$$
+で与えられる．これをVlasov-Poisson系と呼ぶ．オーロラ電子加速などは基本的にこの方程式系で理解できる．
+静電ポテンシャルの代わりに重力ポテンシャルを考えたVlasov-Poisson方程式系は重力多体系の問題に用いられる．
+
+### モーメント方程式
+
+Vlasov方程式は自由度が大き過ぎて解きにくいため，何らかの縮約を取ることで簡単にしたい．そこで速度空間のモーメント量(=流体量)のみを考えることで自由度を減らした方程式系を考える．
+
+#### 0次モーメント(連続の式，粒子数保存則)
+Vlasov方程式の0次モーメントをとると
+$$
+\frac{\partial}{\partial t} \left( n \right) +
+\nabla \cdot \left( n \bm{V} \right) = 0.
+$$ {#eq-0th-moment}
+を得る．これは粒子数保存則を表す．
+
+::: {#exr-0th-moment}
+@eq-0th-moment を示せ．
+:::
+
+#### 1次モーメント(運動方程式，運動量保存則)
+同様に1次モーメントをとると
+$$
+\frac{\partial}{\partial t} \left( n m \bm{V} \right) +
+\nabla \cdot \left( n m \bm{V} \bm{V} + \bm{P} \right) =
+n q  \left( \bm{E} + \bm{V} \times \bm{B} \right)
+$$ {#eq-1st-moment}
+を得る．これは運動量保存則を表す．
+
+::: {#exr-1st-moment}
+@eq-1st-moment を示せ．
+:::
+
+#### 2次モーメント(状態方程式，エネルギー保存則)
+さらに2次モーメントをとると多少煩雑な計算の後に
+$$
+\begin{aligned}
+& \frac{\partial}{\partial t}
+\left( n m \bm{V} \bm{V} + \bm{P} \right) +
+\nabla \cdot
+\left( n m \bm{V} \bm{V} \bm{V} + \left( \bm{V} \bm{P} \right)^{S} + \bm{Q} \right) \\
+& \quad
+= n q  \left[ \bm{V} \left( \bm{E} + \bm{V} \times \bm{B} \right) \right]^{S} +
+\frac{q}{m} \left( \bm{P} \times \bm{B} \right)^{S}
+\end{aligned}
+$$ {#eq-2nd-moment}
+を得る．この式のトレースはエネルギー保存則を表す．
+
+ただし，ここでテンソルの対象化の記号 $^{S}$ を導入した．具体的には $\left( \bm{V} \bm{P} \right)_{ijk}^{S} = V_i P_{jk} + V_j P_{ki} + V_k P_{ij}$，$\left( \bm{V} \bm{E} \right)_{ij}^{S} = V_i E_j + V_j E_i$，$\left( \bm{P} \times \bm{B} \right)_{ij}^{S} = \epsilon_{ilm} P_{jl} B_m + \epsilon_{jlm} P_{il} B_m$ と定義される．また，
+$$
+\bm{Q} (\bm{x}) = m \int (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) f(\bm{x}, \bm{v}) d \bm{v}
+$$ {#eq-heat-flux}
+は熱流束を表す3階のテンソルである．
+
+::: {#exr-2nd-moment}
+@eq-2nd-moment を示せ．
+:::
+
+#### クロージャー問題
+一般にVlasov方程式の$n$次モーメントの式には移流項から$n+1$次モーメントが表れるため，どこまでいっても式が閉じることはない．これはクロージャー問題(closure problem)と呼ばれる．そこで，通常は何らかの仮定を用いて方程式系を閉じさせる（クロージャーを仮定する）．
+
+ここでは簡単のため，
+
+  - 熱流束を無視 $\bm{Q} = \bm{0}$
+  - 等方性を仮定 $\bm{P} = P \bm{I}$ ($\bm{I}$は単位行列)
+  - @eq-2nd-moment のトレースをとる
+
+これによってスカラーのエネルギー保存則
+$$
+\begin{aligned}
+&\frac{\partial}{\partial t}
+\biggl(
+  \underbrace{\frac{1}{2} n m \bm{V}^2}_{運動エネルギー} +
+  \underbrace{\frac{3}{2} P}_{熱エネルギー}
+\biggr) + \\
+& \nabla \cdot
+\biggl(
+  \underbrace{\frac{1}{2} n m \bm{V}^3}_{運動エネルギー流束} +
+  \underbrace{\frac{5}{2} P \bm{V}}_{熱エネルギー流束}
+\biggr) =
+q n \bm{V} \cdot \bm{E}
+\end{aligned}
+$$ {#eq-energy-equation}
+を得る．熱流束を無視したことによって $n, \bm{V}, P$ だけの式になり，方程式系が閉じることが分かる．
+
+::: {#exr-energy-equation}
+@eq-2nd-moment のトレースをとる代わりにVlasov方程式に $m \bm{v}^2 / 2$ をかけて積分することで @eq-energy-equation を示せ．ただし熱流束は無視すること．
+:::
+
+::: {#exr-equation-of-state}
+@eq-energy-equation の左辺は比熱比$\gamma = 5/3$を仮定した断熱の流体力学のエネルギー保存則と等しくなっている．この理由を考えよ．
+:::
+
+### 多流体方程式
+モーメント方程式は各成分(電子，陽子など)に対して独立に成り立つので，粒子種を表す添字$s$を付けて多流体方程式が
+$$
+\begin{aligned}
+& \frac{\partial}{\partial t} \left( n_s \right) +
+\nabla \cdot \left( n_s \bm{V}_s \right) = 0,
+\\
+& \frac{\partial}{\partial t} \left( n_s m_s \bm{V}_s \right) +
+\nabla \cdot \left( n_s m_s \bm{V}_s \bm{V}_s + P_s \bm{I} \right) =
+n_s q_s  \left( \bm{E}_s + \bm{V}_s \times \bm{B} \right)
+\\
+& \frac{\partial}{\partial t}
+\left( \frac{1}{2} n_s m_s \bm{V}_s^2 + \frac{P_s}{\gamma-1} \right) +
+\nabla \cdot
+\left( \frac{1}{2} n_s m_s \bm{V}_s^3 + \frac{\gamma}{\gamma-1} P_s \bm{V}_s \right)
+= q_s n_s \bm{V}_s \cdot \bm{E}
+\end{aligned}
+$$
+と書ける．ただしエネルギー保存則の圧力の係数を比熱比$\gamma$を用いて形式的に置き換えた．
+
+電荷密度および電流密度
+$$
+\begin{aligned}
+& \rho = \sum_{s} q_s n_s
+\\
+& \bm{J} = \sum_{s} q_s n_s \bm{V}_s
+\end{aligned}
+$$
+を用いてMaxwell方程式(またはPoisson方程式)と連立させれば自己無撞着な方程式系が得られる．
+
+### 一流体方程式(磁気流体力学方程式)
+他流体方程式はまだ自由度が多いのでもう少し簡単にしたい．（後に見るように他流体方程式には速い時間スケールの現象，短い空間スケールの現象も含まれているが，巨視的なダイナミクスを考える際にはこれらには興味がない．）
+
+#### 仮定
+- 電子・陽子プラズマ $m_i/m_e \gg 1$
+- 準中性 $n_i \approx n_e$
+- 低周波 $\omega/k \ll c$ （電磁波を無視）
+
+#### 一流体の物理量
+単一流体としての物理量: 質量密度 $\rho$，速度 $\bm{V}$，圧力 $P$を以下で定義する．
+$$
+\begin{aligned}
+\rho &= \sum_{s} n_s m_s
+\\
+\bm{V} &= \frac{\sum_{s} n_s m_s \bm{V}_s}{\sum_{s} n_s m_s}
+\\
+P &= \sum_{s} P_s
+\end{aligned}
+$$
+
+これらの物量の時間発展を表す方程式は2流体方程式の和から得られる．
+$$
+\begin{aligned}
+& \frac{\partial}{\partial t} \left( \rho \right) +
+\nabla \cdot \left( \rho \bm{V} \right) = 0,
+\\
+& \frac{\partial}{\partial t} \left( \rho \bm{V} \right) +
+\nabla \cdot \left( \rho \bm{V} \bm{V} + P \bm{I} \right) =
+\bm{J} \times \bm{B}
+\\
+& \frac{\partial}{\partial t}
+\left( \frac{1}{2} \rho \bm{V}^2 + \frac{P}{\gamma-1} \right) +
+\nabla \cdot
+\left(
+  \frac{1}{2} \rho \bm{V}^3 + \frac{\gamma}{\gamma-1} P \bm{V}
+\right)
+= \bm{J} \cdot \bm{E}
+\end{aligned}
+$$ {#eq-one-flud-equations}
+
+低周波近似によって変位電流は無視して，Maxwell方程式は
+$$
+\begin{aligned}
+& \frac{\partial \bm{B}}{\partial t} = - \nabla \times \bm{E}
+\\
+& \nabla \times \bm{B} = \mu_0 \bm{J}
+\end{aligned}
+$$
+となる．変位電流を無視したため電場の時間発展方程式が無くなっている．
+したがって，方程式系を閉じるためには電場を決定するために何らかの仮定が必要．
+
+::: {#exr-one-fluid-equations}
+$n_i \approx n_e$ および $m_i/m_e \gg 1$ を用いて @eq-one-flud-equations を示せ．
+:::
+
+::: {#exr-darwin-approximation}
+低周波近似 $\omega/k \ll c$ のとき，Maxwell方程式の変位電流が無視できることを確かめよ．
+:::
+
+#### 一般化されたOhmの法則
+電子流体の運動方程式を書き直して
+$$
+\bm{E} = -\bm{V}_e \times \bm{B}
+-\frac{1}{e n_e} \nabla \cdot \bm{P}_e
+-\frac{m_e}{e} \frac{d}{dt} \bm{V}_e
+$$ {#eq-electron-eom}
+を得る．これを準中性条件$n_i \approx n_e$とAmpereの法則
+$$
+\nabla \times \bm{B} = \mu_0 \bm{J} = \mu_0 e \left( n_i \bm{V}_i - n_e \bm{V}_e \right)
+$$
+を用いて書き直すと
+$$
+\begin{aligned}
+\bm{E} &=
+\underbrace{\vphantom{\frac{1}{n_i}}
+  - \bm{V} \times \bm{B}}_{(1)}
+\underbrace{\vphantom{\frac{1}{n_i}}
+  + \frac{1}{e n_i} \bm{J} \times \bm{B}}_{(2)} \\
+& \underbrace{\vphantom{\frac{1}{n_i}}
+  - \frac{1}{e n_i} \nabla \cdot \bm{P}_e}_{(3)}
+\underbrace{\vphantom{\frac{1}{n_i}}
+  + \frac{m_e}{e^2 n_i} \frac{d \bm{J}}{dt}}_{(4)}
+\underbrace{\vphantom{\frac{1}{n_i}}
+  + \eta \bm{J}}_{(5)}
+\end{aligned}
+$$ {#eq-generalized-ohms-law}
+となる．これを一般化されたOhmの法則と呼ぶ．
+右辺第1項は理想磁気流体力学のOhmの法則と一致することが分かる．
+なお，衝突に起因する右辺第5項を便宜的に付け加えたものである．
+
+| (1)        | (2)        | (3)             | (4)             | (5)     |
+|------------|------------|-----------------|-----------------|---------|
+| 理想MHD    | Hall効果   | 電子圧力勾配    | 電子慣性効果    | 衝突    |
+
+右辺2項目以降はミクロな空間スケールで重要になる効果で，それよりも大きな空間スケールでは無視できる．
+例えば速度をAlfven速度程度$V \sim V_A = B/\sqrt{\mu_0 n (m_i + m_e)} \approx B/\sqrt{\mu_0 n m_i}$
+と仮定し，第2項と第1項の比をオーダー評価すると
+$$
+\frac
+{\displaystyle \left| \frac{1}{e n_i} \bm{J} \times \bm{B} \right|}
+{\left| - \bm{V} \times \bm{B} \right|}
+\sim \frac{c/\omega_{pi}}{L}
+$$ {#eq-hall-term-order}
+となる．$\omega_{pi} = (n_i e^2 / \epsilon_0 m_i)^{1/2}$ はイオンプラズマ周波数，
+$c/\omega_{pi}$はイオン慣性長と呼ばれる特徴的な量である．典型的な太陽風のパラメータで評価すると
+$$
+\frac{c}{\omega_{pi}} \approx 72 \left( \frac{n_i}{10 \, {\rm cm^{-3}}} \right)^{-1/2} \, {\rm km/s}
+$$
+であり，これよりも大きな空間スケールでは第2項は無視できることが分かる．
+他の項についても同様な評価から十分大きな空間スケールでは無視することができる．
+
+::: {#exr-generalized-ohms-law}
+$m_i/m_e \gg 1$の仮定を使って @eq-generalized-ohms-law を示せ．
+ただし @eq-electron-eom に衝突が含まれていないので衝突に起因する項 $\eta \bm{J}$ は表れないことに注意せよ．
+:::
+
+::: {#exr-hall-term-order}
+@eq-hall-term-order を示せ．
+:::
+
+### まとめ
+プラズマの巨視的な振る舞いは，低周波・長波長近似のOhmの法則を採用した以下の理想磁気流体力学方程式で与えられる．
+$$
+\begin{aligned}
+& \frac{\partial}{\partial t} \left( \rho \right) +
+\nabla \cdot \left( \rho \bm{V} \right) = 0,
+\\
+& \frac{\partial}{\partial t} \left( \rho \bm{V} \right) +
+\nabla \cdot \left( \rho \bm{V} \bm{V} + P \bm{I} \right)
+= \frac{1}{\mu_0} \left( \nabla \times \bm{B} \right) \times \bm{B}
+\\
+& \frac{\partial}{\partial t}
+\left( \frac{1}{2} \rho \bm{V}^2 + \frac{P}{\gamma-1} \right)
++ \nabla \cdot \left(
+  \frac{1}{2} \rho \bm{V}^3 + \frac{\gamma}{\gamma-1} P \bm{V}
+\right) \\
+& \quad \quad \quad
+= \frac{1}{\mu_0} \left( \nabla \times \bm{B} \right) \cdot \bm{E}
+\\
+& \frac{\partial}{\partial t} \bm{B} + \nabla \times \bm{E} = 0
+\\
+& \bm{E} = - \bm{V} \times \bm{B}
+\end{aligned}
+$$ {#eq-mhd-equations}
+
+::: {#exr-mhd-conservative-form}
+@eq-mhd-equations の運動量保存則を書き換えると，以下の運動方程式が得られることを示せ．
+$$
+\begin{aligned}
+& \rho
+\left( \frac{\partial}{\partial t} + \bm{V} \cdot \nabla \right) \bm{V}
+= - \nabla P + \frac{1}{\mu_0} \left( \nabla \times \bm{B} \right) \times \bm{B}.
+\end{aligned}
+$$
+:::
+
+::: {#exr-mhd-conservative-form}
+@eq-mhd-equations のエネルギー保存則を書き換えると，以下の断熱の状態方程式が得られることを示せ．
+$$
+\begin{aligned}
+&
+\left( \frac{\partial}{\partial t} + \bm{V} \cdot \nabla \right)
+\left( \frac{P}{\rho^\gamma} \right) = 0.
+\end{aligned}
+$$
+:::
+
+::: {#exr-mhd-conservative-form}
+@eq-mhd-equations から電場を消去して保存系で書き換えると以下の形式が得られることを示せ．
+$$
+\begin{aligned}
+& \frac{\partial}{\partial t} \left( \rho \right) +
+\nabla \cdot \left( \rho \bm{V} \right) = 0,
+\\
+& \frac{\partial}{\partial t} \left( \rho \bm{V} \right) +
+\nabla \cdot
+\left[
+  \rho \bm{V} \bm{V} + \left(P + \frac{B^2}{2 \mu_0} \right) \bm{I} -
+  \frac{\bm{B} \bm{B}}{\mu_0}
+\right]
+= 0,
+\\
+& \frac{\partial}{\partial t}
+\left( \frac{1}{2} \rho \bm{V}^2 + \frac{P}{\gamma-1} + \frac{B^2}{2 \mu_0} \right)
++ \nabla \cdot \left[
+\left(
+  \frac{1}{2} \rho \bm{V}^2 + \frac{\gamma}{\gamma-1} P + \frac{B^2}{\mu_0}
+\right) \bm{V} - \frac{\bm{B} (\bm{B} \cdot \bm{V})}{\mu_0}
+\right] = 0,
+\\
+& \frac{\partial}{\partial t} \bm{B} - \nabla \times \left( \bm{V} \times \bm{B} \right) = 0
+\end{aligned}
+$$
+:::
