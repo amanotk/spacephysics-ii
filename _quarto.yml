@@ -22,6 +22,8 @@ execute:
 format:
   html:
     theme: cosmo
+    include-in-header:
+      - file: macros.html
   #pdf:
   #  pdf-engine: lualatex
   #  documentclass: ltjsarticle

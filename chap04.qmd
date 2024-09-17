@@ -1,5 +1,3 @@
-{{< include macros.qmd >}}
-
 # 冷たいプラズマ中の波動
 
 ## プラズマ波動の一般論
@@ -498,7 +496,7 @@ $$
 @eq-magnetized-velocity を示せ．
 :::
 
-### 平行伝播 $\bm{k} \parallel \bm{B}_0$
+### 平行伝播: $\bm{k} \parallel \bm{B}_0$
 $\bm{n} = (0, 0, n)$を @eq-magnetized-dispersion-relation に代入して
 $$
 \begin{pmatrix}
@@ -927,7 +925,7 @@ plt.show()
 1. @eq-approx-cyclotron-wave-dispersion を示せ．
 :::
 
-### 垂直伝播 $\bm{k} \perp \bm{B}_0$
+### 垂直伝播: $\bm{k} \perp \bm{B}_0$
 
 $\bm{n} = (n, 0, 0)$を代入すると
 
