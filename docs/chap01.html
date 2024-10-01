@@ -61,21 +61,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-</head><body class="nav-sidebar floating"><div class="hidden">
-<p><span class="math display">\[
-\newcommand{\bm}[1]{\symbfit{#1}}
-\newcommand{\VA}{V_{\rm A}}
-\newcommand{\Vas}{V_{\rm As}}
-\newcommand{\wps}{\omega_{ps}}
-\newcommand{\wpe}{\omega_{pe}}
-\newcommand{\wpi}{\omega_{pi}}
-\newcommand{\wcs}{\Omega_{cs}}
-\newcommand{\wce}{\Omega_{ce}}
-\newcommand{\wci}{\Omega_{ci}}
-\]</span></p>
-</div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -90,12 +77,12 @@ ul.task-list li input[type="checkbox"] {
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="katex-style.css">
+</head>
 
-
-
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -214,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>地球近傍の宇宙空間には高温で希薄なプラズマが存在する．宇宙空間プラズマの多くが</p>
 <ul>
-<li>(熱エネルギー) <span class="math inline">\gg</span> (クーロンポテンシャル) が満たされ，ほぼ完全電離状態</li>
+<li><span class="math inline">(熱エネルギー) \gg (クーロンポテンシャル)</span> が満たされた，ほぼ完全電離状態</li>
 <li>正電荷のイオンと負電荷の電子がほぼ同数で準中性状態</li>
 </ul>
 <p>となっている．大雑把に言えばプラズマ <span class="math inline">\approx</span> 電磁場と相互作用する流体である．<br>
@@ -225,14 +212,13 @@ ul.task-list li input[type="checkbox"] {
 <li>地球近傍
 <ul>
 <li>太陽・太陽風</li>
-<li>磁気圏(固有磁場を持つ惑星)</li>
-<li>電離圏(弱電離)</li>
+<li>地球・惑星の磁気圏および電離圏</li>
 </ul></li>
 <li>天体プラズマ
 <ul>
-<li>原始惑星系円盤(弱電離)</li>
-<li>星間物質・銀河間物質</li>
-<li>高エネルギー天体近傍(ブラックホール・中性子星・超新星残骸など)</li>
+<li>原始惑星系円盤</li>
+<li>星間物質や銀河間物質</li>
+<li>高エネルギー天体近傍</li>
 </ul></li>
 <li>実験室プラズマ
 <ul>
@@ -240,12 +226,13 @@ ul.task-list li input[type="checkbox"] {
 <li>レーザープラズマ</li>
 </ul></li>
 </ul>
+<p>対象によってパラメータは大きく異なり，例えば電離圏や原始惑星系円盤は弱電離プラズマ，高エネルギー天体近傍では相対論的プラズマになっているが，そのダイナミクスはプラズマ物理の考え方で理解できる．</p>
 </section>
 <section id="debye遮蔽" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="debye遮蔽"><span class="header-section-number">1.2</span> Debye遮蔽</h2>
 <p>プラズマ中にテスト電荷<span class="math inline">Q (&gt;0)</span>を置くと，この電荷が作る静電ポテンシャルを打ち消すようにプラズマ中の電子が応答し，静電ポテンシャルはYukawa型のポテンシャル <span id="eq-yukawa-potential"><span class="math display">
 \phi (r) = \frac{1}{4\pi\epsilon_0} \frac{Q}{r} \exp \left( - \frac{r}{\lambda_D} \right)
-\tag{1.1}</span></span> となる．ここで <span class="math display">
+\qquad(1.1)</span></span> となる．ここで <span class="math display">
 \frac{1}{\lambda_D^2} \equiv \frac{n_0 e^2}{\epsilon_0 k_B T}
 </span> で定義される <span class="math inline">\lambda_D</span> をDebye長と呼ぶ．このポテンシャルでは遠方 <span class="math inline">r \gg \lambda_D</span> ではCoulombポテンシャルよりも急速に減衰する( <a href="#fig-yukawa">図&nbsp;<span>1.1</span></a> 参照)．これをDebye遮蔽と呼ぶ．</p>
 <div class="cell" data-execution_count="1">
@@ -262,12 +249,14 @@ ul.task-list li input[type="checkbox"] {
 \frac{1}{T} = \frac{v_{\rm th}}{\lambda_{D}} = \sqrt{\frac{n_0 e^2}{\epsilon_0 m_e}} \equiv
 \omega_{pe}
 </span> と書ける．ここで<span class="math inline">\omega_{pe}</span>はプラズマ周波数と呼ばれる．これはテスト電荷<span class="math inline">Q</span>の遮蔽が<span class="math inline">\sim \omega_{pe}^{-1}</span>程度の時間で起こることを意味する．すなわち，プラズマは<span class="math inline">\omega_{pe}^{-1}</span>よりも長い時間スケールでは電気的に中性とみなすことができる．このため，多くの場合においてプラズマは準中性状態にある．</p>
-<p>Debye遮蔽はDebye球中の粒子数 <span class="math inline">\Lambda \equiv n \lambda_D^3</span> が十分大きいときにのみ成り立つ．また <span id="eq-plasma-parameter"><span class="math display">
+<p>Debye遮蔽はDebye球（半径がDebye長の球）中の粒子数 <span class="math inline">\Lambda \equiv n \lambda_D^3</span> が十分大きいときにのみ成り立つ．また <span id="eq-plasma-parameter"><span class="math display">
 \Lambda^{2/3} \approx \frac{\text{熱エネルギー}}{\text{ポテンシャルエネルギー}}
-\tag{1.2}</span></span> であることが簡単に分かる．<span class="math inline">\Lambda</span>はプラズマパラメータと呼ばれる量で，宇宙空間プラズマではほとんど場合において<span class="math inline">\Lambda \gg 1</span>が成り立つ．</p>
+\qquad(1.2)</span></span> であることが簡単に分かる．<span class="math inline">\Lambda</span>はプラズマパラメータと呼ばれる量で，宇宙空間プラズマではほとんど場合において<span class="math inline">\Lambda \gg 1</span>が成り立つ．</p>
 <div id="exr-boltzmann-dist" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 1.1 </strong></span>電子を1次元流体と考え，流体の運動方程式において， <span class="math inline">p_e = n_e k_B T</span> ， <span class="math inline">T = {\rm const}</span>, <span class="math inline">dv_e/dt \approx 0</span> (定常かつ静止した状態)を仮定すると，電子密度はBoltzmann分布 <span class="math display">
-n_e \approx n_0 \exp \left( \frac{e \phi}{k T_e} \right)
+<p><span class="theorem-title"><strong>演習問題 1.1 </strong></span>電子を1次元流体と考え，流体の運動方程式 <span class="math display">
+n_e m_e \frac{d v_e}{d t} = -n_e e E - \frac{\partial}{\partial x} p_e
+</span> において， <span class="math inline">p_e = n_e k_B T</span> ， <span class="math inline">T = {\rm const}</span>, <span class="math inline">dv_e/dt \approx 0</span> (定常かつ静止した状態)を仮定すると，電子密度はBoltzmann分布 <span class="math display">
+n_e \approx n_0 \exp \left( \frac{e \phi}{k_B T_e} \right)
 </span> に従う．このことを示せ．</p>
 </div>
 <div id="exr-yukawa-potential" class="theorem exercise">
@@ -320,10 +309,11 @@ n_e \approx n_0 \exp \left( \frac{e \phi}{k T_e} \right)
 &amp; \nabla \cdot \bm{B} = 0.
 \end{aligned}
 </span></p>
+<p>ここではMHDは本題ではないので，以下に特徴を簡単に述べるにとどめる．</p>
 <ul>
-<li>流体 + ローレンツ力（磁気圧勾配力と磁気張力）</li>
-<li>プラズマが完全導体のとき，磁場とプラズマは「凍結」</li>
-<li>プラズマベータ <span class="math inline">\beta = P/(B^2/2\mu_0)</span> が重要なパラメータ</li>
+<li>流体 + 外力としてのローレンツ力（<span class="math inline">\bm{J} \times \bm{B}</span>）が働く．</li>
+<li>プラズマが完全導体のとき，磁場とプラズマは「凍結」している．</li>
+<li>ガス圧力と磁気圧力の比で定義されるプラズマベータ <span class="math inline">\beta = P/(B^2/2\mu_0)</span> が重要なパラメータとなる．</li>
 </ul>
 <div id="exr-jxb-force" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 1.5 </strong></span>ローレンツ力は <span class="math display">

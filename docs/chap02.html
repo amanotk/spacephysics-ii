@@ -80,21 +80,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-</head><body class="nav-sidebar floating"><div class="hidden">
-<p><span class="math display">\[
-\newcommand{\bm}[1]{\symbfit{#1}}
-\newcommand{\VA}{V_{\rm A}}
-\newcommand{\Vas}{V_{\rm As}}
-\newcommand{\wps}{\omega_{ps}}
-\newcommand{\wpe}{\omega_{pe}}
-\newcommand{\wpi}{\omega_{pi}}
-\newcommand{\wcs}{\Omega_{cs}}
-\newcommand{\wce}{\Omega_{ce}}
-\newcommand{\wci}{\Omega_{ci}}
-\]</span></p>
-</div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -109,12 +96,12 @@ div.csl-indent {
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="katex-style.css">
+</head>
 
-
-
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -253,14 +240,14 @@ div.csl-indent {
 
 <section id="荷電粒子の運動方程式" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="荷電粒子の運動方程式"><span class="header-section-number">2.1</span> 荷電粒子の運動方程式</h2>
-<p>プラズマのダイナミクスは，電磁場と荷電粒子の作る電荷や電流が自己無撞着に発展することによって記述される．しかし，これは複雑過ぎるので，まずは与えられた電磁場のもとでの非相対論的な荷電粒子の運動について考えよう． <span class="math display">
+<p>プラズマのダイナミクスは，電磁場と荷電粒子の作る電荷や電流が自己無撞着に発展することによって記述される．しかし，これは複雑過ぎるので，まずは与えられた電磁場のもとでの非相対論的な荷電粒子の運動について考えよう．運動方程式は以下の通りである． <span class="math display">
 \frac{d\bm{x}}{dt} = \bm{v}, \quad
 \frac{d\bm{v}}{dt} = \frac{q}{m} \left( \bm{E} + \bm{v} \times \bm{B} \right)
 </span></p>
 </section>
 <section id="ジャイロ運動" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="ジャイロ運動"><span class="header-section-number">2.2</span> ジャイロ運動</h2>
-<p><span class="math inline">\bm{E} = 0</span> および <span class="math inline">\bm{B} = B \bm{e}_z</span> とすると運動方程式は簡単に解ける． <span class="math display">
+<p><span class="math inline">\bm{E} = 0</span> および <span class="math inline">\bm{B} = B \bm{e}_z</span> とすると運動方程式は簡単に解けて，以下の解を得る． <span class="math display">
 \begin{cases}
 v_x = - v_{\perp} \cos \Omega_c t \\
 v_y = + v_{\perp} \sin \Omega_c t \\
@@ -304,7 +291,7 @@ J = \oint p dq
 </span> このとき，外部からの十分ゆっくりとした摂動に対しては<span class="math inline">J</span>を近似的に一定とみなすことができる．このような<span class="math inline">J</span>を断熱不変量と呼ぶ．</p>
 <p>荷電粒子のジャイロ運動について定義される断熱不変量を第一断熱不変量<span class="math inline">J_1</span>と呼ぶ．これは <span id="eq-first-adiabatic-invariant"><span class="math display">
 J_1 = \frac{\pi m}{q} \frac{m v_{\perp}^2}{2 B} \equiv \frac{\pi m}{q} \mu
-\tag{2.1}</span></span> となることが簡単に示せる．ここで <span class="math inline">\mu</span> を磁気モーメントと呼ぶ．<span class="math inline">\mu</span>は<span class="math inline">J_1</span>と定数倍だけしか違わないので，<span class="math inline">\mu</span>を第一断熱不変量と呼ぶことも多い．</p>
+\qquad(2.1)</span></span> となることが簡単に示せる．ここで <span class="math inline">\mu</span> を磁気モーメントと呼ぶ．<span class="math inline">\mu</span>は<span class="math inline">J_1</span>と定数倍だけしか違わないので，<span class="math inline">\mu</span>を第一断熱不変量と呼ぶことも多い．</p>
 <div id="exr-adiabatic-invariant" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.2 </strong></span>調和振動子 <span class="math display">
 \frac{dq}{dt} = p, \quad \frac{dp}{dt} = - \omega^2 q
@@ -341,27 +328,31 @@ q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
 <figcaption class="figure-caption">図&nbsp;2.3: 磁気ボトル <span class="citation" data-cites="GurnettBattacharjee2017">(<a href="references.html#ref-GurnettBattacharjee2017" role="doc-biblioref">Gurnett and Bhattacharjee 2017</a>)</span></figcaption>
 </figure>
 </div>
-<p>磁気ボトル中の荷電粒子の運動について，(ジャイロ半径) <span class="math inline">\ll</span> (空間スケール)が成り立つとき，磁力線平行方向の運動方程式は <span id="eq-mirror-force"><span class="math display">
+<p>磁気ボトル中の荷電粒子の運動について考えると，時間的に定常な磁場構造の中では荷電粒子のエネルギーは保存することから <span id="eq-energy-conservation"><span class="math display">
+\frac{1}{2} m v_{\parallel}^2 + \frac{1}{2} m v_{\perp}^2 =
+\frac{1}{2} m v_{\parallel}^2 + \mu B = {\rm const.}
+\qquad(2.2)</span></span> が成り立つ．さらに，<span class="math inline">(ジャイロ半径) \ll (空間スケール)</span>が成り立つとき，磁力線平行方向の運動方程式は <span id="eq-mirror-force"><span class="math display">
 m \frac{d v_{\parallel}}{dt} \approx
 \underbrace{- \mu \frac{\partial B}{\partial s}}_{\text{磁気ミラー力}}
-\tag{2.2}</span></span> と書ける．ここで<span class="math inline">s</span>は磁力線に沿って定義した座標．荷電粒子は磁場が強い方から弱い方に向かって実効的な力を受ける．これを磁気ミラー力と呼ぶ．</p>
+\qquad(2.3)</span></span> と書ける．ここで<span class="math inline">s</span>は磁力線に沿って定義した座標である．これは荷電粒子は磁場が強い方から弱い方に向かって実効的な力を受けることを意味しており，これを磁気ミラー力と呼ぶ．</p>
 <div id="exr-mirror-force" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.6 </strong></span>時間的に定常な磁場構造の中では荷電粒子のエネルギーは保存する．このことと， (ジャイロ半径) <span class="math inline">\ll</span> (空間スケール) を仮定することで <a href="#eq-mirror-force">式&nbsp;<span>2.2</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.6 </strong></span><a href="#eq-energy-conservation">式&nbsp;<span>2.2</span></a> において， <span class="math inline">(ジャイロ半径) \ll (空間スケール)</span> を仮定することで <a href="#eq-mirror-force">式&nbsp;<span>2.3</span></a> を示せ．</p>
 </div>
 <section id="ミラー反射" class="level3">
 <h3 class="anchored" data-anchor-id="ミラー反射">ミラー反射</h3>
 <p>ピッチ角の大きな粒子は磁場強度の強い領域で磁気ミラー力で反射され捕捉される． ピッチ角と反射点(ミラー点)の磁場強度<span class="math inline">B_m</span>の関係はエネルギー保存則と第1断熱不変量の保存から <span id="eq-loss-cone-angle"><span class="math display">
 \sin \alpha_0 = \sqrt{\frac{B_0}{B_m}}
-\tag{2.3}</span></span> となることが分かる．ただし <span class="math inline">B_0</span> は磁場強度が最小の点での値を表す．このピッチ角の条件はエネルギーに依存しないことに注意しよう．</p>
+\qquad(2.4)</span></span> となることが分かる．ただし <span class="math inline">B_0</span> は磁場強度が最小の点での値を表す．このピッチ角の条件はエネルギーに依存しないことに注意しよう．</p>
+<p>ピッチ角がこれよりも大きい（90度に近い）粒子の運動は磁場強度の極小の点を中心とした周期運動となる．これをバウンス運動と呼ぶ．</p>
 <div id="exr-loss-cone-angle" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.7 </strong></span><a href="#eq-loss-cone-angle">式&nbsp;<span>2.3</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.7 </strong></span><a href="#eq-energy-conservation">式&nbsp;<span>2.2</span></a> から <a href="#eq-loss-cone-angle">式&nbsp;<span>2.4</span></a> を示せ．</p>
 </div>
 </section>
 <section id="第2断熱不変量" class="level3">
 <h3 class="anchored" data-anchor-id="第2断熱不変量">第2断熱不変量</h3>
-<p><span class="math display">
+<p>バウンス運動に対しても断熱不変量を定義することができる．解析的な表式は具体的な磁場形状に依存するが，ここでは定性的な振る舞いを理解できれば十分である． <span class="math display">
 J_2 = \oint m v_{\parallel} d s \sim m v_{\parallel} l
-</span> は十分ゆっくり <span class="math inline">l</span> を変化させたときに保存する．ここで <span class="math inline">l</span> はミラー点間の距離．</p>
+</span> ここで <span class="math inline">l</span> はミラー点間の距離である．これはミラー点間の距離が十分ゆっくり変化したときの <span class="math inline">v_{\parallel}</span> の定性的な変化を記述する．</p>
 </section>
 </section>
 <section id="ドリフト運動" class="level2" data-number="2.4">
@@ -373,11 +364,11 @@ J_2 = \oint m v_{\parallel} d s \sim m v_{\parallel} l
 v_x = - v_{\perp} \cos \Omega_c t + \frac{E}{B} \\
 v_y = + v_{\perp} \sin \Omega_c t
 \end{cases}
-\tag{2.4}</span></span> となり，<span class="math inline">x</span>方向に速さ<span class="math inline">E/B</span>でドリフト運動する．これを電場ドリフト，または <span class="math inline">\bm{E} \times \bm{B}</span> ドリフトと呼ぶ．ベクトル形式では <span class="math display">
+\qquad(2.5)</span></span> となり，<span class="math inline">x</span>方向に速さ<span class="math inline">E/B</span>でドリフト運動する．これを電場ドリフト，または <span class="math inline">\bm{E} \times \bm{B}</span> ドリフトと呼ぶ．ベクトル形式では <span class="math display">
 \bm{v}_E = \frac{\bm{E} \times \bm{B}}{B^2}
 </span> となる．粒子軌道の例は <a href="#fig-exb-drift">図&nbsp;<span>2.4</span></a> のようになる．</p>
 <ul>
-<li>電場ドリフトは(ローレンツ変換に由来するため)電荷，質量，エネルギーなどの物理量に依存しない．</li>
+<li>電場ドリフトは電荷，質量，エネルギーなどの物理量に依存しない．これは電場ドリフトがローレンツ変換に由来するためである．</li>
 <li>MHDの速度は電場ドリフトに対応する．</li>
 </ul>
 <div class="cell" data-execution_count="3">
@@ -391,14 +382,14 @@ v_y = + v_{\perp} \sin \Omega_c t
 </div>
 </div>
 <div id="exr-exb-drift" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.8 </strong></span><a href="#eq-exb-drift">式&nbsp;<span>2.4</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.8 </strong></span><a href="#eq-exb-drift">式&nbsp;<span>2.5</span></a> を示せ．</p>
 </div>
 </section>
 <section id="一般の力によるドリフト" class="level3">
 <h3 class="anchored" data-anchor-id="一般の力によるドリフト">一般の力によるドリフト</h3>
 <p><span class="math inline">q \bm{E}</span> の代わりに <span class="math inline">\bm{F}</span> とすれば <span class="math display">
 \bm{v}_F = \frac{\bm{F} \times \bm{B}}{q B^2}
-</span> を得る．</p>
+</span> を得る．これは一般に磁場に垂直方向に外力 <span class="math inline">\bm{F}</span> がかかったときに，荷電粒子は <span class="math inline">\bm{F}</span> および <span class="math inline">\bm{B}</span> の両方に直交する方向にドリフト運動することを意味する．</p>
 </section>
 <section id="磁場勾配ドリフト" class="level3">
 <h3 class="anchored" data-anchor-id="磁場勾配ドリフト">磁場勾配ドリフト</h3>
@@ -407,11 +398,11 @@ v_y = + v_{\perp} \sin \Omega_c t
 \quad \quad
 \left&lt; F_y \right&gt; = - \frac{1}{2} m v_{\perp}^2 \frac{1}{B} \frac{\partial B}{\partial y}
 = - \mu \frac{\partial B}{\partial y}
-\tag{2.5}</span></span> を感じてドリフト運動する． <span class="math display">
+\qquad(2.6)</span></span> を感じてドリフト運動する． <span class="math display">
 \bm{v}_{G} = \frac{\mu}{q} \frac{\bm{B} \times \nabla B}{B^2}
 </span> これを磁場勾配ドリフトと呼ぶ．</p>
 <div id="exr-gradb-drift" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.9 </strong></span><a href="#eq-gradb-force">式&nbsp;<span>2.5</span></a> を示せ．ただし <span class="math inline">\bm{E} = \bm{0}</span> とし，磁場勾配の空間スケールは粒子のジャイロ半径よりも十分大きいと仮定せよ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.9 </strong></span><a href="#eq-gradb-force">式&nbsp;<span>2.6</span></a> を示せ．ただし <span class="math inline">\bm{E} = \bm{0}</span> とし，磁場勾配の空間スケールは粒子のジャイロ半径よりも十分大きいと仮定せよ．</p>
 </div>
 </section>
 <section id="磁場曲率ドリフト" class="level3">
@@ -574,7 +565,7 @@ B(x) \simeq B_0 + \frac{\partial B}{\partial x} \Biggr|_{x=0} x
 </span> であり，粒子軌道は静電ポテンシャル <span class="math inline">\Phi</span> の等高線に等しい．静電ポテンシャルを極座標で書くと <span id="eq-lowenergy-drift"><span class="math display">
 \Phi = \Phi_{\rm c} + \Phi_{\rm sw} =
 - \frac{B_E \Omega_E R_E^3}{r} - r E_0 \sin \phi
-\tag{2.6}</span></span> となり，粒子軌道は <a href="#fig-lowenergy-drift">図&nbsp;<span>2.9</span></a> のようになる． 軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる． 典型的なプラズマ圏の大きさは地球半径の数倍程度である．</p>
+\qquad(2.7)</span></span> となり，粒子軌道は <a href="#fig-lowenergy-drift">図&nbsp;<span>2.9</span></a> のようになる． 軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる． 典型的なプラズマ圏の大きさは地球半径の数倍程度である．</p>
 <div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-lowenergy-drift" class="quarto-figure quarto-figure-center anchored">
@@ -586,7 +577,7 @@ B(x) \simeq B_0 + \frac{\partial B}{\partial x} \Biggr|_{x=0} x
 </div>
 </div>
 <div id="exr-lowenergy-drift" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.14 </strong></span><a href="#eq-lowenergy-drift">式&nbsp;<span>2.6</span></a> を微分することによって，共回転電場に伴う電場と太陽風起源の電場によるドリフトが打ち消し合う淀み点の位置が <span class="math inline">r = \left( B_E \Omega_E R_E^3 / E_0 \right)^{1/2}</span>, <span class="math inline">\sin \phi = 1</span> で与えられることを確かめよ．<a href="#fig-lowenergy-drift">図&nbsp;<span>2.9</span></a> の点線は淀み点のポテンシャルを通る等高線である．</p>
+<p><span class="theorem-title"><strong>演習問題 2.14 </strong></span><a href="#eq-lowenergy-drift">式&nbsp;<span>2.7</span></a> を微分することによって，共回転電場に伴う電場と太陽風起源の電場によるドリフトが打ち消し合う淀み点の位置が <span class="math inline">r = \left( B_E \Omega_E R_E^3 / E_0 \right)^{1/2}</span>, <span class="math inline">\sin \phi = 1</span> で与えられることを確かめよ．<a href="#fig-lowenergy-drift">図&nbsp;<span>2.9</span></a> の点線は淀み点のポテンシャルを通る等高線である．</p>
 </div>
 </section>
 <section id="内部磁気圏における粒子軌道高エネルギー粒子" class="level3">
@@ -621,7 +612,7 @@ v_{G} \propto \mu \frac{1}{B} \frac{\partial B}{\partial r} \propto \frac{1}{r}
 \frac{\Delta B}{B_E} =- \frac{2}{3} \frac{W_p}{W_B}
 </span> なる関係がある．これをDessler-Parker-Sckopke関係と呼ぶ．ただし <span id="eq-dipole-field-energy"><span class="math display">
 W_B = \int d \phi \int d (\cos \theta) \int_{R_E}^{\infty} r^2 dr \frac{B^2}{2 \mu_0}
-\tag{2.7}</span></span> は双極子磁場のエネルギーを表す．</p>
+\qquad(2.8)</span></span> は双極子磁場のエネルギーを表す．</p>
 <p>Dessler-Parker-Sckopke関係を使うと地表面で観測された地磁気変動から宇宙空間に存在するプラズマ（リングカレント）の総エネルギーを概算することができる．</p>
 <div id="exr-dessler-parker-sckopke" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.16 </strong></span>Dessler-Parker-Sckopke関係を示そう．</p>
@@ -631,7 +622,7 @@ W_B = \int d \phi \int d (\cos \theta) \int_{R_E}^{\infty} r^2 dr \frac{B^2}{2 \
 </span> において，左辺が無視できる（時間定常で流体速度が十分に小さい）場合を考えると，磁場に垂直方向の電流が <span class="math display">
 \bm{J}_{\perp} = \bm{b} \times \frac{\nabla P}{B}
 </span> で表されることを示せ．</li>
-<li>地球の磁場を双極子と近似しよう．このとき， <a href="#eq-dipole-field-energy">式&nbsp;<span>2.7</span></a> で表される双極子磁場が持つエネルギーを宇宙空間全体( <span class="math inline">r &gt; R_E</span> )で積分した量が <span class="math display">
+<li>地球の磁場を双極子と近似しよう．このとき， <a href="#eq-dipole-field-energy">式&nbsp;<span>2.8</span></a> で表される双極子磁場が持つエネルギーを宇宙空間全体( <span class="math inline">r &gt; R_E</span> )で積分した量が <span class="math display">
 W_B = \frac{4 \pi}{3 \mu_0} B_E^2 R_E^3
 </span> と書けることを示せ．ただし <span class="math inline">B_E</span> は地球表面の赤道面における磁場強度で，双極子磁場は極座標で <span class="math display">
 \bm{B} = - B_E \left( \frac{R_E}{r} \right)^3

@@ -61,21 +61,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-</head><body class="nav-sidebar floating"><div class="hidden">
-<p><span class="math display">\[
-\newcommand{\bm}[1]{\symbfit{#1}}
-\newcommand{\VA}{V_{\rm A}}
-\newcommand{\Vas}{V_{\rm As}}
-\newcommand{\wps}{\omega_{ps}}
-\newcommand{\wpe}{\omega_{pe}}
-\newcommand{\wpi}{\omega_{pi}}
-\newcommand{\wcs}{\Omega_{cs}}
-\newcommand{\wce}{\Omega_{ce}}
-\newcommand{\wci}{\Omega_{ci}}
-\]</span></p>
-</div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -90,12 +77,12 @@ ul.task-list li input[type="checkbox"] {
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="katex-style.css">
+</head>
 
-
-
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -253,15 +240,15 @@ d\Gamma = f(\bm{x}, \bm{v}) d\bm{x} d\bm{v}
 <h3 class="anchored" data-anchor-id="熱平衡分布">熱平衡分布</h3>
 <p>構成粒子同士の衝突が十分に起こると熱平衡状態になり，等エネルギー分配則が成り立つ．このときの分布は粒子数，運動量，エネルギーを一定に保った条件のもとで運動論的エントロピー <span id="eq-kinetic-entropy"><span class="math display">
 S = - k_B \int f(\bm{v}) \ln f(\bm{v}) d\bm{v}
-\tag{3.1}</span></span> を最大化することで得られる．</p>
+\qquad(3.1)</span></span> を最大化することで得られる．</p>
 <p>簡単のため速度空間1次元の場合について考え，Lagrange未定乗数法でエントロピーを最大化すると <span id="eq-maxwellian-1d"><span class="math display">
 f_M(v) = \frac{n}{\sqrt{2 \pi v_{\rm th}^2}}
 \exp \left[ - \frac{(v - V)^2}{2 v_{\rm th}^2} \right]
-\tag{3.2}</span></span> が得られる．これをMaxwell分布などと呼ぶ．熱速度<span class="math inline">v_{\rm th}</span>と温度<span class="math inline">T</span>，圧力<span class="math inline">P</span>の間の関係は <span class="math inline">P = n k_B T = n m v_{\rm th}^2</span>．</p>
+\qquad(3.2)</span></span> が得られる．これをMaxwell分布などと呼ぶ．熱速度<span class="math inline">v_{\rm th}</span>と温度<span class="math inline">T</span>，圧力<span class="math inline">P</span>の間の関係は <span class="math inline">P = n k_B T = n m v_{\rm th}^2</span>．</p>
 <p>3次元には <span class="math inline">f(\bm{v}) = f_M(v_x) f_M(v_y) f_M(v_z)</span> と簡単に拡張できる． <span id="eq-maxwellian-3d"><span class="math display">
 f(\bm{v}) = \frac{n}{ \left( 2 \pi v_{\rm th}^2 \right)^{3/2} }
 \exp \left[ - \frac{(\bm{v} - \bm{V})^2}{2 v_{\rm th}^2} \right]
-\tag{3.3}</span></span></p>
+\qquad(3.3)</span></span></p>
 <div id="exr-velocity-distribution-function" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.1 </strong></span>&nbsp;</p>
 <ol type="1">
@@ -317,13 +304,13 @@ N(\bm{x}, \bm{v}, t) = \sum_{i=1}^{N} \delta (\bm{x} - \bm{x}_i) \delta (\bm{v} 
 <h3 class="anchored" data-anchor-id="coulomb衝突">Coulomb衝突</h3>
 <p>簡単なオーダー評価から，Coulomb力による散乱は <span id="eq-collision-balance"><span class="math display">
 \frac{1}{2} m v^2 \sim \frac{1}{4\pi \epsilon_0} \frac{e^2}{r}
-\tag{3.4}</span></span> のときに重要になると予想できる．ここで<span class="math inline">r</span>はインパクトパラメータである．これを用いて大雑把に衝突周波数を評価すると <span id="eq-collision-frequency"><span class="math display">
+\qquad(3.4)</span></span> のときに重要になると予想できる．ここで<span class="math inline">r</span>はインパクトパラメータである．これを用いて大雑把に衝突周波数を評価すると <span id="eq-collision-frequency"><span class="math display">
 \begin{aligned}
 \nu \sim 2 \times 10^{-6}
 \left( \frac{n}{5 \, {\rm cm^{-3}}} \right)
 \left( \frac{T}{10^{5} \, {\rm K}} \right)^{-3/2} \, {\rm s^{-1}}
 \end{aligned}
-\tag{3.5}</span></span> と書ける．例えば1AUにおける太陽風を考えればCoulomb衝突はほとんど無視できることが分かる．ただし，実際には多数回の少角度散乱の方が効くため，これよりも衝突の効果は一桁程度大きくなることが知られている．</p>
+\qquad(3.5)</span></span> と書ける．例えば1AUにおける太陽風を考えればCoulomb衝突はほとんど無視できることが分かる．ただし，実際には多数回の少角度散乱の方が効くため，これよりも衝突の効果は一桁程度大きくなることが知られている．</p>
 <div id="exr-coulomb-collision" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.3 </strong></span><a href="#eq-collision-balance">式&nbsp;<span>3.4</span></a> を用いて，衝突周波数をオーダー評価すると <a href="#eq-collision-frequency">式&nbsp;<span>3.5</span></a> が得られることを示せ．</p>
 </div>
@@ -352,7 +339,7 @@ N (\bm{x}, \bm{v}, t) = f(\bm{x}, \bm{v}, t) + \delta f(\bm{x}, \bm{v}, t)
 \equiv
 \left( \frac{\partial f}{\partial t} \right)_{\rm c}
 \end{aligned}
-\tag{3.6}</span></span> 右辺の揺らぎの2次の相関は衝突の効果を表している．この方程式の衝突項が有限のときをBoltzmann方程式，衝突項が無視できるときをVlasov方程式と呼ぶ．</p>
+\qquad(3.6)</span></span> 右辺の揺らぎの2次の相関は衝突の効果を表している．この方程式の衝突項が有限のときをBoltzmann方程式，衝突項が無視できるときをVlasov方程式と呼ぶ．</p>
 <p>高温・希薄で無衝突な宇宙空間プラズマはVlasov方程式を基礎方程式とする． (宇宙物理の応用では輻射・ニュートリノ輸送などはBoltzmann方程式で，ダークマターはVlasov方程式で扱われることが多い．)</p>
 <div id="exr-ensemble-averaged-klimontovich" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.4 </strong></span>Klimontovich方程式のアンサンブル平均をとることで， <a href="#eq-ensemble-averaged-klimontovich">式&nbsp;<span>3.6</span></a> が得られることを確かめよ．</p>
@@ -422,7 +409,7 @@ d \bm{x} d \bm{v} = {\rm const.}
 <p>Vlasov方程式の0次モーメントをとると <span id="eq-0th-moment"><span class="math display">
 \frac{\partial}{\partial t} \left( n \right) +
 \nabla \cdot \left( n \bm{V} \right) = 0.
-\tag{3.7}</span></span> を得る．これは粒子数保存則を表す．</p>
+\qquad(3.7)</span></span> を得る．これは粒子数保存則を表す．</p>
 <div id="exr-0th-moment" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.6 </strong></span><a href="#eq-0th-moment">式&nbsp;<span>3.7</span></a> を示せ．</p>
 </div>
@@ -433,7 +420,7 @@ d \bm{x} d \bm{v} = {\rm const.}
 \frac{\partial}{\partial t} \left( n m \bm{V} \right) +
 \nabla \cdot \left( n m \bm{V} \bm{V} + \bm{P} \right) =
 n q  \left( \bm{E} + \bm{V} \times \bm{B} \right)
-\tag{3.8}</span></span> を得る．これは運動量保存則を表す．</p>
+\qquad(3.8)</span></span> を得る．これは運動量保存則を表す．</p>
 <div id="exr-1st-moment" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.7 </strong></span><a href="#eq-1st-moment">式&nbsp;<span>3.8</span></a> を示せ．</p>
 </div>
@@ -450,10 +437,10 @@ n q  \left( \bm{E} + \bm{V} \times \bm{B} \right)
 = n q  \left[ \bm{V} \left( \bm{E} + \bm{V} \times \bm{B} \right) \right]^{S} +
 \frac{q}{m} \left( \bm{P} \times \bm{B} \right)^{S}
 \end{aligned}
-\tag{3.9}</span></span> を得る．この式のトレースはエネルギー保存則を表す．</p>
+\qquad(3.9)</span></span> を得る．この式のトレースはエネルギー保存則を表す．</p>
 <p>ただし，ここでテンソルの対象化の記号 <span class="math inline">^{S}</span> を導入した．具体的には <span class="math inline">\left( \bm{V} \bm{P} \right)_{ijk}^{S} = V_i P_{jk} + V_j P_{ki} + V_k P_{ij}</span>，<span class="math inline">\left( \bm{V} \bm{E} \right)_{ij}^{S} = V_i E_j + V_j E_i</span>，<span class="math inline">\left( \bm{P} \times \bm{B} \right)_{ij}^{S} = \epsilon_{ilm} P_{jl} B_m + \epsilon_{jlm} P_{il} B_m</span> と定義される．また， <span id="eq-heat-flux"><span class="math display">
 \bm{Q} (\bm{x}) = m \int (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) f(\bm{x}, \bm{v}) d \bm{v}
-\tag{3.10}</span></span> は熱流束を表す3階のテンソルである．</p>
+\qquad(3.10)</span></span> は熱流束を表す3階のテンソルである．</p>
 <div id="exr-2nd-moment" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.8 </strong></span><a href="#eq-2nd-moment">式&nbsp;<span>3.9</span></a> を示せ．</p>
 </div>
@@ -481,7 +468,7 @@ n q  \left( \bm{E} + \bm{V} \times \bm{B} \right)
 \biggr) =
 q n \bm{V} \cdot \bm{E}
 \end{aligned}
-\tag{3.11}</span></span> を得る．熱流束を無視したことによって <span class="math inline">n, \bm{V}, P</span> だけの式になり，方程式系が閉じることが分かる．</p>
+\qquad(3.11)</span></span> を得る．熱流束を無視したことによって <span class="math inline">n, \bm{V}, P</span> だけの式になり，方程式系が閉じることが分かる．</p>
 <div id="exr-energy-equation" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.9 </strong></span><a href="#eq-2nd-moment">式&nbsp;<span>3.9</span></a> のトレースをとる代わりにVlasov方程式に <span class="math inline">m \bm{v}^2 / 2</span> をかけて積分することで <a href="#eq-energy-equation">式&nbsp;<span>3.11</span></a> を示せ．ただし熱流束は無視すること．</p>
 </div>
@@ -555,7 +542,7 @@ P &amp;= \sum_{s} P_s
 \right)
 = \bm{J} \cdot \bm{E}
 \end{aligned}
-\tag{3.12}</span></span></p>
+\qquad(3.12)</span></span></p>
 <p>低周波近似によって変位電流は無視して，Maxwell方程式は <span class="math display">
 \begin{aligned}
 &amp; \frac{\partial \bm{B}}{\partial t} = - \nabla \times \bm{E}
@@ -576,7 +563,7 @@ P &amp;= \sum_{s} P_s
 \bm{E} = -\bm{V}_e \times \bm{B}
 -\frac{1}{e n_e} \nabla \cdot \bm{P}_e
 -\frac{m_e}{e} \frac{d}{dt} \bm{V}_e
-\tag{3.13}</span></span> を得る．これを準中性条件<span class="math inline">n_i \approx n_e</span>とAmpereの法則 <span class="math display">
+\qquad(3.13)</span></span> を得る．これを準中性条件<span class="math inline">n_i \approx n_e</span>とAmpereの法則 <span class="math display">
 \nabla \times \bm{B} = \mu_0 \bm{J} = \mu_0 e \left( n_i \bm{V}_i - n_e \bm{V}_e \right)
 </span> を用いて書き直すと <span id="eq-generalized-ohms-law"><span class="math display">
 \begin{aligned}
@@ -592,7 +579,7 @@ P &amp;= \sum_{s} P_s
 \underbrace{\vphantom{\frac{1}{n_i}}
   + \eta \bm{J}}_{(5)}
 \end{aligned}
-\tag{3.14}</span></span> となる．これを一般化されたOhmの法則と呼ぶ． 右辺第1項は理想磁気流体力学のOhmの法則と一致することが分かる． なお，衝突に起因する右辺第5項を便宜的に付け加えたものである．</p>
+\qquad(3.14)</span></span> となる．これを一般化されたOhmの法則と呼ぶ． 右辺第1項は理想磁気流体力学のOhmの法則と一致することが分かる． なお，衝突に起因する右辺第5項を便宜的に付け加えたものである．</p>
 <table class="table">
 <colgroup>
 <col style="width: 17%">
@@ -625,7 +612,7 @@ P &amp;= \sum_{s} P_s
 {\displaystyle \left| \frac{1}{e n_i} \bm{J} \times \bm{B} \right|}
 {\left| - \bm{V} \times \bm{B} \right|}
 \sim \frac{c/\omega_{pi}}{L}
-\tag{3.15}</span></span> となる．<span class="math inline">\omega_{pi} = (n_i e^2 / \epsilon_0 m_i)^{1/2}</span> はイオンプラズマ周波数， <span class="math inline">c/\omega_{pi}</span>はイオン慣性長と呼ばれる特徴的な量である．典型的な太陽風のパラメータで評価すると <span class="math display">
+\qquad(3.15)</span></span> となる．<span class="math inline">\omega_{pi} = (n_i e^2 / \epsilon_0 m_i)^{1/2}</span> はイオンプラズマ周波数， <span class="math inline">c/\omega_{pi}</span>はイオン慣性長と呼ばれる特徴的な量である．典型的な太陽風のパラメータで評価すると <span class="math display">
 \frac{c}{\omega_{pi}} \approx 72 \left( \frac{n_i}{10 \, {\rm cm^{-3}}} \right)^{-1/2} \, {\rm km/s}
 </span> であり，これよりも大きな空間スケールでは第2項は無視できることが分かる． 他の項についても同様な評価から十分大きな空間スケールでは無視することができる．</p>
 <div id="exr-generalized-ohms-law" class="theorem exercise">
@@ -659,7 +646,7 @@ P &amp;= \sum_{s} P_s
 \\
 &amp; \bm{E} = - \bm{V} \times \bm{B}
 \end{aligned}
-\tag{3.16}</span></span></p>
+\qquad(3.16)</span></span></p>
 <div id="exr-mhd-conservative-form" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.15 </strong></span><a href="#eq-mhd-equations">式&nbsp;<span>3.16</span></a> の運動量保存則を書き換えると，以下の運動方程式が得られることを示せ． <span class="math display">
 \begin{aligned}

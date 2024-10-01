@@ -1,3 +1,16 @@
+::: {.content-hidden}
+$
+\newcommand{\VA}{V_{\rm A}}
+\newcommand{\Vas}{V_{\rm As}}
+\newcommand{\wps}{\omega_{ps}}
+\newcommand{\wpe}{\omega_{pe}}
+\newcommand{\wpi}{\omega_{pi}}
+\newcommand{\wcs}{\Omega_{cs}}
+\newcommand{\wce}{\Omega_{ce}}
+\newcommand{\wci}{\Omega_{ci}}
+$
+:::
+
 # 冷たいプラズマ中の波動
 
 ## プラズマ波動の一般論

@@ -61,21 +61,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-</head><body class="nav-sidebar floating"><div class="hidden">
-<p><span class="math display">\[
-\newcommand{\bm}[1]{\symbfit{#1}}
-\newcommand{\VA}{V_{\rm A}}
-\newcommand{\Vas}{V_{\rm As}}
-\newcommand{\wps}{\omega_{ps}}
-\newcommand{\wpe}{\omega_{pe}}
-\newcommand{\wpi}{\omega_{pi}}
-\newcommand{\wcs}{\Omega_{cs}}
-\newcommand{\wce}{\Omega_{ce}}
-\newcommand{\wci}{\Omega_{ci}}
-\]</span></p>
-</div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -90,12 +77,12 @@ ul.task-list li input[type="checkbox"] {
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="katex-style.css">
+</head>
 
-
-
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -245,11 +232,11 @@ i k \tilde{E} &amp;= \frac{1}{\epsilon_0} \sum_{s} q_s \int \tilde{f}_s dv.
 \epsilon =
 1 - \sum_{s} \left( \frac{\omega_{ps}}{k} \right)^2
 \int_{-\infty}^{+\infty} \frac{F'_{s} (v)}{v - \omega/k} dv = 0
-\tag{5.1}</span></span> または部分積分して <span id="eq-vlasov-poisson-dispersion2"><span class="math display">
+\qquad(5.1)</span></span> または部分積分して <span id="eq-vlasov-poisson-dispersion2"><span class="math display">
 \epsilon =
 1 - \sum_{s} \left( \frac{\omega_{ps}}{k} \right)^2
 \int_{-\infty}^{+\infty} \frac{F_{s} (v)}{\left(v - \omega/k\right)^2} dv = 0
-\tag{5.2}</span></span> により得られる．ただし <span class="math inline">f_{s,0}(v) = n_{0,s} F_{s}(v)</span> により <span class="math inline">F_{s}(v)</span> を定義した．</p>
+\qquad(5.2)</span></span> により得られる．ただし <span class="math inline">f_{s,0}(v) = n_{0,s} F_{s}(v)</span> により <span class="math inline">F_{s}(v)</span> を定義した．</p>
 <section id="landau共鳴" class="level4">
 <h4 class="anchored" data-anchor-id="landau共鳴">Landau共鳴</h4>
 <ul>
@@ -285,28 +272,28 @@ i k \tilde{E} &amp;= \frac{1}{\epsilon_0} \sum_{s} q_s \int \tilde{f}_s dv.
   \cdots
 \right]
 \end{aligned}
-\tag{5.3}</span></span></p>
+\qquad(5.3)</span></span></p>
 <p>したがって分散関係は <span id="eq-langmuir-fluid-dispersion-relation1"><span class="math display">
 1 -
 \sum_{s} \left( \frac{\omega_{ps}}{\omega} \right)^2
 \left[ 1 + 3 \left( \frac{k v_{\rm th,s}}{\omega} \right)^2 \right]
 \approx 0.
-\tag{5.4}</span></span> となる．<span class="math inline">\omega \sim \omega_{pe}</span> として近似解を求めると <span id="eq-langmuir-fluid-dispersion-relation2"><span class="math display">
+\qquad(5.4)</span></span> となる．<span class="math inline">\omega \sim \omega_{pe}</span> として近似解を求めると <span id="eq-langmuir-fluid-dispersion-relation2"><span class="math display">
 \omega^2 \approx \omega_{pe}^2 \left( 1 + 3 k^2 \lambda_{De}^2 \right).
-\tag{5.5}</span></span> これは流体近似のLangmuir波で <span class="math inline">\gamma = 3</span> (自由度 = 1)としたものに等しい．</p>
+\qquad(5.5)</span></span> これは流体近似のLangmuir波で <span class="math inline">\gamma = 3</span> (自由度 = 1)としたものに等しい．</p>
 </section>
 <section id="イオン音波" class="level4">
 <h4 class="anchored" data-anchor-id="イオン音波">イオン音波</h4>
 <p><span class="math inline">v_{\rm th,i} \ll \omega/k \ll v_{\rm th,e}</span> のとき，電子については <span id="eq-ionacoustic-fluid-approximation"><span class="math display">
 \int \frac{F_s (v)}{(v - \omega/k)^2} dv \approx \int \frac{F_s (v)}{v^2} dv = -\frac{1}{v_{\rm th,e}^2}
-\tag{5.6}</span></span> なる近似を採用すると，分散関係は <span id="eq-ionacoustic-fluid-dispersion-relation1"><span class="math display">
+\qquad(5.6)</span></span> なる近似を採用すると，分散関係は <span id="eq-ionacoustic-fluid-dispersion-relation1"><span class="math display">
 1 + \left( \frac{\omega_{pe}}{k v_{\rm th,e}} \right)^2 -
 \left( \frac{\omega_{pi}}{\omega} \right)^2
 \left[ 1 + 3 \left( \frac{k v_{\rm th,i}}{\omega} \right)^2 \right]
 \approx 0.
-\tag{5.7}</span></span> となる． <span class="math inline">T_e/T_i \gg 1</span> (電子温度がイオン温度よりも十分大きい)という条件のもとで 長波長近似 (<span class="math inline">k \rightarrow 0</span>) の解を求めると <span id="eq-ionacoustic-fluid-dispersion-relation2"><span class="math display">
+\qquad(5.7)</span></span> となる． <span class="math inline">T_e/T_i \gg 1</span> (電子温度がイオン温度よりも十分大きい)という条件のもとで 長波長近似 (<span class="math inline">k \rightarrow 0</span>) の解を求めると <span id="eq-ionacoustic-fluid-dispersion-relation2"><span class="math display">
 \omega^2 = k^2 V_{\rm s}^2, \quad \quad V_{\rm s}^2 \equiv \frac{k_B (T_e + 3 T_i)}{m_i}
-\tag{5.8}</span></span> となる．これは流体近似のイオン音波の解で電子を <span class="math inline">\gamma = 1</span> (自由度 = 無限大)，イオンを <span class="math inline">\gamma = 3</span> (自由度 = 1) としたものに等しい．</p>
+\qquad(5.8)</span></span> となる．これは流体近似のイオン音波の解で電子を <span class="math inline">\gamma = 1</span> (自由度 = 無限大)，イオンを <span class="math inline">\gamma = 3</span> (自由度 = 1) としたものに等しい．</p>
 <div id="exr-fluid-approximation" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 5.2 </strong></span>&nbsp;</p>
 <ol type="1">
@@ -407,7 +394,7 @@ i \pi \left( \frac{\omega_{pe}}{k} \right)^2
 <p>実部 <span class="math inline">\epsilon_r = 0</span> は流体近似の分散関係を与えることに注意して，共鳴によって現れる虚部 <span class="math inline">\epsilon_i</span> が実部に比べて十分に小さい場合 (<span class="math inline">|\epsilon_r| \gg |\epsilon_i|</span>) を考えると <span id="eq-approx-damping-rate"><span class="math display">
 \gamma \approx \pi \left( \frac{\omega_{pe}}{k} \right)^2
 \frac{\dfrac{\partial F_e}{\partial v} \bigg \vert_{v=\omega_r/k}}{\dfrac{\partial \epsilon_r}{\partial \omega} \bigg \vert_{\omega = \omega_r}}
-\tag{5.9}</span></span> が得られる．これより，確かに速度分布関数の傾きで <span class="math inline">\gamma</span> の正負が決まることが分かる． 実部 <span class="math inline">\epsilon_r</span> から得られるLangmuir波の分散関係 <span class="math display">
+\qquad(5.9)</span></span> が得られる．これより，確かに速度分布関数の傾きで <span class="math inline">\gamma</span> の正負が決まることが分かる． 実部 <span class="math inline">\epsilon_r</span> から得られるLangmuir波の分散関係 <span class="math display">
 \epsilon_r \approx 1 -
 \left( \frac{\omega_{pe}}{\omega} \right)^2
 \left[ 1 + 3 \left( k \lambda_{\rm De} \right)^2 \right]
@@ -417,7 +404,7 @@ i \pi \left( \frac{\omega_{pe}}{k} \right)^2
 \left[
   - \frac{1}{2 (k \lambda_{De})^2} - \frac{3}{2}
 \right]
-\tag{5.10}</span></span> となる．これより <span class="math inline">k \lambda_{De} \ll 1</span> (長波長)ではLandau減衰の効果は無視できることが分かる．一方で <span class="math inline">k \lambda_{De} \gtrsim 1</span> においてはLandau減衰の効果が無視できなくなる．これは<span class="math inline">\omega/k</span> と <span class="math inline">v_{\rm th,e}</span> との大小関係によって直感的に理解できる．参考までにこの近似解と数値的に求めた厳密解を <a href="#fig-langmuir-landau-damping">図&nbsp;<span>5.3</span></a> に示す（ここでは厳密な扱いには触れていないことに注意）．</p>
+\qquad(5.10)</span></span> となる．これより <span class="math inline">k \lambda_{De} \ll 1</span> (長波長)ではLandau減衰の効果は無視できることが分かる．一方で <span class="math inline">k \lambda_{De} \gtrsim 1</span> においてはLandau減衰の効果が無視できなくなる．これは<span class="math inline">\omega/k</span> と <span class="math inline">v_{\rm th,e}</span> との大小関係によって直感的に理解できる．参考までにこの近似解と数値的に求めた厳密解を <a href="#fig-langmuir-landau-damping">図&nbsp;<span>5.3</span></a> に示す（ここでは厳密な扱いには触れていないことに注意）．</p>
 <div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-langmuir-landau-damping" class="quarto-figure quarto-figure-center anchored">
@@ -450,7 +437,7 @@ F (v) = \frac{C}{\pi} \frac{1}{v^2 + C^2}
 &amp;= 1 - \left( \frac{\omega_{pe}}{k} \right)^2
 \frac{C}{\pi} \int_{-\infty}^{+\infty} \frac{dv}{(v + i C)(v - i C)(v - \omega/k)^2}
 \end{aligned}
-\tag{5.11}</span></span> である．ここで， <a href="#fig-integration-contour">図&nbsp;<span>5.2</span></a> と同様に特異点 <span class="math inline">v = \omega/k</span> の下を 通るような積分路を考えて厳密に積分を実行すると <span class="math display">
+\qquad(5.11)</span></span> である．ここで， <a href="#fig-integration-contour">図&nbsp;<span>5.2</span></a> と同様に特異点 <span class="math inline">v = \omega/k</span> の下を 通るような積分路を考えて厳密に積分を実行すると <span class="math display">
 1 - \frac{\omega_{pe}^2}{(\omega + i k C)^2} = 0
 </span> すなわち <span class="math display">
 \omega = \pm \omega_{pe} - i k C

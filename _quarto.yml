@@ -22,10 +22,9 @@ execute:
 format:
   html:
     theme: cosmo
-    html-math-method: katex
+    html-math-method:
+      method: katex
     css: katex-style.css
-    include-in-header:
-      - file: macros.html
   #pdf:
   #  pdf-engine: lualatex
   #  documentclass: ltjsarticle
