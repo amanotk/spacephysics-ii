@@ -75,9 +75,24 @@ ul.task-list li input[type="checkbox"] {
 \]</span></p>
 </div>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
+<link rel="stylesheet" href="katex-style.css">
 
 
 
@@ -216,13 +231,13 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="3.1" class="anchored" data-anchor-id="速度分布関数"><span class="header-section-number">3.1</span> 速度分布関数</h2>
 <section id="定義" class="level3">
 <h3 class="anchored" data-anchor-id="定義">定義</h3>
-<p>粒子の6次元位相空間座標は <span class="math inline">\((\bm{x}, \bm{v})\)</span> である．この近傍に存在する粒子数を <span class="math inline">\(d\Gamma\)</span> としたとき <span class="math display">\[
+<p>粒子の6次元位相空間座標は <span class="math inline">(\bm{x}, \bm{v})</span> である．この近傍に存在する粒子数を <span class="math inline">d\Gamma</span> としたとき <span class="math display">
 d\Gamma = f(\bm{x}, \bm{v}) d\bm{x} d\bm{v}
-\]</span> で定義される<span class="math inline">\(f(\bm{x}, \bm{v})\)</span>を位相空間密度または速度分布関数と呼ぶ．ここで<span class="math inline">\(\bm{v}\)</span>は独立変数であることに注意．</p>
+</span> で定義される<span class="math inline">f(\bm{x}, \bm{v})</span>を位相空間密度または速度分布関数と呼ぶ．ここで<span class="math inline">\bm{v}</span>は独立変数であることに注意．</p>
 </section>
 <section id="モーメント量" class="level3">
 <h3 class="anchored" data-anchor-id="モーメント量">モーメント量</h3>
-<p><span class="math inline">\(d\Gamma\)</span>を全位相空間で積分すれば全粒子数が，全速度空間で積分すれば粒子数密度が得られる． 一般に速度分布関数を速度空間で積分したものをモーメント量と呼ぶ．低次のモーメント量は以下のように流体量と関連付けることができる． <span class="math display">\[
+<p><span class="math inline">d\Gamma</span>を全位相空間で積分すれば全粒子数が，全速度空間で積分すれば粒子数密度が得られる． 一般に速度分布関数を速度空間で積分したものをモーメント量と呼ぶ．低次のモーメント量は以下のように流体量と関連付けることができる． <span class="math display">
 \begin{aligned}
 \text{数密度} \quad &amp; n (\bm{x}) = \int f(\bm{x}, \bm{v}) d\bm{v}
 \\
@@ -232,25 +247,25 @@ d\Gamma = f(\bm{x}, \bm{v}) d\bm{x} d\bm{v}
 \text{圧力} \quad
 &amp; \bm{P} (\bm{x}) = m \int (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) f(\bm{x}, \bm{v}) d\bm{v}
 \end{aligned}
-\]</span> ここで圧力は一般には2階のテンソルである．</p>
+</span> ここで圧力は一般には2階のテンソルである．</p>
 </section>
 <section id="熱平衡分布" class="level3">
 <h3 class="anchored" data-anchor-id="熱平衡分布">熱平衡分布</h3>
-<p>構成粒子同士の衝突が十分に起こると熱平衡状態になり，等エネルギー分配則が成り立つ．このときの分布は粒子数，運動量，エネルギーを一定に保った条件のもとで運動論的エントロピー <span id="eq-kinetic-entropy"><span class="math display">\[
+<p>構成粒子同士の衝突が十分に起こると熱平衡状態になり，等エネルギー分配則が成り立つ．このときの分布は粒子数，運動量，エネルギーを一定に保った条件のもとで運動論的エントロピー <span id="eq-kinetic-entropy"><span class="math display">
 S = - k_B \int f(\bm{v}) \ln f(\bm{v}) d\bm{v}
-\tag{3.1}\]</span></span> を最大化することで得られる．</p>
-<p>簡単のため速度空間1次元の場合について考え，Lagrange未定乗数法でエントロピーを最大化すると <span id="eq-maxwellian-1d"><span class="math display">\[
+\tag{3.1}</span></span> を最大化することで得られる．</p>
+<p>簡単のため速度空間1次元の場合について考え，Lagrange未定乗数法でエントロピーを最大化すると <span id="eq-maxwellian-1d"><span class="math display">
 f_M(v) = \frac{n}{\sqrt{2 \pi v_{\rm th}^2}}
 \exp \left[ - \frac{(v - V)^2}{2 v_{\rm th}^2} \right]
-\tag{3.2}\]</span></span> が得られる．これをMaxwell分布などと呼ぶ．熱速度<span class="math inline">\(v_{\rm th}\)</span>と温度<span class="math inline">\(T\)</span>，圧力<span class="math inline">\(P\)</span>の間の関係は <span class="math inline">\(P = n k_B T = n m v_{\rm th}^2\)</span>．</p>
-<p>3次元には <span class="math inline">\(f(\bm{v}) = f_M(v_x) f_M(v_y) f_M(v_z)\)</span> と簡単に拡張できる． <span id="eq-maxwellian-3d"><span class="math display">\[
+\tag{3.2}</span></span> が得られる．これをMaxwell分布などと呼ぶ．熱速度<span class="math inline">v_{\rm th}</span>と温度<span class="math inline">T</span>，圧力<span class="math inline">P</span>の間の関係は <span class="math inline">P = n k_B T = n m v_{\rm th}^2</span>．</p>
+<p>3次元には <span class="math inline">f(\bm{v}) = f_M(v_x) f_M(v_y) f_M(v_z)</span> と簡単に拡張できる． <span id="eq-maxwellian-3d"><span class="math display">
 f(\bm{v}) = \frac{n}{ \left( 2 \pi v_{\rm th}^2 \right)^{3/2} }
 \exp \left[ - \frac{(\bm{v} - \bm{V})^2}{2 v_{\rm th}^2} \right]
-\tag{3.3}\]</span></span></p>
+\tag{3.3}</span></span></p>
 <div id="exr-velocity-distribution-function" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.1 </strong></span>&nbsp;</p>
 <ol type="1">
-<li><p>1次元のMaxwell分布( <a href="#eq-maxwellian-1d">式&nbsp;<span>3.2</span></a> )のモーメントを取ることにより，具体的に <span class="math display">\[
+<li><p>1次元のMaxwell分布( <a href="#eq-maxwellian-1d">式&nbsp;<span>3.2</span></a> )のモーメントを取ることにより，具体的に <span class="math display">
 \begin{aligned}
 n &amp;= \int f(v) dv
 \\
@@ -258,15 +273,15 @@ n V &amp;= \int v f(v) dv
 \\
 P &amp;= m \int (v - V)^2 f(v) dv = n m v_{\rm th}^2
 \end{aligned}
-\]</span> を示せ．</p></li>
-<li><p>磁場中のプラズマでは温度が磁力線と平行方向と垂直方向で異なる（異方性のある）分布が安定に存在することがある．このとき静止した（平均速度 <span class="math inline">\(\bm{V} = 0\)</span>の）プラズマの速度分布関数のモデルとして以下で定義されるbi-Maxwell分布を考えよう． <span class="math display">\[
+</span> を示せ．</p></li>
+<li><p>磁場中のプラズマでは温度が磁力線と平行方向と垂直方向で異なる（異方性のある）分布が安定に存在することがある．このとき静止した（平均速度 <span class="math inline">\bm{V} = 0</span>の）プラズマの速度分布関数のモデルとして以下で定義されるbi-Maxwell分布を考えよう． <span class="math display">
 f(v_{\parallel}, v_{\perp}) =
 \frac{n}{\sqrt{(2 \pi v_{\rm th, \parallel}^2) (2 \pi v_{\rm th}^2)^2}}
 \exp \left[
 - \frac{v_{\parallel}^2}{2 v_{\rm th, \parallel}^2}
 - \frac{v_{\perp}^2}{2 v_{\rm th, \perp}^2}
 \right]
-\]</span> ここで平行方向と垂直方向の熱速度をそれぞれ<span class="math inline">\(v_{\rm th, \parallel}\)</span>，<span class="math inline">\(v_{\rm th,\perp}\)</span>とした．この速度分布関数の2次モーメントを取ることにより，圧力テンソルが以下の式で与えられることを示せ． <span class="math display">\[
+</span> ここで平行方向と垂直方向の熱速度をそれぞれ<span class="math inline">v_{\rm th, \parallel}</span>，<span class="math inline">v_{\rm th,\perp}</span>とした．この速度分布関数の2次モーメントを取ることにより，圧力テンソルが以下の式で与えられることを示せ． <span class="math display">
 \begin{aligned}
 \bm{P} =
 \begin{bmatrix}
@@ -276,11 +291,11 @@ P_{\perp} &amp; 0 &amp; 0 \\
 \end{bmatrix} =
 m \int \bm{v} \bm{v} f(\bm{v}) d^3 \bm{v}
 \end{aligned}
-\]</span> ただし <span class="math inline">\(P_{\perp} = n m v_{\rm th,\perp}^2\)</span>, <span class="math inline">\(P_{\parallel} = n m v_{\rm th, \parallel}^2\)</span> であり，磁場の方向はz軸方向とする．</p></li>
+</span> ただし <span class="math inline">P_{\perp} = n m v_{\rm th,\perp}^2</span>, <span class="math inline">P_{\parallel} = n m v_{\rm th, \parallel}^2</span> であり，磁場の方向はz軸方向とする．</p></li>
 </ol>
 </div>
 <div id="exr-maximum-entropy" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.2 </strong></span>1次元の速度分布関数 <span class="math inline">\(f(v)\)</span> について，0次，1次，2次モーメント（粒子数，運動量，エネルギー）一定の条件のもとで <a href="#eq-kinetic-entropy">式&nbsp;<span>3.1</span></a> を最大化することで <a href="#eq-maxwellian-1d">式&nbsp;<span>3.2</span></a> が得られることを示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 3.2 </strong></span>1次元の速度分布関数 <span class="math inline">f(v)</span> について，0次，1次，2次モーメント（粒子数，運動量，エネルギー）一定の条件のもとで <a href="#eq-kinetic-entropy">式&nbsp;<span>3.1</span></a> を最大化することで <a href="#eq-maxwellian-1d">式&nbsp;<span>3.2</span></a> が得られることを示せ．</p>
 </div>
 </section>
 </section>
@@ -288,27 +303,27 @@ m \int \bm{v} \bm{v} f(\bm{v}) d^3 \bm{v}
 <h2 data-number="3.2" class="anchored" data-anchor-id="速度分布関数の発展方程式"><span class="header-section-number">3.2</span> 速度分布関数の発展方程式</h2>
 <section id="klimontovich方程式" class="level3">
 <h3 class="anchored" data-anchor-id="klimontovich方程式">Klimontovich方程式</h3>
-<p>最も原始的な分布関数の定義は位相空間上で個々の粒子が存在する点でのみ有限の値を持たせたもので， <span class="math display">\[
+<p>最も原始的な分布関数の定義は位相空間上で個々の粒子が存在する点でのみ有限の値を持たせたもので， <span class="math display">
 N(\bm{x}, \bm{v}, t) = \sum_{i=1}^{N} \delta (\bm{x} - \bm{x}_i) \delta (\bm{v} - \bm{v}_i)
-\]</span> で定義される．これはKlimontovich分布関数と呼ばれる．</p>
-<p>微分方程式の解の一意性から，明らかにKlimontovich分布関数<span class="math inline">\(N\)</span>は位相空間の粒子軌道に沿って一定となる． <span class="math display">\[
+</span> で定義される．これはKlimontovich分布関数と呼ばれる．</p>
+<p>微分方程式の解の一意性から，明らかにKlimontovich分布関数<span class="math inline">N</span>は位相空間の粒子軌道に沿って一定となる． <span class="math display">
 \frac{d}{dt} N =
 \frac{\partial}{\partial t} N +
 \dot{x}_i \frac{\partial}{\partial x_i} N +
 \dot{v}_i \frac{\partial}{\partial v_i} N = 0.
-\]</span> これをKlimontovich方程式と呼ぶ．</p>
+</span> これをKlimontovich方程式と呼ぶ．</p>
 </section>
 <section id="coulomb衝突" class="level3">
 <h3 class="anchored" data-anchor-id="coulomb衝突">Coulomb衝突</h3>
-<p>簡単なオーダー評価から，Coulomb力による散乱は <span id="eq-collision-balance"><span class="math display">\[
+<p>簡単なオーダー評価から，Coulomb力による散乱は <span id="eq-collision-balance"><span class="math display">
 \frac{1}{2} m v^2 \sim \frac{1}{4\pi \epsilon_0} \frac{e^2}{r}
-\tag{3.4}\]</span></span> のときに重要になると予想できる．ここで<span class="math inline">\(r\)</span>はインパクトパラメータである．これを用いて大雑把に衝突周波数を評価すると <span id="eq-collision-frequency"><span class="math display">\[
+\tag{3.4}</span></span> のときに重要になると予想できる．ここで<span class="math inline">r</span>はインパクトパラメータである．これを用いて大雑把に衝突周波数を評価すると <span id="eq-collision-frequency"><span class="math display">
 \begin{aligned}
 \nu \sim 2 \times 10^{-6}
 \left( \frac{n}{5 \, {\rm cm^{-3}}} \right)
 \left( \frac{T}{10^{5} \, {\rm K}} \right)^{-3/2} \, {\rm s^{-1}}
 \end{aligned}
-\tag{3.5}\]</span></span> と書ける．例えば1AUにおける太陽風を考えればCoulomb衝突はほとんど無視できることが分かる．ただし，実際には多数回の少角度散乱の方が効くため，これよりも衝突の効果は一桁程度大きくなることが知られている．</p>
+\tag{3.5}</span></span> と書ける．例えば1AUにおける太陽風を考えればCoulomb衝突はほとんど無視できることが分かる．ただし，実際には多数回の少角度散乱の方が効くため，これよりも衝突の効果は一桁程度大きくなることが知られている．</p>
 <div id="exr-coulomb-collision" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.3 </strong></span><a href="#eq-collision-balance">式&nbsp;<span>3.4</span></a> を用いて，衝突周波数をオーダー評価すると <a href="#eq-collision-frequency">式&nbsp;<span>3.5</span></a> が得られることを示せ．</p>
 </div>
@@ -316,14 +331,14 @@ N(\bm{x}, \bm{v}, t) = \sum_{i=1}^{N} \delta (\bm{x} - \bm{x}_i) \delta (\bm{v} 
 <section id="boltzmann方程式とvlsaov方程式" class="level3">
 <h3 class="anchored" data-anchor-id="boltzmann方程式とvlsaov方程式">Boltzmann方程式とVlsaov方程式</h3>
 <p>Klimontovich分布関数は古典論の範囲内では衝突の効果まで厳密に含んでいるが，なめらかな分布でないので数学的には扱いにくい．また，分布関数がミクロな粒子分布に依存し，「平均」的な分布関数を実現するミクロな状態は無数に存在する．</p>
-<p>一般に我々は粗視化した「平均」的な分布関数に興味があることが多いため，分布関数を「平均」成分と揺らぎ成分に分けて考える． <span class="math display">\[
+<p>一般に我々は粗視化した「平均」的な分布関数に興味があることが多いため，分布関数を「平均」成分と揺らぎ成分に分けて考える． <span class="math display">
 N (\bm{x}, \bm{v}, t) = f(\bm{x}, \bm{v}, t) + \delta f(\bm{x}, \bm{v}, t)
-\]</span> ここで揺らぎのアンサンブル平均は <span class="math inline">\(\left&lt; \delta f \right&gt; = 0\)</span> と仮定する．すなわち， <span class="math inline">\(\left&lt; N \right&gt; = f\)</span> である．</p>
-<p>対応する電磁場にもアンサンブル平均 <span class="math inline">\((\bm{E}, \bm{B})\)</span> とミクロな場 <span class="math inline">\((\bm{E} + \delta \bm{E}, \bm{B} + \delta \bm{B})\)</span> が存在する． 運動方程式 <span class="math display">\[
+</span> ここで揺らぎのアンサンブル平均は <span class="math inline">\left&lt; \delta f \right&gt; = 0</span> と仮定する．すなわち， <span class="math inline">\left&lt; N \right&gt; = f</span> である．</p>
+<p>対応する電磁場にもアンサンブル平均 <span class="math inline">(\bm{E}, \bm{B})</span> とミクロな場 <span class="math inline">(\bm{E} + \delta \bm{E}, \bm{B} + \delta \bm{B})</span> が存在する． 運動方程式 <span class="math display">
 \bm{\dot{v}} =
 \frac{q}{m} \left( \bm{E} + \bm{v} \times \bm{B} \right) +
 \frac{q}{m} \left( \delta \bm{E} + \bm{v} \times \delta \bm{B} \right)
-\]</span> をKlimontovich方程式に代入してアンサンブル平均を取ると <span id="eq-ensemble-averaged-klimontovich"><span class="math display">\[
+</span> をKlimontovich方程式に代入してアンサンブル平均を取ると <span id="eq-ensemble-averaged-klimontovich"><span class="math display">
 \begin{aligned}
 &amp; \frac{\partial f}{\partial t} +
 \bm{\dot{x}} \cdot \frac{\partial f}{\partial \bm{x}} +
@@ -337,7 +352,7 @@ N (\bm{x}, \bm{v}, t) = f(\bm{x}, \bm{v}, t) + \delta f(\bm{x}, \bm{v}, t)
 \equiv
 \left( \frac{\partial f}{\partial t} \right)_{\rm c}
 \end{aligned}
-\tag{3.6}\]</span></span> 右辺の揺らぎの2次の相関は衝突の効果を表している．この方程式の衝突項が有限のときをBoltzmann方程式，衝突項が無視できるときをVlasov方程式と呼ぶ．</p>
+\tag{3.6}</span></span> 右辺の揺らぎの2次の相関は衝突の効果を表している．この方程式の衝突項が有限のときをBoltzmann方程式，衝突項が無視できるときをVlasov方程式と呼ぶ．</p>
 <p>高温・希薄で無衝突な宇宙空間プラズマはVlasov方程式を基礎方程式とする． (宇宙物理の応用では輻射・ニュートリノ輸送などはBoltzmann方程式で，ダークマターはVlasov方程式で扱われることが多い．)</p>
 <div id="exr-ensemble-averaged-klimontovich" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.4 </strong></span>Klimontovich方程式のアンサンブル平均をとることで， <a href="#eq-ensemble-averaged-klimontovich">式&nbsp;<span>3.6</span></a> が得られることを確かめよ．</p>
@@ -345,16 +360,16 @@ N (\bm{x}, \bm{v}, t) = f(\bm{x}, \bm{v}, t) + \delta f(\bm{x}, \bm{v}, t)
 </section>
 <section id="liouvilleの定理" class="level3">
 <h3 class="anchored" data-anchor-id="liouvilleの定理">Liouvilleの定理</h3>
-<p>Vlasov方程式はHamiltonian <span class="math inline">\(H\)</span>とPoisson括弧を用いて <span class="math display">\[
+<p>Vlasov方程式はHamiltonian <span class="math inline">H</span>とPoisson括弧を用いて <span class="math display">
 \frac{\partial f}{\partial t} + \left[ f, H \right] = \frac{d}{dt} f = 0
-\]</span> 書き直すことができる．すなわち<span class="math inline">\(f\)</span>は運動の積分(位相空間上の粒子軌道に沿って一定)である．</p>
-<p>定義より <span class="math inline">\(d\Gamma = f(\bm{x}, \bm{v}) d\bm{x} d\bm{v} = {\rm const.}\)</span> なので，位相空間体積も一定となる． <span class="math display">\[
+</span> 書き直すことができる．すなわち<span class="math inline">f</span>は運動の積分(位相空間上の粒子軌道に沿って一定)である．</p>
+<p>定義より <span class="math inline">d\Gamma = f(\bm{x}, \bm{v}) d\bm{x} d\bm{v} = {\rm const.}</span> なので，位相空間体積も一定となる． <span class="math display">
 d \bm{x} d \bm{v} = {\rm const.}
-\]</span> これをLiouvilleの定理と呼ぶ．正準変換の性質を用いるとLiouvilleの定理はHamilton系一般について成り立つことが示される．</p>
+</span> これをLiouvilleの定理と呼ぶ．正準変換の性質を用いるとLiouvilleの定理はHamilton系一般について成り立つことが示される．</p>
 <div id="exr-liouville-theorem" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.5 </strong></span>位相空間座標 <span class="math inline">\((p, q)\)</span> の関数として定義される任意の関数 <span class="math inline">\(F(p, q)\)</span> を考える．粒子の位相空間における軌道がハミルトニアン <span class="math inline">\(H(p, q)\)</span> で定義される正準方程式で与えられるとき，粒子の軌道にそって <span class="math inline">\(F(p, q)\)</span> が一定となる．すなわち <span class="math display">\[
+<p><span class="theorem-title"><strong>演習問題 3.5 </strong></span>位相空間座標 <span class="math inline">(p, q)</span> の関数として定義される任意の関数 <span class="math inline">F(p, q)</span> を考える．粒子の位相空間における軌道がハミルトニアン <span class="math inline">H(p, q)</span> で定義される正準方程式で与えられるとき，粒子の軌道にそって <span class="math inline">F(p, q)</span> が一定となる．すなわち <span class="math display">
 \frac{d F}{d t} = \frac{\partial F}{\partial t} + [f, H] = 0
-\]</span> が成り立つ．このことを示せ．</p>
+</span> が成り立つ．このことを示せ．</p>
 </div>
 </section>
 </section>
@@ -362,17 +377,17 @@ d \bm{x} d \bm{v} = {\rm const.}
 <h2 data-number="3.3" class="anchored" data-anchor-id="自己無撞着な方程式系"><span class="header-section-number">3.3</span> 自己無撞着な方程式系</h2>
 <section id="電流密度と電荷密度" class="level3">
 <h3 class="anchored" data-anchor-id="電流密度と電荷密度">電流密度と電荷密度</h3>
-<p>電荷密度<span class="math inline">\(\rho\)</span>や電流密度<span class="math inline">\(\bm{J}\)</span>は速度分布関数のモーメントで表される． <span class="math display">\[
+<p>電荷密度<span class="math inline">\rho</span>や電流密度<span class="math inline">\bm{J}</span>は速度分布関数のモーメントで表される． <span class="math display">
 \begin{aligned}
 &amp; \rho(\bm{x}) = \sum_{s} q_s \int f_s(\bm{v}) d \bm{v}
 \\
 &amp; \bm{J} (\bm{x}) = \sum_{s} q_s \int \bm{v} f_s(\bm{v}) d \bm{v}
 \end{aligned}
-\]</span> したがって，分布関数が分かれば電荷密度・電流密度が求まり，Maxwell方程式によって電磁場の時間発展も求まる．</p>
+</span> したがって，分布関数が分かれば電荷密度・電流密度が求まり，Maxwell方程式によって電磁場の時間発展も求まる．</p>
 </section>
 <section id="vlasov-maxwell系" class="level3">
 <h3 class="anchored" data-anchor-id="vlasov-maxwell系">Vlasov-Maxwell系</h3>
-<p>Vlasov方程式と近似なしのMaxewll方程式を連立させた系 <span class="math display">\[
+<p>Vlasov方程式と近似なしのMaxewll方程式を連立させた系 <span class="math display">
 \begin{aligned}
 &amp;\frac{\partial f_s}{\partial t} + \bm{v} \cdot \frac{\partial f_s}{\partial \bm{x}} +
 \frac{q}{m} \left( \bm{E} + \frac{\bm{v}}{c} \times \bm{B} \right)
@@ -386,46 +401,46 @@ d \bm{x} d \bm{v} = {\rm const.}
 \\
 &amp;\nabla \cdot \bm{B} = 0,
 \end{aligned}
-\]</span> は無衝突プラズマのダイナミクスを記述する最も基礎的な方程式系である．</p>
+</span> は無衝突プラズマのダイナミクスを記述する最も基礎的な方程式系である．</p>
 </section>
 <section id="vlasov-poisson系静電近似" class="level3">
 <h3 class="anchored" data-anchor-id="vlasov-poisson系静電近似">Vlasov-Poisson系（静電近似）</h3>
-<p>磁場揺らぎの効果を無視すると電場は静電ポテンシャルのみで書き表される: <span class="math inline">\(\bm{E} = - \nabla \phi\)</span>．さらに，簡単のため背景磁場と平行方向の位置および速度<span class="math inline">\((x, v)\)</span>を考えると，基礎方程式は <span class="math display">\[
+<p>磁場揺らぎの効果を無視すると電場は静電ポテンシャルのみで書き表される: <span class="math inline">\bm{E} = - \nabla \phi</span>．さらに，簡単のため背景磁場と平行方向の位置および速度<span class="math inline">(x, v)</span>を考えると，基礎方程式は <span class="math display">
 \begin{aligned}
 &amp;\frac{\partial f}{\partial t} + v \frac{\partial f}{\partial x} +
 \frac{q}{m} E \frac{\partial f}{\partial v} = 0,
 \\
 &amp;\nabla^2 \phi = - \frac{\rho}{\epsilon_0}.
 \end{aligned}
-\]</span> で与えられる．これをVlasov-Poisson系と呼ぶ．オーロラ電子加速などは基本的にこの方程式系で理解できる． 静電ポテンシャルの代わりに重力ポテンシャルを考えたVlasov-Poisson方程式系は重力多体系の問題に用いられる．</p>
+</span> で与えられる．これをVlasov-Poisson系と呼ぶ．オーロラ電子加速などは基本的にこの方程式系で理解できる． 静電ポテンシャルの代わりに重力ポテンシャルを考えたVlasov-Poisson方程式系は重力多体系の問題に用いられる．</p>
 </section>
 <section id="モーメント方程式" class="level3">
 <h3 class="anchored" data-anchor-id="モーメント方程式">モーメント方程式</h3>
 <p>Vlasov方程式は自由度が大き過ぎて解きにくいため，何らかの縮約を取ることで簡単にしたい．そこで速度空間のモーメント量(=流体量)のみを考えることで自由度を減らした方程式系を考える．</p>
 <section id="次モーメント連続の式粒子数保存則" class="level4">
 <h4 class="anchored" data-anchor-id="次モーメント連続の式粒子数保存則">0次モーメント(連続の式，粒子数保存則)</h4>
-<p>Vlasov方程式の0次モーメントをとると <span id="eq-0th-moment"><span class="math display">\[
+<p>Vlasov方程式の0次モーメントをとると <span id="eq-0th-moment"><span class="math display">
 \frac{\partial}{\partial t} \left( n \right) +
 \nabla \cdot \left( n \bm{V} \right) = 0.
-\tag{3.7}\]</span></span> を得る．これは粒子数保存則を表す．</p>
+\tag{3.7}</span></span> を得る．これは粒子数保存則を表す．</p>
 <div id="exr-0th-moment" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.6 </strong></span><a href="#eq-0th-moment">式&nbsp;<span>3.7</span></a> を示せ．</p>
 </div>
 </section>
 <section id="次モーメント運動方程式運動量保存則" class="level4">
 <h4 class="anchored" data-anchor-id="次モーメント運動方程式運動量保存則">1次モーメント(運動方程式，運動量保存則)</h4>
-<p>同様に1次モーメントをとると <span id="eq-1st-moment"><span class="math display">\[
+<p>同様に1次モーメントをとると <span id="eq-1st-moment"><span class="math display">
 \frac{\partial}{\partial t} \left( n m \bm{V} \right) +
 \nabla \cdot \left( n m \bm{V} \bm{V} + \bm{P} \right) =
 n q  \left( \bm{E} + \bm{V} \times \bm{B} \right)
-\tag{3.8}\]</span></span> を得る．これは運動量保存則を表す．</p>
+\tag{3.8}</span></span> を得る．これは運動量保存則を表す．</p>
 <div id="exr-1st-moment" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.7 </strong></span><a href="#eq-1st-moment">式&nbsp;<span>3.8</span></a> を示せ．</p>
 </div>
 </section>
 <section id="次モーメント状態方程式エネルギー保存則" class="level4">
 <h4 class="anchored" data-anchor-id="次モーメント状態方程式エネルギー保存則">2次モーメント(状態方程式，エネルギー保存則)</h4>
-<p>さらに2次モーメントをとると多少煩雑な計算の後に <span id="eq-2nd-moment"><span class="math display">\[
+<p>さらに2次モーメントをとると多少煩雑な計算の後に <span id="eq-2nd-moment"><span class="math display">
 \begin{aligned}
 &amp; \frac{\partial}{\partial t}
 \left( n m \bm{V} \bm{V} + \bm{P} \right) +
@@ -435,24 +450,24 @@ n q  \left( \bm{E} + \bm{V} \times \bm{B} \right)
 = n q  \left[ \bm{V} \left( \bm{E} + \bm{V} \times \bm{B} \right) \right]^{S} +
 \frac{q}{m} \left( \bm{P} \times \bm{B} \right)^{S}
 \end{aligned}
-\tag{3.9}\]</span></span> を得る．この式のトレースはエネルギー保存則を表す．</p>
-<p>ただし，ここでテンソルの対象化の記号 <span class="math inline">\(^{S}\)</span> を導入した．具体的には <span class="math inline">\(\left( \bm{V} \bm{P} \right)_{ijk}^{S} = V_i P_{jk} + V_j P_{ki} + V_k P_{ij}\)</span>，<span class="math inline">\(\left( \bm{V} \bm{E} \right)_{ij}^{S} = V_i E_j + V_j E_i\)</span>，<span class="math inline">\(\left( \bm{P} \times \bm{B} \right)_{ij}^{S} = \epsilon_{ilm} P_{jl} B_m + \epsilon_{jlm} P_{il} B_m\)</span> と定義される．また， <span id="eq-heat-flux"><span class="math display">\[
+\tag{3.9}</span></span> を得る．この式のトレースはエネルギー保存則を表す．</p>
+<p>ただし，ここでテンソルの対象化の記号 <span class="math inline">^{S}</span> を導入した．具体的には <span class="math inline">\left( \bm{V} \bm{P} \right)_{ijk}^{S} = V_i P_{jk} + V_j P_{ki} + V_k P_{ij}</span>，<span class="math inline">\left( \bm{V} \bm{E} \right)_{ij}^{S} = V_i E_j + V_j E_i</span>，<span class="math inline">\left( \bm{P} \times \bm{B} \right)_{ij}^{S} = \epsilon_{ilm} P_{jl} B_m + \epsilon_{jlm} P_{il} B_m</span> と定義される．また， <span id="eq-heat-flux"><span class="math display">
 \bm{Q} (\bm{x}) = m \int (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) (\bm{v} - \bm{V}) f(\bm{x}, \bm{v}) d \bm{v}
-\tag{3.10}\]</span></span> は熱流束を表す3階のテンソルである．</p>
+\tag{3.10}</span></span> は熱流束を表す3階のテンソルである．</p>
 <div id="exr-2nd-moment" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.8 </strong></span><a href="#eq-2nd-moment">式&nbsp;<span>3.9</span></a> を示せ．</p>
 </div>
 </section>
 <section id="クロージャー問題" class="level4">
 <h4 class="anchored" data-anchor-id="クロージャー問題">クロージャー問題</h4>
-<p>一般にVlasov方程式の<span class="math inline">\(n\)</span>次モーメントの式には移流項から<span class="math inline">\(n+1\)</span>次モーメントが表れるため，どこまでいっても式が閉じることはない．これはクロージャー問題(closure problem)と呼ばれる．そこで，通常は何らかの仮定を用いて方程式系を閉じさせる（クロージャーを仮定する）．</p>
+<p>一般にVlasov方程式の<span class="math inline">n</span>次モーメントの式には移流項から<span class="math inline">n+1</span>次モーメントが表れるため，どこまでいっても式が閉じることはない．これはクロージャー問題(closure problem)と呼ばれる．そこで，通常は何らかの仮定を用いて方程式系を閉じさせる（クロージャーを仮定する）．</p>
 <p>ここでは簡単のため，</p>
 <ul>
-<li>熱流束を無視 <span class="math inline">\(\bm{Q} = \bm{0}\)</span></li>
-<li>等方性を仮定 <span class="math inline">\(\bm{P} = P \bm{I}\)</span> (<span class="math inline">\(\bm{I}\)</span>は単位行列)</li>
+<li>熱流束を無視 <span class="math inline">\bm{Q} = \bm{0}</span></li>
+<li>等方性を仮定 <span class="math inline">\bm{P} = P \bm{I}</span> (<span class="math inline">\bm{I}</span>は単位行列)</li>
 <li><a href="#eq-2nd-moment">式&nbsp;<span>3.9</span></a> のトレースをとる</li>
 </ul>
-<p>これによってスカラーのエネルギー保存則 <span id="eq-energy-equation"><span class="math display">\[
+<p>これによってスカラーのエネルギー保存則 <span id="eq-energy-equation"><span class="math display">
 \begin{aligned}
 &amp;\frac{\partial}{\partial t}
 \biggl(
@@ -466,18 +481,18 @@ n q  \left( \bm{E} + \bm{V} \times \bm{B} \right)
 \biggr) =
 q n \bm{V} \cdot \bm{E}
 \end{aligned}
-\tag{3.11}\]</span></span> を得る．熱流束を無視したことによって <span class="math inline">\(n, \bm{V}, P\)</span> だけの式になり，方程式系が閉じることが分かる．</p>
+\tag{3.11}</span></span> を得る．熱流束を無視したことによって <span class="math inline">n, \bm{V}, P</span> だけの式になり，方程式系が閉じることが分かる．</p>
 <div id="exr-energy-equation" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.9 </strong></span><a href="#eq-2nd-moment">式&nbsp;<span>3.9</span></a> のトレースをとる代わりにVlasov方程式に <span class="math inline">\(m \bm{v}^2 / 2\)</span> をかけて積分することで <a href="#eq-energy-equation">式&nbsp;<span>3.11</span></a> を示せ．ただし熱流束は無視すること．</p>
+<p><span class="theorem-title"><strong>演習問題 3.9 </strong></span><a href="#eq-2nd-moment">式&nbsp;<span>3.9</span></a> のトレースをとる代わりにVlasov方程式に <span class="math inline">m \bm{v}^2 / 2</span> をかけて積分することで <a href="#eq-energy-equation">式&nbsp;<span>3.11</span></a> を示せ．ただし熱流束は無視すること．</p>
 </div>
 <div id="exr-equation-of-state" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.10 </strong></span><a href="#eq-energy-equation">式&nbsp;<span>3.11</span></a> の左辺は比熱比<span class="math inline">\(\gamma = 5/3\)</span>を仮定した断熱の流体力学のエネルギー保存則と等しくなっている．この理由を考えよ．</p>
+<p><span class="theorem-title"><strong>演習問題 3.10 </strong></span><a href="#eq-energy-equation">式&nbsp;<span>3.11</span></a> の左辺は比熱比<span class="math inline">\gamma = 5/3</span>を仮定した断熱の流体力学のエネルギー保存則と等しくなっている．この理由を考えよ．</p>
 </div>
 </section>
 </section>
 <section id="多流体方程式" class="level3">
 <h3 class="anchored" data-anchor-id="多流体方程式">多流体方程式</h3>
-<p>モーメント方程式は各成分(電子，陽子など)に対して独立に成り立つので，粒子種を表す添字<span class="math inline">\(s\)</span>を付けて多流体方程式が <span class="math display">\[
+<p>モーメント方程式は各成分(電子，陽子など)に対して独立に成り立つので，粒子種を表す添字<span class="math inline">s</span>を付けて多流体方程式が <span class="math display">
 \begin{aligned}
 &amp; \frac{\partial}{\partial t} \left( n_s \right) +
 \nabla \cdot \left( n_s \bm{V}_s \right) = 0,
@@ -492,14 +507,14 @@ n_s q_s  \left( \bm{E}_s + \bm{V}_s \times \bm{B} \right)
 \left( \frac{1}{2} n_s m_s \bm{V}_s^3 + \frac{\gamma}{\gamma-1} P_s \bm{V}_s \right)
 = q_s n_s \bm{V}_s \cdot \bm{E}
 \end{aligned}
-\]</span> と書ける．ただしエネルギー保存則の圧力の係数を比熱比<span class="math inline">\(\gamma\)</span>を用いて形式的に置き換えた．</p>
-<p>電荷密度および電流密度 <span class="math display">\[
+</span> と書ける．ただしエネルギー保存則の圧力の係数を比熱比<span class="math inline">\gamma</span>を用いて形式的に置き換えた．</p>
+<p>電荷密度および電流密度 <span class="math display">
 \begin{aligned}
 &amp; \rho = \sum_{s} q_s n_s
 \\
 &amp; \bm{J} = \sum_{s} q_s n_s \bm{V}_s
 \end{aligned}
-\]</span> を用いてMaxwell方程式(またはPoisson方程式)と連立させれば自己無撞着な方程式系が得られる．</p>
+</span> を用いてMaxwell方程式(またはPoisson方程式)と連立させれば自己無撞着な方程式系が得られる．</p>
 </section>
 <section id="一流体方程式磁気流体力学方程式" class="level3">
 <h3 class="anchored" data-anchor-id="一流体方程式磁気流体力学方程式">一流体方程式(磁気流体力学方程式)</h3>
@@ -507,14 +522,14 @@ n_s q_s  \left( \bm{E}_s + \bm{V}_s \times \bm{B} \right)
 <section id="仮定" class="level4">
 <h4 class="anchored" data-anchor-id="仮定">仮定</h4>
 <ul>
-<li>電子・陽子プラズマ <span class="math inline">\(m_i/m_e \gg 1\)</span></li>
-<li>準中性 <span class="math inline">\(n_i \approx n_e\)</span></li>
-<li>低周波 <span class="math inline">\(\omega/k \ll c\)</span> （電磁波を無視）</li>
+<li>電子・陽子プラズマ <span class="math inline">m_i/m_e \gg 1</span></li>
+<li>準中性 <span class="math inline">n_i \approx n_e</span></li>
+<li>低周波 <span class="math inline">\omega/k \ll c</span> （電磁波を無視）</li>
 </ul>
 </section>
 <section id="一流体の物理量" class="level4">
 <h4 class="anchored" data-anchor-id="一流体の物理量">一流体の物理量</h4>
-<p>単一流体としての物理量: 質量密度 <span class="math inline">\(\rho\)</span>，速度 <span class="math inline">\(\bm{V}\)</span>，圧力 <span class="math inline">\(P\)</span>を以下で定義する． <span class="math display">\[
+<p>単一流体としての物理量: 質量密度 <span class="math inline">\rho</span>，速度 <span class="math inline">\bm{V}</span>，圧力 <span class="math inline">P</span>を以下で定義する． <span class="math display">
 \begin{aligned}
 \rho &amp;= \sum_{s} n_s m_s
 \\
@@ -522,8 +537,8 @@ n_s q_s  \left( \bm{E}_s + \bm{V}_s \times \bm{B} \right)
 \\
 P &amp;= \sum_{s} P_s
 \end{aligned}
-\]</span></p>
-<p>これらの物量の時間発展を表す方程式は2流体方程式の和から得られる． <span id="eq-one-flud-equations"><span class="math display">\[
+</span></p>
+<p>これらの物量の時間発展を表す方程式は2流体方程式の和から得られる． <span id="eq-one-flud-equations"><span class="math display">
 \begin{aligned}
 &amp; \frac{\partial}{\partial t} \left( \rho \right) +
 \nabla \cdot \left( \rho \bm{V} \right) = 0,
@@ -540,30 +555,30 @@ P &amp;= \sum_{s} P_s
 \right)
 = \bm{J} \cdot \bm{E}
 \end{aligned}
-\tag{3.12}\]</span></span></p>
-<p>低周波近似によって変位電流は無視して，Maxwell方程式は <span class="math display">\[
+\tag{3.12}</span></span></p>
+<p>低周波近似によって変位電流は無視して，Maxwell方程式は <span class="math display">
 \begin{aligned}
 &amp; \frac{\partial \bm{B}}{\partial t} = - \nabla \times \bm{E}
 \\
 &amp; \nabla \times \bm{B} = \mu_0 \bm{J}
 \end{aligned}
-\]</span> となる．変位電流を無視したため電場の時間発展方程式が無くなっている． したがって，方程式系を閉じるためには電場を決定するために何らかの仮定が必要．</p>
+</span> となる．変位電流を無視したため電場の時間発展方程式が無くなっている． したがって，方程式系を閉じるためには電場を決定するために何らかの仮定が必要．</p>
 <div id="exr-one-fluid-equations" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.11 </strong></span><span class="math inline">\(n_i \approx n_e\)</span> および <span class="math inline">\(m_i/m_e \gg 1\)</span> を用いて <a href="#eq-one-flud-equations">式&nbsp;<span>3.12</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 3.11 </strong></span><span class="math inline">n_i \approx n_e</span> および <span class="math inline">m_i/m_e \gg 1</span> を用いて <a href="#eq-one-flud-equations">式&nbsp;<span>3.12</span></a> を示せ．</p>
 </div>
 <div id="exr-darwin-approximation" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.12 </strong></span>低周波近似 <span class="math inline">\(\omega/k \ll c\)</span> のとき，Maxwell方程式の変位電流が無視できることを確かめよ．</p>
+<p><span class="theorem-title"><strong>演習問題 3.12 </strong></span>低周波近似 <span class="math inline">\omega/k \ll c</span> のとき，Maxwell方程式の変位電流が無視できることを確かめよ．</p>
 </div>
 </section>
 <section id="一般化されたohmの法則" class="level4">
 <h4 class="anchored" data-anchor-id="一般化されたohmの法則">一般化されたOhmの法則</h4>
-<p>電子流体の運動方程式を書き直して <span id="eq-electron-eom"><span class="math display">\[
+<p>電子流体の運動方程式を書き直して <span id="eq-electron-eom"><span class="math display">
 \bm{E} = -\bm{V}_e \times \bm{B}
 -\frac{1}{e n_e} \nabla \cdot \bm{P}_e
 -\frac{m_e}{e} \frac{d}{dt} \bm{V}_e
-\tag{3.13}\]</span></span> を得る．これを準中性条件<span class="math inline">\(n_i \approx n_e\)</span>とAmpereの法則 <span class="math display">\[
+\tag{3.13}</span></span> を得る．これを準中性条件<span class="math inline">n_i \approx n_e</span>とAmpereの法則 <span class="math display">
 \nabla \times \bm{B} = \mu_0 \bm{J} = \mu_0 e \left( n_i \bm{V}_i - n_e \bm{V}_e \right)
-\]</span> を用いて書き直すと <span id="eq-generalized-ohms-law"><span class="math display">\[
+</span> を用いて書き直すと <span id="eq-generalized-ohms-law"><span class="math display">
 \begin{aligned}
 \bm{E} &amp;=
 \underbrace{\vphantom{\frac{1}{n_i}}
@@ -577,7 +592,7 @@ P &amp;= \sum_{s} P_s
 \underbrace{\vphantom{\frac{1}{n_i}}
   + \eta \bm{J}}_{(5)}
 \end{aligned}
-\tag{3.14}\]</span></span> となる．これを一般化されたOhmの法則と呼ぶ． 右辺第1項は理想磁気流体力学のOhmの法則と一致することが分かる． なお，衝突に起因する右辺第5項を便宜的に付け加えたものである．</p>
+\tag{3.14}</span></span> となる．これを一般化されたOhmの法則と呼ぶ． 右辺第1項は理想磁気流体力学のOhmの法則と一致することが分かる． なお，衝突に起因する右辺第5項を便宜的に付け加えたものである．</p>
 <table class="table">
 <colgroup>
 <col style="width: 17%">
@@ -605,16 +620,16 @@ P &amp;= \sum_{s} P_s
 </tr>
 </tbody>
 </table>
-<p>右辺2項目以降はミクロな空間スケールで重要になる効果で，それよりも大きな空間スケールでは無視できる． 例えば速度をAlfven速度程度<span class="math inline">\(V \sim V_A = B/\sqrt{\mu_0 n (m_i + m_e)} \approx B/\sqrt{\mu_0 n m_i}\)</span> と仮定し，第2項と第1項の比をオーダー評価すると <span id="eq-hall-term-order"><span class="math display">\[
+<p>右辺2項目以降はミクロな空間スケールで重要になる効果で，それよりも大きな空間スケールでは無視できる． 例えば速度をAlfven速度程度<span class="math inline">V \sim V_A = B/\sqrt{\mu_0 n (m_i + m_e)} \approx B/\sqrt{\mu_0 n m_i}</span> と仮定し，第2項と第1項の比をオーダー評価すると <span id="eq-hall-term-order"><span class="math display">
 \frac
 {\displaystyle \left| \frac{1}{e n_i} \bm{J} \times \bm{B} \right|}
 {\left| - \bm{V} \times \bm{B} \right|}
 \sim \frac{c/\omega_{pi}}{L}
-\tag{3.15}\]</span></span> となる．<span class="math inline">\(\omega_{pi} = (n_i e^2 / \epsilon_0 m_i)^{1/2}\)</span> はイオンプラズマ周波数， <span class="math inline">\(c/\omega_{pi}\)</span>はイオン慣性長と呼ばれる特徴的な量である．典型的な太陽風のパラメータで評価すると <span class="math display">\[
+\tag{3.15}</span></span> となる．<span class="math inline">\omega_{pi} = (n_i e^2 / \epsilon_0 m_i)^{1/2}</span> はイオンプラズマ周波数， <span class="math inline">c/\omega_{pi}</span>はイオン慣性長と呼ばれる特徴的な量である．典型的な太陽風のパラメータで評価すると <span class="math display">
 \frac{c}{\omega_{pi}} \approx 72 \left( \frac{n_i}{10 \, {\rm cm^{-3}}} \right)^{-1/2} \, {\rm km/s}
-\]</span> であり，これよりも大きな空間スケールでは第2項は無視できることが分かる． 他の項についても同様な評価から十分大きな空間スケールでは無視することができる．</p>
+</span> であり，これよりも大きな空間スケールでは第2項は無視できることが分かる． 他の項についても同様な評価から十分大きな空間スケールでは無視することができる．</p>
 <div id="exr-generalized-ohms-law" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.13 </strong></span><span class="math inline">\(m_i/m_e \gg 1\)</span>の仮定を使って <a href="#eq-generalized-ohms-law">式&nbsp;<span>3.14</span></a> を示せ． ただし <a href="#eq-electron-eom">式&nbsp;<span>3.13</span></a> に衝突が含まれていないので衝突に起因する項 <span class="math inline">\(\eta \bm{J}\)</span> は表れないことに注意せよ．</p>
+<p><span class="theorem-title"><strong>演習問題 3.13 </strong></span><span class="math inline">m_i/m_e \gg 1</span>の仮定を使って <a href="#eq-generalized-ohms-law">式&nbsp;<span>3.14</span></a> を示せ． ただし <a href="#eq-electron-eom">式&nbsp;<span>3.13</span></a> に衝突が含まれていないので衝突に起因する項 <span class="math inline">\eta \bm{J}</span> は表れないことに注意せよ．</p>
 </div>
 <div id="exr-hall-term-order" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 3.14 </strong></span><a href="#eq-hall-term-order">式&nbsp;<span>3.15</span></a> を示せ．</p>
@@ -623,7 +638,7 @@ P &amp;= \sum_{s} P_s
 </section>
 <section id="まとめ" class="level3">
 <h3 class="anchored" data-anchor-id="まとめ">まとめ</h3>
-<p>プラズマの巨視的な振る舞いは，低周波・長波長近似のOhmの法則を採用した以下の理想磁気流体力学方程式で与えられる． <span id="eq-mhd-equations"><span class="math display">\[
+<p>プラズマの巨視的な振る舞いは，低周波・長波長近似のOhmの法則を採用した以下の理想磁気流体力学方程式で与えられる． <span id="eq-mhd-equations"><span class="math display">
 \begin{aligned}
 &amp; \frac{\partial}{\partial t} \left( \rho \right) +
 \nabla \cdot \left( \rho \bm{V} \right) = 0,
@@ -644,27 +659,27 @@ P &amp;= \sum_{s} P_s
 \\
 &amp; \bm{E} = - \bm{V} \times \bm{B}
 \end{aligned}
-\tag{3.16}\]</span></span></p>
+\tag{3.16}</span></span></p>
 <div id="exr-mhd-conservative-form" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.15 </strong></span><a href="#eq-mhd-equations">式&nbsp;<span>3.16</span></a> の運動量保存則を書き換えると，以下の運動方程式が得られることを示せ． <span class="math display">\[
+<p><span class="theorem-title"><strong>演習問題 3.15 </strong></span><a href="#eq-mhd-equations">式&nbsp;<span>3.16</span></a> の運動量保存則を書き換えると，以下の運動方程式が得られることを示せ． <span class="math display">
 \begin{aligned}
 &amp; \rho
 \left( \frac{\partial}{\partial t} + \bm{V} \cdot \nabla \right) \bm{V}
 = - \nabla P + \frac{1}{\mu_0} \left( \nabla \times \bm{B} \right) \times \bm{B}.
 \end{aligned}
-\]</span></p>
+</span></p>
 </div>
 <div id="exr-mhd-conservative-form" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.16 </strong></span><a href="#eq-mhd-equations">式&nbsp;<span>3.16</span></a> のエネルギー保存則を書き換えると，以下の断熱の状態方程式が得られることを示せ． <span class="math display">\[
+<p><span class="theorem-title"><strong>演習問題 3.16 </strong></span><a href="#eq-mhd-equations">式&nbsp;<span>3.16</span></a> のエネルギー保存則を書き換えると，以下の断熱の状態方程式が得られることを示せ． <span class="math display">
 \begin{aligned}
 &amp;
 \left( \frac{\partial}{\partial t} + \bm{V} \cdot \nabla \right)
 \left( \frac{P}{\rho^\gamma} \right) = 0.
 \end{aligned}
-\]</span></p>
+</span></p>
 </div>
 <div id="exr-mhd-conservative-form" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 3.17 </strong></span><a href="#eq-mhd-equations">式&nbsp;<span>3.16</span></a> から電場を消去して保存系で書き換えると以下の形式が得られることを示せ． <span class="math display">\[
+<p><span class="theorem-title"><strong>演習問題 3.17 </strong></span><a href="#eq-mhd-equations">式&nbsp;<span>3.16</span></a> から電場を消去して保存系で書き換えると以下の形式が得られることを示せ． <span class="math display">
 \begin{aligned}
 &amp; \frac{\partial}{\partial t} \left( \rho \right) +
 \nabla \cdot \left( \rho \bm{V} \right) = 0,
@@ -687,7 +702,7 @@ P &amp;= \sum_{s} P_s
 \\
 &amp; \frac{\partial}{\partial t} \bm{B} - \nabla \times \left( \bm{V} \times \bm{B} \right) = 0
 \end{aligned}
-\]</span></p>
+</span></p>
 </div>
 
 

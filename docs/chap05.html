@@ -75,9 +75,24 @@ ul.task-list li input[type="checkbox"] {
 \]</span></p>
 </div>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
+<link rel="stylesheet" href="katex-style.css">
 
 
 
@@ -201,7 +216,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="5.1" class="anchored" data-anchor-id="はじめに"><span class="header-section-number">5.1</span> はじめに</h2>
 <ul>
 <li>冷たいプラズマ中の波動の議論には流体近似を用いてきた．これに対して熱いプラズマ中の波動とはその議論に運動論的効果が無視できないものを指す．</li>
-<li>運動論的効果を考えると，一部の粒子のみが波動と共鳴する波動粒子相互作用が重要になる場合が出てくる．すなわち速度空間の情報 <span class="math inline">\(f(v)\)</span> を陽に考える必要がある．これはモーメント量だけを用いて分布全体を考えて議論を展開する流体近似とは大きく異なる．</li>
+<li>運動論的効果を考えると，一部の粒子のみが波動と共鳴する波動粒子相互作用が重要になる場合が出てくる．すなわち速度空間の情報 <span class="math inline">f(v)</span> を陽に考える必要がある．これはモーメント量だけを用いて分布全体を考えて議論を展開する流体近似とは大きく異なる．</li>
 <li>熱いプラズマ中の波動の議論は冷たいプラズマに比べてずっと難しいので，ここでは最も簡単な背景磁場がゼロで，かつ静電近似（磁場揺らぎなし）の場合のみを扱う．</li>
 </ul>
 </section>
@@ -209,7 +224,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="5.2" class="anchored" data-anchor-id="波動粒子相互作用"><span class="header-section-number">5.2</span> 波動粒子相互作用</h2>
 <section id="線形分散関係" class="level3">
 <h3 class="anchored" data-anchor-id="線形分散関係">線形分散関係</h3>
-<p>以下の1次元Vlasov-Poisson方程式系を基礎方程式として用いる． <span class="math display">\[
+<p>以下の1次元Vlasov-Poisson方程式系を基礎方程式として用いる． <span class="math display">
 \begin{aligned}
 &amp; \frac{\partial f_s}{\partial t} +
 v \frac{\partial f_s}{\partial x} +
@@ -218,27 +233,27 @@ v \frac{\partial f_s}{\partial x} +
 &amp; \frac{\partial E}{\partial x} =
 \frac{1}{\epsilon_0} \sum_{s} q_s \int f_s(v) dv.
 \end{aligned}
-\]</span></p>
-<p>0次の分布関数 <span class="math inline">\(f_{s,0}\)</span> の速度空間微分は一般には有限である(<span class="math inline">\(\partial/\partial v \neq 0\)</span>)ことに注意して線形化すると <span class="math display">\[
+</span></p>
+<p>0次の分布関数 <span class="math inline">f_{s,0}</span> の速度空間微分は一般には有限である(<span class="math inline">\partial/\partial v \neq 0</span>)ことに注意して線形化すると <span class="math display">
 \begin{aligned}
 - i (\omega - k v) \tilde{f}_s &amp;= - \frac{q_s}{m_s} \tilde{E} \frac{\partial f_{s,0}}{\partial v},
 \\
 i k \tilde{E} &amp;= \frac{1}{\epsilon_0} \sum_{s} q_s \int \tilde{f}_s dv.
 \end{aligned}
-\]</span></p>
-<p>分散関係は <span id="eq-vlasov-poisson-dispersion1"><span class="math display">\[
+</span></p>
+<p>分散関係は <span id="eq-vlasov-poisson-dispersion1"><span class="math display">
 \epsilon =
 1 - \sum_{s} \left( \frac{\omega_{ps}}{k} \right)^2
 \int_{-\infty}^{+\infty} \frac{F'_{s} (v)}{v - \omega/k} dv = 0
-\tag{5.1}\]</span></span> または部分積分して <span id="eq-vlasov-poisson-dispersion2"><span class="math display">\[
+\tag{5.1}</span></span> または部分積分して <span id="eq-vlasov-poisson-dispersion2"><span class="math display">
 \epsilon =
 1 - \sum_{s} \left( \frac{\omega_{ps}}{k} \right)^2
 \int_{-\infty}^{+\infty} \frac{F_{s} (v)}{\left(v - \omega/k\right)^2} dv = 0
-\tag{5.2}\]</span></span> により得られる．ただし <span class="math inline">\(f_{s,0}(v) = n_{0,s} F_{s}(v)\)</span> により <span class="math inline">\(F_{s}(v)\)</span> を定義した．</p>
+\tag{5.2}</span></span> により得られる．ただし <span class="math inline">f_{s,0}(v) = n_{0,s} F_{s}(v)</span> により <span class="math inline">F_{s}(v)</span> を定義した．</p>
 <section id="landau共鳴" class="level4">
 <h4 class="anchored" data-anchor-id="landau共鳴">Landau共鳴</h4>
 <ul>
-<li>被積分関数に <span class="math inline">\(1/(v - \omega/k)\)</span> の項があるため， <span class="math inline">\(v \approx \omega/k\)</span> の寄与が大きくなる．これは波動と粒子の共鳴を意味する．これ はLandau共鳴と呼ばれ，その共鳴条件（Landau共鳴条件）は一般に <span class="math inline">\(\omega = k v\)</span> と書かれる．</li>
+<li>被積分関数に <span class="math inline">1/(v - \omega/k)</span> の項があるため， <span class="math inline">v \approx \omega/k</span> の寄与が大きくなる．これは波動と粒子の共鳴を意味する．これ はLandau共鳴と呼ばれ，その共鳴条件（Landau共鳴条件）は一般に <span class="math inline">\omega = k v</span> と書かれる．</li>
 <li>共鳴粒子は波動の特定の位相を長時間感じるため，波動と粒子の間で効率的なエネルギーの輸送が起こる．</li>
 </ul>
 <div id="exr-vlasov-posisson-dispersion" class="theorem exercise">
@@ -248,10 +263,10 @@ i k \tilde{E} &amp;= \frac{1}{\epsilon_0} \sum_{s} q_s \int \tilde{f}_s dv.
 </section>
 <section id="流体近似との関係" class="level3">
 <h3 class="anchored" data-anchor-id="流体近似との関係">流体近似との関係</h3>
-<p><span class="math inline">\(\omega / k \gg v_{\rm th}\)</span> のとき，波動と共鳴できる粒子数はほぼゼロである． したがって，このときの分散関係は流体近似の結果と一致するはずである．これを確かめよう．</p>
+<p><span class="math inline">\omega / k \gg v_{\rm th}</span> のとき，波動と共鳴できる粒子数はほぼゼロである． したがって，このときの分散関係は流体近似の結果と一致するはずである．これを確かめよう．</p>
 <section id="langmuir波" class="level4">
 <h4 class="anchored" data-anchor-id="langmuir波">Langmuir波</h4>
-<p><span class="math inline">\(\omega / k \gg v_{\rm th,e} \gg v_{\rm th,i}\)</span> のとき，<span class="math inline">\(F_s(v)\)</span> がMaxwell分布で与えられると仮定すると <span id="eq-langmuir-fluid-approximation"><span class="math display">\[
+<p><span class="math inline">\omega / k \gg v_{\rm th,e} \gg v_{\rm th,i}</span> のとき，<span class="math inline">F_s(v)</span> がMaxwell分布で与えられると仮定すると <span id="eq-langmuir-fluid-approximation"><span class="math display">
 \begin{aligned}
 \int \frac{F_s (v)}{(v - \omega/k)^2} dv
 &amp;\approx \int F_s (v) \left( \frac{k}{\omega} \right)^2
@@ -270,36 +285,36 @@ i k \tilde{E} &amp;= \frac{1}{\epsilon_0} \sum_{s} q_s \int \tilde{f}_s dv.
   \cdots
 \right]
 \end{aligned}
-\tag{5.3}\]</span></span></p>
-<p>したがって分散関係は <span id="eq-langmuir-fluid-dispersion-relation1"><span class="math display">\[
+\tag{5.3}</span></span></p>
+<p>したがって分散関係は <span id="eq-langmuir-fluid-dispersion-relation1"><span class="math display">
 1 -
 \sum_{s} \left( \frac{\omega_{ps}}{\omega} \right)^2
 \left[ 1 + 3 \left( \frac{k v_{\rm th,s}}{\omega} \right)^2 \right]
 \approx 0.
-\tag{5.4}\]</span></span> となる．<span class="math inline">\(\omega \sim \omega_{pe}\)</span> として近似解を求めると <span id="eq-langmuir-fluid-dispersion-relation2"><span class="math display">\[
+\tag{5.4}</span></span> となる．<span class="math inline">\omega \sim \omega_{pe}</span> として近似解を求めると <span id="eq-langmuir-fluid-dispersion-relation2"><span class="math display">
 \omega^2 \approx \omega_{pe}^2 \left( 1 + 3 k^2 \lambda_{De}^2 \right).
-\tag{5.5}\]</span></span> これは流体近似のLangmuir波で <span class="math inline">\(\gamma = 3\)</span> (自由度 = 1)としたものに等しい．</p>
+\tag{5.5}</span></span> これは流体近似のLangmuir波で <span class="math inline">\gamma = 3</span> (自由度 = 1)としたものに等しい．</p>
 </section>
 <section id="イオン音波" class="level4">
 <h4 class="anchored" data-anchor-id="イオン音波">イオン音波</h4>
-<p><span class="math inline">\(v_{\rm th,i} \ll \omega/k \ll v_{\rm th,e}\)</span> のとき，電子については <span id="eq-ionacoustic-fluid-approximation"><span class="math display">\[
+<p><span class="math inline">v_{\rm th,i} \ll \omega/k \ll v_{\rm th,e}</span> のとき，電子については <span id="eq-ionacoustic-fluid-approximation"><span class="math display">
 \int \frac{F_s (v)}{(v - \omega/k)^2} dv \approx \int \frac{F_s (v)}{v^2} dv = -\frac{1}{v_{\rm th,e}^2}
-\tag{5.6}\]</span></span> なる近似を採用すると，分散関係は <span id="eq-ionacoustic-fluid-dispersion-relation1"><span class="math display">\[
+\tag{5.6}</span></span> なる近似を採用すると，分散関係は <span id="eq-ionacoustic-fluid-dispersion-relation1"><span class="math display">
 1 + \left( \frac{\omega_{pe}}{k v_{\rm th,e}} \right)^2 -
 \left( \frac{\omega_{pi}}{\omega} \right)^2
 \left[ 1 + 3 \left( \frac{k v_{\rm th,i}}{\omega} \right)^2 \right]
 \approx 0.
-\tag{5.7}\]</span></span> となる． <span class="math inline">\(T_e/T_i \gg 1\)</span> (電子温度がイオン温度よりも十分大きい)という条件のもとで 長波長近似 (<span class="math inline">\(k \rightarrow 0\)</span>) の解を求めると <span id="eq-ionacoustic-fluid-dispersion-relation2"><span class="math display">\[
+\tag{5.7}</span></span> となる． <span class="math inline">T_e/T_i \gg 1</span> (電子温度がイオン温度よりも十分大きい)という条件のもとで 長波長近似 (<span class="math inline">k \rightarrow 0</span>) の解を求めると <span id="eq-ionacoustic-fluid-dispersion-relation2"><span class="math display">
 \omega^2 = k^2 V_{\rm s}^2, \quad \quad V_{\rm s}^2 \equiv \frac{k_B (T_e + 3 T_i)}{m_i}
-\tag{5.8}\]</span></span> となる．これは流体近似のイオン音波の解で電子を <span class="math inline">\(\gamma = 1\)</span> (自由度 = 無限大)，イオンを <span class="math inline">\(\gamma = 3\)</span> (自由度 = 1) としたものに等しい．</p>
+\tag{5.8}</span></span> となる．これは流体近似のイオン音波の解で電子を <span class="math inline">\gamma = 1</span> (自由度 = 無限大)，イオンを <span class="math inline">\gamma = 3</span> (自由度 = 1) としたものに等しい．</p>
 <div id="exr-fluid-approximation" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 5.2 </strong></span>&nbsp;</p>
 <ol type="1">
 <li><a href="#eq-langmuir-fluid-approximation">式&nbsp;<span>5.3</span></a> を示せ．</li>
-<li><a href="#eq-langmuir-fluid-dispersion-relation1">式&nbsp;<span>5.4</span></a> において，近似解 <span class="math inline">\(\omega \sim \omega_{pe}\)</span> を代入し，逐次近似によって <a href="#eq-langmuir-fluid-dispersion-relation2">式&nbsp;<span>5.5</span></a> が得られることを示せ．</li>
+<li><a href="#eq-langmuir-fluid-dispersion-relation1">式&nbsp;<span>5.4</span></a> において，近似解 <span class="math inline">\omega \sim \omega_{pe}</span> を代入し，逐次近似によって <a href="#eq-langmuir-fluid-dispersion-relation2">式&nbsp;<span>5.5</span></a> が得られることを示せ．</li>
 <li><a href="#eq-ionacoustic-fluid-approximation">式&nbsp;<span>5.6</span></a> を示せ．</li>
-<li><a href="#eq-ionacoustic-fluid-dispersion-relation1">式&nbsp;<span>5.7</span></a> において，<span class="math inline">\(k^2 v_{\rm th,i}^2 \ll \omega^2 \ll \wpi^2\)</span>，<span class="math inline">\(k^2 v_{\rm th,e}^2 \ll \wpe^2\)</span> と仮定することで，分散関係 <span class="math inline">\(\omega^2 \approx k^2 v_{\rm th,e}^2\)</span> が得られることを示せ．</li>
-<li><a href="#eq-ionacoustic-fluid-dispersion-relation1">式&nbsp;<span>5.7</span></a> に前問で得た近似解 <span class="math inline">\(\omega^2 \approx k^2 v_{\rm th,e}^2\)</span> を代入し，逐次近似によって <a href="#eq-ionacoustic-fluid-dispersion-relation2">式&nbsp;<span>5.8</span></a> が得られることを示せ．（この近似が整合的であるためには <span class="math inline">\(T_e/T_i \gg 1\)</span> の条件が必要である．）</li>
+<li><a href="#eq-ionacoustic-fluid-dispersion-relation1">式&nbsp;<span>5.7</span></a> において，<span class="math inline">k^2 v_{\rm th,i}^2 \ll \omega^2 \ll \wpi^2</span>，<span class="math inline">k^2 v_{\rm th,e}^2 \ll \wpe^2</span> と仮定することで，分散関係 <span class="math inline">\omega^2 \approx k^2 v_{\rm th,e}^2</span> が得られることを示せ．</li>
+<li><a href="#eq-ionacoustic-fluid-dispersion-relation1">式&nbsp;<span>5.7</span></a> に前問で得た近似解 <span class="math inline">\omega^2 \approx k^2 v_{\rm th,e}^2</span> を代入し，逐次近似によって <a href="#eq-ionacoustic-fluid-dispersion-relation2">式&nbsp;<span>5.8</span></a> が得られることを示せ．（この近似が整合的であるためには <span class="math inline">T_e/T_i \gg 1</span> の条件が必要である．）</li>
 </ol>
 </div>
 </section>
@@ -309,33 +324,33 @@ i k \tilde{E} &amp;= \frac{1}{\epsilon_0} \sum_{s} q_s \int \tilde{f}_s dv.
 <p>波動粒子相互作用によって波動と粒子の間でエネルギー交換が起こる．Landau共鳴によって波動から粒子にエネルギーが変換され，波動が減衰するとき，これをLandau減衰と呼ぶ．逆に，粒子から波動にエネルギーが変換され，波動が成長するとき，これを逆Landau減衰と呼ぶ．</p>
 <section id="直感的な議論" class="level4">
 <h4 class="anchored" data-anchor-id="直感的な議論">直感的な議論</h4>
-<p>粒子の感じる電場は次のように書ける． <span class="math display">\[
+<p>粒子の感じる電場は次のように書ける． <span class="math display">
 E(x, t) = E_0 \cos (k x - \omega t) = E_0 \cos\left[k \left(x - \frac{\omega}{k} t \right) \right]
-\]</span> これからLandau共鳴条件 <span class="math inline">\(\omega = kv\)</span> を満たすとき，粒子は波の同じ位相を長時間感じ続けるので，効率の良いエネルギー輸送が起こり得ることが分かる．</p>
-<p>波動と粒子分布全体のエネルギーのやり取りを考えるには，単一粒子のエネルギー増減でなく，共鳴速度近傍の粒子の寄与の積分を考える必要がある．共鳴速度から少しずれた速度 <span class="math inline">\(v = \omega/k + \Delta v\)</span> を持つ粒子が波の同じ位相を感じる時間は以下で与えられる． <span class="math display">\[
+</span> これからLandau共鳴条件 <span class="math inline">\omega = kv</span> を満たすとき，粒子は波の同じ位相を長時間感じ続けるので，効率の良いエネルギー輸送が起こり得ることが分かる．</p>
+<p>波動と粒子分布全体のエネルギーのやり取りを考えるには，単一粒子のエネルギー増減でなく，共鳴速度近傍の粒子の寄与の積分を考える必要がある．共鳴速度から少しずれた速度 <span class="math inline">v = \omega/k + \Delta v</span> を持つ粒子が波の同じ位相を感じる時間は以下で与えられる． <span class="math display">
 \Delta t \sim \frac{\pi}{k \Delta v}
-\]</span></p>
+</span></p>
 <ul>
-<li><span class="math inline">\(v = \omega/k + \Delta v\)</span> (共鳴速度よりも少し速い粒子)
+<li><span class="math inline">v = \omega/k + \Delta v</span> (共鳴速度よりも少し速い粒子)
 <ul>
-<li><strong>加速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\(\Delta t\)</span> よりも <strong>短い</strong></li>
-<li><strong>減速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\(\Delta t\)</span> よりも <strong>長い</strong><br>
+<li><strong>加速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\Delta t</span> よりも <strong>短い</strong></li>
+<li><strong>減速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\Delta t</span> よりも <strong>長い</strong><br>
 → <strong>正味では減速される</strong></li>
 </ul></li>
-<li><span class="math inline">\(v = \omega/k - \Delta v\)</span> (共鳴速度よりも少し遅い粒子)
+<li><span class="math inline">v = \omega/k - \Delta v</span> (共鳴速度よりも少し遅い粒子)
 <ul>
-<li><strong>加速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\(\Delta t\)</span> よりも <strong>長い</strong></li>
-<li><strong>減速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\(\Delta t\)</span> よりも <strong>短い</strong><br>
+<li><strong>加速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\Delta t</span> よりも <strong>長い</strong></li>
+<li><strong>減速</strong> される位相にいる粒子が同じ位相を感じ続ける時間 → <span class="math inline">\Delta t</span> よりも <strong>短い</strong><br>
 → <strong>正味では加速される</strong></li>
 </ul></li>
 </ul>
-<p>共鳴速度 <span class="math inline">\(v = \omega/k\)</span> における速度分布関数の傾き <span class="math inline">\(\partial f_0/\partial v \lvert_{v=\omega/k}\)</span> が重要となる（<a href="#fig-fv-slope">図&nbsp;<span>5.1</span></a> 参照）．</p>
+<p>共鳴速度 <span class="math inline">v = \omega/k</span> における速度分布関数の傾き <span class="math inline">\partial f_0/\partial v \lvert_{v=\omega/k}</span> が重要となる（<a href="#fig-fv-slope">図&nbsp;<span>5.1</span></a> 参照）．</p>
 <ul>
-<li><p><span class="math inline">\(\partial f_0/\partial v \lvert_{v=\omega/k} &lt; 0\)</span><br>
+<li><p><span class="math inline">\partial f_0/\partial v \lvert_{v=\omega/k} &lt; 0</span><br>
 加速される粒子の方が減速される粒子よりも多い → 粒子のエネルギー増 = 波のエネルギー減<br>
 すなわち， <strong>波は減衰</strong> する．→ <strong>Landau減衰</strong><br>
 通常の速度分布関数(例: Maxwell分布)のもとでは，衝突(=散逸)が無いにも関わらず，波と粒子の共鳴（波動粒子相互作用）によってエネルギー輸送が起こり，波の減衰が起こる．これは無衝突系に特有の現象．</p></li>
-<li><p><span class="math inline">\(\partial f_0/\partial v \lvert_{v=\omega/k} &gt; 0\)</span><br>
+<li><p><span class="math inline">\partial f_0/\partial v \lvert_{v=\omega/k} &gt; 0</span><br>
 減速される粒子の方が加速される粒子よりも多い → 粒子のエネルギー減 = 波のエネルギー増<br>
 すなわち， <strong>波は成長</strong> する．→ <strong>逆Landau減衰</strong><br>
 何らかの原因で速度分布関数に正の勾配ができると，系が不安定となり波動が成長する．</p></li>
@@ -358,7 +373,7 @@ E(x, t) = E_0 \cos (k x - \omega t) = E_0 \cos\left[k \left(x - \frac{\omega}{k}
 <li>Langmuir波について考え，電子の寄与のみを考慮する．</li>
 <li>0次近似として流体近似を採用し，共鳴による効果は摂動論によって扱う．</li>
 </ul>
-<p>有限の減衰率（成長率）を持つ解を考えたいので，<span class="math inline">\(\omega = \omega_r + i \gamma\)</span> の形を考えよう． ただし，共鳴効果は摂動として扱うので <span class="math inline">\(|\omega_r| \gg |\gamma|\)</span> としよう． このとき，速度空間の積分路上には特異点（極）が存在するので，これを避けなければならない． ここでは速度空間の積分も複素平面に拡張して（解析接続して），<a href="#fig-integration-contour">図&nbsp;<span>5.2</span></a> のような 特異点を避けた積分経路を考えよう．このとき留数定理を用いると <span class="math display">\[
+<p>有限の減衰率（成長率）を持つ解を考えたいので，<span class="math inline">\omega = \omega_r + i \gamma</span> の形を考えよう． ただし，共鳴効果は摂動として扱うので <span class="math inline">|\omega_r| \gg |\gamma|</span> としよう． このとき，速度空間の積分路上には特異点（極）が存在するので，これを避けなければならない． ここでは速度空間の積分も複素平面に拡張して（解析接続して），<a href="#fig-integration-contour">図&nbsp;<span>5.2</span></a> のような 特異点を避けた積分経路を考えよう．このとき留数定理を用いると <span class="math display">
 \begin{aligned}
 \epsilon
 &amp;=
@@ -378,7 +393,7 @@ i \pi \left( \frac{\omega_{pe}}{k} \right)^2
 \\
 &amp;= \epsilon_r + i \epsilon_i
 \end{aligned}
-\]</span> と書ける．ここで <span class="math inline">\(\epsilon_r\)</span> に現れる <span class="math inline">\(P \int dv\)</span> は主値積分（特異点以外からの寄与）である．</p>
+</span> と書ける．ここで <span class="math inline">\epsilon_r</span> に現れる <span class="math inline">P \int dv</span> は主値積分（特異点以外からの寄与）である．</p>
 <div class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-integration-contour" class="quarto-figure quarto-figure-center anchored">
@@ -389,20 +404,20 @@ i \pi \left( \frac{\omega_{pe}}{k} \right)^2
 </div>
 </div>
 </div>
-<p>実部 <span class="math inline">\(\epsilon_r = 0\)</span> は流体近似の分散関係を与えることに注意して，共鳴によって現れる虚部 <span class="math inline">\(\epsilon_i\)</span> が実部に比べて十分に小さい場合 (<span class="math inline">\(|\epsilon_r| \gg |\epsilon_i|\)</span>) を考えると <span id="eq-approx-damping-rate"><span class="math display">\[
+<p>実部 <span class="math inline">\epsilon_r = 0</span> は流体近似の分散関係を与えることに注意して，共鳴によって現れる虚部 <span class="math inline">\epsilon_i</span> が実部に比べて十分に小さい場合 (<span class="math inline">|\epsilon_r| \gg |\epsilon_i|</span>) を考えると <span id="eq-approx-damping-rate"><span class="math display">
 \gamma \approx \pi \left( \frac{\omega_{pe}}{k} \right)^2
 \frac{\dfrac{\partial F_e}{\partial v} \bigg \vert_{v=\omega_r/k}}{\dfrac{\partial \epsilon_r}{\partial \omega} \bigg \vert_{\omega = \omega_r}}
-\tag{5.9}\]</span></span> が得られる．これより，確かに速度分布関数の傾きで <span class="math inline">\(\gamma\)</span> の正負が決まることが分かる． 実部 <span class="math inline">\(\epsilon_r\)</span> から得られるLangmuir波の分散関係 <span class="math display">\[
+\tag{5.9}</span></span> が得られる．これより，確かに速度分布関数の傾きで <span class="math inline">\gamma</span> の正負が決まることが分かる． 実部 <span class="math inline">\epsilon_r</span> から得られるLangmuir波の分散関係 <span class="math display">
 \epsilon_r \approx 1 -
 \left( \frac{\omega_{pe}}{\omega} \right)^2
 \left[ 1 + 3 \left( k \lambda_{\rm De} \right)^2 \right]
-\]</span> を使って具体的に評価すると <span id="eq-langmuir-approx-damping-rate"><span class="math display">\[
+</span> を使って具体的に評価すると <span id="eq-langmuir-approx-damping-rate"><span class="math display">
 \gamma \approx - \sqrt{\frac{\pi}{8}} \frac{\omega_{pe}}{(k \lambda_{De})^3}
 \exp
 \left[
   - \frac{1}{2 (k \lambda_{De})^2} - \frac{3}{2}
 \right]
-\tag{5.10}\]</span></span> となる．これより <span class="math inline">\(k \lambda_{De} \ll 1\)</span> (長波長)ではLandau減衰の効果は無視できることが分かる．一方で <span class="math inline">\(k \lambda_{De} \gtrsim 1\)</span> においてはLandau減衰の効果が無視できなくなる．これは<span class="math inline">\(\omega/k\)</span> と <span class="math inline">\(v_{\rm th,e}\)</span> との大小関係によって直感的に理解できる．参考までにこの近似解と数値的に求めた厳密解を <a href="#fig-langmuir-landau-damping">図&nbsp;<span>5.3</span></a> に示す（ここでは厳密な扱いには触れていないことに注意）．</p>
+\tag{5.10}</span></span> となる．これより <span class="math inline">k \lambda_{De} \ll 1</span> (長波長)ではLandau減衰の効果は無視できることが分かる．一方で <span class="math inline">k \lambda_{De} \gtrsim 1</span> においてはLandau減衰の効果が無視できなくなる．これは<span class="math inline">\omega/k</span> と <span class="math inline">v_{\rm th,e}</span> との大小関係によって直感的に理解できる．参考までにこの近似解と数値的に求めた厳密解を <a href="#fig-langmuir-landau-damping">図&nbsp;<span>5.3</span></a> に示す（ここでは厳密な扱いには触れていないことに注意）．</p>
 <div class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-langmuir-landau-damping" class="quarto-figure quarto-figure-center anchored">
@@ -416,17 +431,17 @@ i \pi \left( \frac{\omega_{pe}}{k} \right)^2
 <div id="exr-approx-landau-damping" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 5.3 </strong></span>&nbsp;</p>
 <ol type="1">
-<li><span class="math inline">\(\epsilon_r\)</span> を <span class="math inline">\(\omega = \omega_r\)</span> の近傍でTaylor展開することによって <a href="#eq-approx-damping-rate">式&nbsp;<span>5.9</span></a> を示せ．</li>
+<li><span class="math inline">\epsilon_r</span> を <span class="math inline">\omega = \omega_r</span> の近傍でTaylor展開することによって <a href="#eq-approx-damping-rate">式&nbsp;<span>5.9</span></a> を示せ．</li>
 <li><a href="#eq-langmuir-approx-damping-rate">式&nbsp;<span>5.10</span></a> を示せ．</li>
 </ol>
 </div>
 </section>
 <section id="厳密に積分できる例" class="level4">
 <h4 class="anchored" data-anchor-id="厳密に積分できる例">厳密に積分できる例</h4>
-<p>一般には分布関数に表れる速度空間での積分は解析的に実行できないので，近似的な（もしくは数値的な）扱いが必要になる．ここでは解析的に積分できる例として，速度分布関数がCauchy分布 <span class="math display">\[
+<p>一般には分布関数に表れる速度空間での積分は解析的に実行できないので，近似的な（もしくは数値的な）扱いが必要になる．ここでは解析的に積分できる例として，速度分布関数がCauchy分布 <span class="math display">
 F (v) = \frac{C}{\pi} \frac{1}{v^2 + C^2}
-\]</span> で与えられる場合を考えよう．ここで <span class="math inline">\(C\)</span> は分布の幅（Maxwell分布における熱速度に相当）を表す．</p>
-<p>電子の寄与のみを考えると <span id="eq-cauthy-contour-integral"><span class="math display">\[
+</span> で与えられる場合を考えよう．ここで <span class="math inline">C</span> は分布の幅（Maxwell分布における熱速度に相当）を表す．</p>
+<p>電子の寄与のみを考えると <span id="eq-cauthy-contour-integral"><span class="math display">
 \begin{aligned}
 \epsilon
 &amp;= 1 - \left( \frac{\omega_{pe}}{k} \right)^2
@@ -435,22 +450,22 @@ F (v) = \frac{C}{\pi} \frac{1}{v^2 + C^2}
 &amp;= 1 - \left( \frac{\omega_{pe}}{k} \right)^2
 \frac{C}{\pi} \int_{-\infty}^{+\infty} \frac{dv}{(v + i C)(v - i C)(v - \omega/k)^2}
 \end{aligned}
-\tag{5.11}\]</span></span> である．ここで， <a href="#fig-integration-contour">図&nbsp;<span>5.2</span></a> と同様に特異点 <span class="math inline">\(v = \omega/k\)</span> の下を 通るような積分路を考えて厳密に積分を実行すると <span class="math display">\[
+\tag{5.11}</span></span> である．ここで， <a href="#fig-integration-contour">図&nbsp;<span>5.2</span></a> と同様に特異点 <span class="math inline">v = \omega/k</span> の下を 通るような積分路を考えて厳密に積分を実行すると <span class="math display">
 1 - \frac{\omega_{pe}^2}{(\omega + i k C)^2} = 0
-\]</span> すなわち <span class="math display">\[
+</span> すなわち <span class="math display">
 \omega = \pm \omega_{pe} - i k C
-\]</span> が得られる．これは定性的にはMaxwell分布の場合と同様に，長波長では減衰率が小さく， 短波長では減衰率が大きくなる．</p>
+</span> が得られる．これは定性的にはMaxwell分布の場合と同様に，長波長では減衰率が小さく， 短波長では減衰率が大きくなる．</p>
 <div id="exr-cauthy-contour-integral" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 5.4 </strong></span>特異点 <span class="math inline">\(v = \omega/k\)</span> の下を通る積分路を考えて <a href="#eq-cauthy-contour-integral">式&nbsp;<span>5.11</span></a> の積分を実行せよ． また，このとき <span class="math inline">\({\rm Im} [\omega/k]\)</span> の正負によって結果が変わらないことを確認せよ．</p>
+<p><span class="theorem-title"><strong>演習問題 5.4 </strong></span>特異点 <span class="math inline">v = \omega/k</span> の下を通る積分路を考えて <a href="#eq-cauthy-contour-integral">式&nbsp;<span>5.11</span></a> の積分を実行せよ． また，このとき <span class="math inline">{\rm Im} [\omega/k]</span> の正負によって結果が変わらないことを確認せよ．</p>
 </div>
 </section>
 </section>
 </section>
 <section id="電子ビーム不安定性" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="電子ビーム不安定性"><span class="header-section-number">5.3</span> 電子ビーム不安定性</h2>
-<p>熱的電子（コア成分）に加えて，有限のビーム成分を持つ電子（ビーム成分）が共存する系： - コア成分：密度 <span class="math inline">\(n_e\)</span>, 速度 <span class="math inline">\(V_e = 0\)</span>, 熱速度 <span class="math inline">\(v_{\rm th,e}\)</span>, 規格化された分布関数 <span class="math inline">\(F_e (v)\)</span> - ビーム成分：密度 <span class="math inline">\(n_b\)</span>, 速度 <span class="math inline">\(V_b \neq 0\)</span>, 熱速度 <span class="math inline">\(v_{\rm th,b}\)</span>, 規格化された分布関数 <span class="math inline">\(F_b (v)\)</span></p>
-<p>ただし <span class="math inline">\(n_b \ll n_e\)</span> とする．</p>
-<p>このとき分散関係は両成分の線形和で以下のように表される． <span class="math display">\[
+<p>熱的電子（コア成分）に加えて，有限のビーム成分を持つ電子（ビーム成分）が共存する系： - コア成分：密度 <span class="math inline">n_e</span>, 速度 <span class="math inline">V_e = 0</span>, 熱速度 <span class="math inline">v_{\rm th,e}</span>, 規格化された分布関数 <span class="math inline">F_e (v)</span> - ビーム成分：密度 <span class="math inline">n_b</span>, 速度 <span class="math inline">V_b \neq 0</span>, 熱速度 <span class="math inline">v_{\rm th,b}</span>, 規格化された分布関数 <span class="math inline">F_b (v)</span></p>
+<p>ただし <span class="math inline">n_b \ll n_e</span> とする．</p>
+<p>このとき分散関係は両成分の線形和で以下のように表される． <span class="math display">
 \begin{aligned}
 \epsilon
 &amp;= 1 -
@@ -463,36 +478,36 @@ F (v) = \frac{C}{\pi} \frac{1}{v^2 + C^2}
   \int_{-\infty}^{+\infty} \frac{F_b (v)}{(v - \omega/k)^2} dv
 }_{{\text ビーム成分}}
 \end{aligned}
-\]</span></p>
+</span></p>
 <section id="流体的不安定性冷たいビーム不安定性" class="level4">
 <h4 class="anchored" data-anchor-id="流体的不安定性冷たいビーム不安定性">流体的不安定性(冷たいビーム不安定性)</h4>
-<p><span class="math inline">\(F_e (v) = \delta (v)\)</span> および <span class="math inline">\(F_b (v) = \delta (v - V_b)\)</span> と近似すると <span class="math display">\[
+<p><span class="math inline">F_e (v) = \delta (v)</span> および <span class="math inline">F_b (v) = \delta (v - V_b)</span> と近似すると <span class="math display">
 \epsilon \approx 1 -
 \left( \frac{\omega_{pe}}{\omega} \right)^2 -
 \left( \frac{\omega_{pb}}{\omega - k V_b} \right)^2
 = 0.
-\]</span></p>
+</span></p>
 <ul>
-<li>ビーム密度が十分小さいため， <span class="math inline">\(\omega - k V_b \approx 0\)</span> のとき以外はビーム成分の影響は無視できる． → <span class="math inline">\(\omega^2 \approx \omega_{pe}^2\)</span> (Langmuir波)</li>
-<li>Langmuir波とビーム成分のLandau共鳴条件が交差する点でビーム成分の影響が大きく表れる． → <span class="math inline">\((\omega, k) \approx (\omega_{pe}, \omega_{pe} / V_b)\)</span> で交差</li>
+<li>ビーム密度が十分小さいため， <span class="math inline">\omega - k V_b \approx 0</span> のとき以外はビーム成分の影響は無視できる． → <span class="math inline">\omega^2 \approx \omega_{pe}^2</span> (Langmuir波)</li>
+<li>Langmuir波とビーム成分のLandau共鳴条件が交差する点でビーム成分の影響が大きく表れる． → <span class="math inline">(\omega, k) \approx (\omega_{pe}, \omega_{pe} / V_b)</span> で交差</li>
 </ul>
-<p><span class="math inline">\(\omega_0 \equiv \omega_{pe} = k V_b\)</span> として，<span class="math inline">\(\omega = \omega_0 + \delta \omega\)</span> (<span class="math inline">\(\delta \omega \ll \omega_0\)</span>) を代入して以下の3次方程式を得る． <span class="math display">\[
+<p><span class="math inline">\omega_0 \equiv \omega_{pe} = k V_b</span> として，<span class="math inline">\omega = \omega_0 + \delta \omega</span> (<span class="math inline">\delta \omega \ll \omega_0</span>) を代入して以下の3次方程式を得る． <span class="math display">
 \left( \frac{\delta \omega}{\omega_{pe}} \right)^3 \approx
 \frac{1}{2} \left( \frac{\omega_{pb}}{\omega_{pe}} \right)^2 =
 \frac{1}{2} \left( \frac{n_b}{n_e} \right)
-\]</span></p>
-<p>したがって不安定解は <span class="math display">\[
+</span></p>
+<p>したがって不安定解は <span class="math display">
 \dfrac{\delta \omega}{\omega_{pe}}
 \approx \dfrac{1 + \sqrt{3} i}{2} \left( \dfrac{n_b}{2 n_e} \right)^{1/3}
-\]</span> となる．<span class="math inline">\(\gamma \propto (n_b/n_e)^{1/3}\)</span> であることに注意．</p>
+</span> となる．<span class="math inline">\gamma \propto (n_b/n_e)^{1/3}</span> であることに注意．</p>
 </section>
 <section id="運動論的不安定性bump-on-tail不安定性" class="level4">
 <h4 class="anchored" data-anchor-id="運動論的不安定性bump-on-tail不安定性">運動論的不安定性(Bump on tail不安定性)</h4>
 <ul>
-<li><span class="math inline">\(v_{\rm th,e} \ll V_b\)</span> のときを考えて，コア成分の運動論効果は無視する．</li>
+<li><span class="math inline">v_{\rm th,e} \ll V_b</span> のときを考えて，コア成分の運動論効果は無視する．</li>
 <li>周波数の実部はコア成分のみで，虚部はビーム成分のみで決まると仮定する．</li>
 </ul>
-<p><span class="math display">\[
+<p><span class="math display">
 \begin{aligned}
 \epsilon
 &amp;\approx 1 - \left( \frac{\omega_{pe}}{\omega} \right)^2 -
@@ -515,23 +530,23 @@ i \pi \left( \frac{\omega_{pb}}{k} \right)^2
 \\
 &amp;= \epsilon_r + i \epsilon_i
 \end{aligned}
-\]</span></p>
-<p>Landau減衰の議論と同様に周波数の虚部を求めると <span class="math display">\[
+</span></p>
+<p>Landau減衰の議論と同様に周波数の虚部を求めると <span class="math display">
 \frac{\gamma}{\omega_{pe}} \approx \frac{\pi}{2}
 \left( \frac{\omega_{pb}}{\omega_{pe}} \right)^2
 \left( \frac{\omega}{\omega_{pe}} \right)
 \left( \frac{\omega}{k} \right)^2
 \frac{\partial F_b}{\partial v} \Bigg \vert_{v=\omega_r/k}
-\]</span></p>
-<p>ビーム成分としてMaxwell分布 <span class="math display">\[
+</span></p>
+<p>ビーム成分としてMaxwell分布 <span class="math display">
 F_b (v) = \frac{1}{\sqrt{2\pi v_{\rm th,b}^2}}
 \exp \left[ - \frac{(v - V_b)^2}{2 v_{\rm th,b}^2} \right]
-\]</span> と <span class="math inline">\(\omega \approx \omega_{pe} \approx k V_b\)</span> を使うと，成長率の最大値として <span class="math display">\[
+</span> と <span class="math inline">\omega \approx \omega_{pe} \approx k V_b</span> を使うと，成長率の最大値として <span class="math display">
 \frac{\gamma_{\rm max}}{\omega_{pe}} \approx
 \frac{1}{2} \sqrt{\frac{\pi}{2e}}
 \left( \frac{n_b}{n_e} \right)
 \left( \frac{V_b}{v_{\rm th,b}} \right)^2
-\]</span> が得られる．流体的不安定性の場合と異なり，ビーム密度に対する依存性は <span class="math inline">\(\gamma \propto (n_b/n_e)\)</span> となる． (<span class="math inline">\(V_b/v_{\rm th,b}\)</span> が小さいときには不安定性には運動論効果が重要な役割を果たすが，この値が十分に大きくなると運動論的不安定性から流体不安定性に移行する．)</p>
+</span> が得られる．流体的不安定性の場合と異なり，ビーム密度に対する依存性は <span class="math inline">\gamma \propto (n_b/n_e)</span> となる． (<span class="math inline">V_b/v_{\rm th,b}</span> が小さいときには不安定性には運動論効果が重要な役割を果たすが，この値が十分に大きくなると運動論的不安定性から流体不安定性に移行する．)</p>
 
 
 </section>
