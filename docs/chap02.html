@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>宇宙空間物理学II - 2&nbsp; 単一粒子の運動</title>
+<title>2&nbsp; 単一粒子の運動 – 宇宙空間物理学II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -66,7 +67,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,13 +82,14 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -96,7 +104,34 @@ div.csl-indent {
    });
 }}});
   </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="katex-style.css">
 </head>
@@ -107,13 +142,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chap02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">単一粒子の運動</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chap02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">単一粒子の運動</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -122,7 +157,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">宇宙空間物理学II</a> 
@@ -180,7 +215,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -236,7 +271,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="荷電粒子の運動方程式" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="荷電粒子の運動方程式"><span class="header-section-number">2.1</span> 荷電粒子の運動方程式</h2>
@@ -259,30 +296,38 @@ x = - r_g \sin \Omega_c t + x_0 \\
 y = - r_g \cos \Omega_c t + y_0 \\
 z = v_{\parallel} t + z_0
 \end{cases}
-</span> これより荷電粒子は磁場に対して垂直な面内では旋回運動をすることが分かる（<a href="#fig-helix">図&nbsp;<span>2.1</span></a> 参照）．これをジャイロ運動（もしくはサイクロトロン運動，ラーマー運動）と呼ぶ．ここで，<span class="math inline">\Omega_c = q B/m</span>をジャイロ周波数，<span class="math inline">r_g = v_{\perp}/\Omega_c</span>をジャイロ半径である．このとき，<span class="math inline">\Omega_c</span>は符号付きで定義されていることに注意しよう．</p>
-<div class="cell" data-execution_count="1">
+</span> これより荷電粒子は磁場に対して垂直な面内では旋回運動をすることが分かる（<a href="#fig-helix" class="quarto-xref">図&nbsp;<span>2.1</span></a> 参照）．これをジャイロ運動（もしくはサイクロトロン運動，ラーマー運動）と呼ぶ．ここで，<span class="math inline">\Omega_c = q B/m</span>をジャイロ周波数，<span class="math inline">r_g = v_{\perp}/\Omega_c</span>をジャイロ半径である．このとき，<span class="math inline">\Omega_c</span>は符号付きで定義されていることに注意しよう．</p>
+<div id="cell-fig-helix" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<div id="fig-helix" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap02_files/figure-html/fig-helix-output-1.png" width="397" height="389" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;2.1: 一様磁場中での荷電粒子の運動</figcaption>
+<div id="fig-helix" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-helix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap02_files/figure-html/fig-helix-output-1.png" width="397" height="389" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-helix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.1: 一様磁場中での荷電粒子の運動
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>また，ピッチ角<span class="math inline">\alpha</span>は <a href="#fig-pitch-angle">図&nbsp;<span>2.2</span></a> に示すように磁力線に平行な速度成分<span class="math inline">v_{\parallel}</span>と垂直な速度成分<span class="math inline">v_{\perp}</span>を用いて <span class="math inline">\tan \alpha = v_{\perp}/v_{\parallel}</span>によって定義される．</p>
-<div class="cell" data-execution_count="2">
+<p>また，ピッチ角<span class="math inline">\alpha</span>は <a href="#fig-pitch-angle" class="quarto-xref">図&nbsp;<span>2.2</span></a> に示すように磁力線に平行な速度成分<span class="math inline">v_{\parallel}</span>と垂直な速度成分<span class="math inline">v_{\perp}</span>を用いて <span class="math inline">\tan \alpha = v_{\perp}/v_{\parallel}</span>によって定義される．</p>
+<div id="cell-fig-pitch-angle" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div id="fig-pitch-angle" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap02_files/figure-html/fig-pitch-angle-output-1.png" width="389" height="389" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;2.2: ピッチ角の定義</figcaption>
+<div id="fig-pitch-angle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pitch-angle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap02_files/figure-html/fig-pitch-angle-output-1.png" width="389" height="389" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pitch-angle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.2: ピッチ角の定義
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="exr-typical-values" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.1 </strong></span>磁場強度を <span class="math inline">B = 10 \, {\rm nT}</span> , エネルギー <span class="math inline">W_{\perp} = 1 \, {\rm keV}</span> とし，電子および陽子のジャイロ周波数 <span class="math inline">\Omega_{c}</span> およびジャイロ半径 <span class="math inline">r_g = v_{\perp}/\Omega_{c}</span> をそれぞれ求めよ．ただし， <span class="math inline">v_{\perp} = \sqrt{2 q W_{\perp} / m}</span> とする．</p>
+<p><span class="theorem-title"><strong>演習問題 2.1</strong></span> 磁場強度を <span class="math inline">B = 10 \, {\rm nT}</span> , エネルギー <span class="math inline">W_{\perp} = 1 \, {\rm keV}</span> とし，電子および陽子のジャイロ周波数 <span class="math inline">\Omega_{c}</span> およびジャイロ半径 <span class="math inline">r_g = v_{\perp}/\Omega_{c}</span> をそれぞれ求めよ．ただし， <span class="math inline">v_{\perp} = \sqrt{2 q W_{\perp} / m}</span> とする．</p>
 </div>
 <section id="第一断熱不変量" class="level3">
 <h3 class="anchored" data-anchor-id="第一断熱不変量">第一断熱不変量</h3>
@@ -293,7 +338,7 @@ J = \oint p dq
 J_1 = \frac{\pi m}{q} \frac{m v_{\perp}^2}{2 B} \equiv \frac{\pi m}{q} \mu
 \qquad(2.1)</span></span> となることが簡単に示せる．ここで <span class="math inline">\mu</span> を磁気モーメントと呼ぶ．<span class="math inline">\mu</span>は<span class="math inline">J_1</span>と定数倍だけしか違わないので，<span class="math inline">\mu</span>を第一断熱不変量と呼ぶことも多い．</p>
 <div id="exr-adiabatic-invariant" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.2 </strong></span>調和振動子 <span class="math display">
+<p><span class="theorem-title"><strong>演習問題 2.2</strong></span> 調和振動子 <span class="math display">
 \frac{dq}{dt} = p, \quad \frac{dp}{dt} = - \omega^2 q
 </span> について考える．</p>
 <ol type="1">
@@ -304,13 +349,13 @@ q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
 </ol>
 </div>
 <div id="exr-first-adiabatic-invariant" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.3 </strong></span>第一断熱不変量が <a href="#eq-first-adiabatic-invariant">式&nbsp;<span>2.1</span></a> で与えられることを示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.3</strong></span> 第一断熱不変量が <a href="#eq-first-adiabatic-invariant" class="quarto-xref">式&nbsp;<span>2.1</span></a> で与えられることを示せ．</p>
 </div>
 <div id="exr-magnetic-flux-thgough-gyroarea" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.4 </strong></span>第一断熱不変量 <a href="#eq-first-adiabatic-invariant">式&nbsp;<span>2.1</span></a> は荷電粒子のジャイロ運動が囲む面積を貫く磁束に比例することを示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.4</strong></span> 第一断熱不変量 <a href="#eq-first-adiabatic-invariant" class="quarto-xref">式&nbsp;<span>2.1</span></a> は荷電粒子のジャイロ運動が囲む面積を貫く磁束に比例することを示せ．</p>
 </div>
 <div id="exr-magnetic-moment" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.5 </strong></span>一般に電流密度<span class="math inline">\bm{J}(\bm{x})</span>によって作られる磁気双極子モーメントは <span class="math display">
+<p><span class="theorem-title"><strong>演習問題 2.5</strong></span> 一般に電流密度<span class="math inline">\bm{J}(\bm{x})</span>によって作られる磁気双極子モーメントは <span class="math display">
 \bm{m} = \frac{1}{2} \int_{V} \bm{x}' \times \bm{J} (\bm{x}') d^3 x'
 </span> と与えられる．ここで積分は全空間での積分を表わす．</p>
 <p>これを用いて，<span class="math inline">v_{\parallel} = 0</span>, <span class="math inline">v_{\perp} \neq 0</span>の荷電粒子が作るループ状の電流が作る磁気双極子モーメントの大きさが<span class="math inline">\mu</span>に対応している，すなわち <span class="math display">
@@ -321,11 +366,15 @@ q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
 </section>
 <section id="バウンス運動" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="バウンス運動"><span class="header-section-number">2.3</span> バウンス運動</h2>
-<p><a href="#fig-magnetic-bottle">図&nbsp;<span>2.3</span></a> に示すような時間的に定常な「磁気ボトル」形状を考える．</p>
-<div id="fig-magnetic-bottle" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/magnetic_bottle.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">図&nbsp;2.3: 磁気ボトル <span class="citation" data-cites="GurnettBattacharjee2017">(<a href="references.html#ref-GurnettBattacharjee2017" role="doc-biblioref">Gurnett and Bhattacharjee 2017</a>)</span></figcaption>
+<p><a href="#fig-magnetic-bottle" class="quarto-xref">図&nbsp;<span>2.3</span></a> に示すような時間的に定常な「磁気ボトル」形状を考える．</p>
+<div id="fig-magnetic-bottle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-magnetic-bottle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/magnetic_bottle.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-magnetic-bottle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.3: 磁気ボトル <span class="citation" data-cites="GurnettBattacharjee2017">(<a href="references.html#ref-GurnettBattacharjee2017" role="doc-biblioref">Gurnett and Bhattacharjee 2017</a>)</span>
+</figcaption>
 </figure>
 </div>
 <p>磁気ボトル中の荷電粒子の運動について考えると，時間的に定常な磁場構造の中では荷電粒子のエネルギーは保存することから <span id="eq-energy-conservation"><span class="math display">
@@ -336,7 +385,7 @@ m \frac{d v_{\parallel}}{dt} \approx
 \underbrace{- \mu \frac{\partial B}{\partial s}}_{\text{磁気ミラー力}}
 \qquad(2.3)</span></span> と書ける．ここで<span class="math inline">s</span>は磁力線に沿って定義した座標である．これは荷電粒子は磁場が強い方から弱い方に向かって実効的な力を受けることを意味しており，これを磁気ミラー力と呼ぶ．</p>
 <div id="exr-mirror-force" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.6 </strong></span><a href="#eq-energy-conservation">式&nbsp;<span>2.2</span></a> において， <span class="math inline">(ジャイロ半径) \ll (空間スケール)</span> を仮定することで <a href="#eq-mirror-force">式&nbsp;<span>2.3</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.6</strong></span> <a href="#eq-energy-conservation" class="quarto-xref">式&nbsp;<span>2.2</span></a> において， <span class="math inline">(ジャイロ半径) \ll (空間スケール)</span> を仮定することで <a href="#eq-mirror-force" class="quarto-xref">式&nbsp;<span>2.3</span></a> を示せ．</p>
 </div>
 <section id="ミラー反射" class="level3">
 <h3 class="anchored" data-anchor-id="ミラー反射">ミラー反射</h3>
@@ -345,7 +394,7 @@ m \frac{d v_{\parallel}}{dt} \approx
 \qquad(2.4)</span></span> となることが分かる．ただし <span class="math inline">B_0</span> は磁場強度が最小の点での値を表す．このピッチ角の条件はエネルギーに依存しないことに注意しよう．</p>
 <p>ピッチ角がこれよりも大きい（90度に近い）粒子の運動は磁場強度の極小の点を中心とした周期運動となる．これをバウンス運動と呼ぶ．</p>
 <div id="exr-loss-cone-angle" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.7 </strong></span><a href="#eq-energy-conservation">式&nbsp;<span>2.2</span></a> から <a href="#eq-loss-cone-angle">式&nbsp;<span>2.4</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.7</strong></span> <a href="#eq-energy-conservation" class="quarto-xref">式&nbsp;<span>2.2</span></a> から <a href="#eq-loss-cone-angle" class="quarto-xref">式&nbsp;<span>2.4</span></a> を示せ．</p>
 </div>
 </section>
 <section id="第2断熱不変量" class="level3">
@@ -366,23 +415,27 @@ v_y = + v_{\perp} \sin \Omega_c t
 \end{cases}
 \qquad(2.5)</span></span> となり，<span class="math inline">x</span>方向に速さ<span class="math inline">E/B</span>でドリフト運動する．これを電場ドリフト，または <span class="math inline">\bm{E} \times \bm{B}</span> ドリフトと呼ぶ．ベクトル形式では <span class="math display">
 \bm{v}_E = \frac{\bm{E} \times \bm{B}}{B^2}
-</span> となる．粒子軌道の例は <a href="#fig-exb-drift">図&nbsp;<span>2.4</span></a> のようになる．</p>
+</span> となる．粒子軌道の例は <a href="#fig-exb-drift" class="quarto-xref">図&nbsp;<span>2.4</span></a> のようになる．</p>
 <ul>
 <li>電場ドリフトは電荷，質量，エネルギーなどの物理量に依存しない．これは電場ドリフトがローレンツ変換に由来するためである．</li>
 <li>MHDの速度は電場ドリフトに対応する．</li>
 </ul>
-<div class="cell" data-execution_count="3">
+<div id="cell-fig-exb-drift" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<div id="fig-exb-drift" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap02_files/figure-html/fig-exb-drift-output-1.png" width="540" height="381" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;2.4: 電場ドリフト</figcaption>
+<div id="fig-exb-drift" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exb-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap02_files/figure-html/fig-exb-drift-output-1.png" width="540" height="381" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exb-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.4: 電場ドリフト
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="exr-exb-drift" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.8 </strong></span><a href="#eq-exb-drift">式&nbsp;<span>2.5</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.8</strong></span> <a href="#eq-exb-drift" class="quarto-xref">式&nbsp;<span>2.5</span></a> を示せ．</p>
 </div>
 </section>
 <section id="一般の力によるドリフト" class="level3">
@@ -402,7 +455,7 @@ v_y = + v_{\perp} \sin \Omega_c t
 \bm{v}_{G} = \frac{\mu}{q} \frac{\bm{B} \times \nabla B}{B^2}
 </span> これを磁場勾配ドリフトと呼ぶ．</p>
 <div id="exr-gradb-drift" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.9 </strong></span><a href="#eq-gradb-force">式&nbsp;<span>2.6</span></a> を示せ．ただし <span class="math inline">\bm{E} = \bm{0}</span> とし，磁場勾配の空間スケールは粒子のジャイロ半径よりも十分大きいと仮定せよ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.9</strong></span> <a href="#eq-gradb-force" class="quarto-xref">式&nbsp;<span>2.6</span></a> を示せ．ただし <span class="math inline">\bm{E} = \bm{0}</span> とし，磁場勾配の空間スケールは粒子のジャイロ半径よりも十分大きいと仮定せよ．</p>
 </div>
 </section>
 <section id="磁場曲率ドリフト" class="level3">
@@ -412,14 +465,18 @@ F_c = - m \frac{v_{\parallel}^2}{R_c} \bm{e}_c
 </span> を感じる．ここで <span class="math inline">R_c</span> は曲率半径，<span class="math inline">\bm{e}_c</span> は曲率中心に向かう単位ベクトル．この力によって粒子はドリフト運動する． <span class="math display">
 \bm{v}_{C} = \frac{m v_{\parallel}^2}{q B} \bm{b} \times (\bm{b} \cdot \nabla) \bm{b}
 </span> これを磁場曲率ドリフトと呼ぶ．ただし <span class="math inline">\bm{b} = \bm{B} / B</span> は磁場の単位ベクトルである．</p>
-<div id="fig-curv-drift" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/curvature_b.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">図&nbsp;2.5: 磁場曲率ドリフト <span class="citation" data-cites="GurnettBattacharjee2017">(<a href="references.html#ref-GurnettBattacharjee2017" role="doc-biblioref">Gurnett and Bhattacharjee 2017</a>)</span></figcaption>
+<div id="fig-curv-drift" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curv-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/curvature_b.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curv-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.5: 磁場曲率ドリフト <span class="citation" data-cites="GurnettBattacharjee2017">(<a href="references.html#ref-GurnettBattacharjee2017" role="doc-biblioref">Gurnett and Bhattacharjee 2017</a>)</span>
+</figcaption>
 </figure>
 </div>
 <div id="exr-curv-vector" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.10 </strong></span><span class="math display">
+<p><span class="theorem-title"><strong>演習問題 2.10</strong></span> <span class="math display">
 \bm{\kappa} = \frac{\bm{e}_c}{R_c} = (\bm{b} \cdot \nabla) \bm{b}
 </span> で定義される<span class="math inline">\bm{\kappa}</span>は磁力線の曲率ベクトルを表わす．このことを確かめよ．</p>
 </div>
@@ -442,7 +499,7 @@ F_c = - m \frac{v_{\parallel}^2}{R_c} \bm{e}_c
 </section>
 <section id="ドリフト運動のまとめ" class="level3">
 <h3 class="anchored" data-anchor-id="ドリフト運動のまとめ">ドリフト運動のまとめ</h3>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
 <col style="width: 22%">
@@ -496,26 +553,34 @@ J_3 = \int \bm{B} \cdot d\bm{S} = \int_0^{R} 2 \pi r B_z(r) dr
 </section>
 <section id="荷電粒子の運動のまとめ" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="荷電粒子の運動のまとめ"><span class="header-section-number">2.5</span> 荷電粒子の運動のまとめ</h2>
-<p>軸対称な磁場のもとでは荷電粒子は <a href="#fig-three-motions">図&nbsp;<span>2.6</span></a> に示すような3つの周期運動をし，それぞれに対して断熱不変量が定義できる．</p>
-<div id="fig-three-motions" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/three_motions.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">図&nbsp;2.6: 荷電粒子の3つの周期運動 <span class="citation" data-cites="KivelsonRussell1995">(<a href="references.html#ref-KivelsonRussell1995" role="doc-biblioref">Kivelson and Russell 1995</a>)</span></figcaption>
+<p>軸対称な磁場のもとでは荷電粒子は <a href="#fig-three-motions" class="quarto-xref">図&nbsp;<span>2.6</span></a> に示すような3つの周期運動をし，それぞれに対して断熱不変量が定義できる．</p>
+<div id="fig-three-motions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-three-motions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/three_motions.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-three-motions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.6: 荷電粒子の3つの周期運動 <span class="citation" data-cites="KivelsonRussell1995">(<a href="references.html#ref-KivelsonRussell1995" role="doc-biblioref">Kivelson and Russell 1995</a>)</span>
+</figcaption>
 </figure>
 </div>
 <p>微小パラメータを <span class="math inline">\epsilon = r_g/L \ll 1</span> と定義すると，3つの運動の時間スケールがそれぞれ <span class="math inline">\epsilon</span> のオーダーだけ異なる．従って第1断熱不変量は最も保存されやすく，逆に第3断熱不変量は最も保存されにくい．</p>
-<p>3つの周期運動の地球磁気圏における典型的な時間スケールは <a href="#fig-typical-frequency">図&nbsp;<span>2.7</span></a> のようになる．</p>
-<div id="fig-typical-frequency" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/three_frequencies.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">図&nbsp;2.7: 地球磁気圏における3つの周期運動の周波数 <span class="citation" data-cites="KivelsonRussell1995">(<a href="references.html#ref-KivelsonRussell1995" role="doc-biblioref">Kivelson and Russell 1995</a>)</span></figcaption>
+<p>3つの周期運動の地球磁気圏における典型的な時間スケールは <a href="#fig-typical-frequency" class="quarto-xref">図&nbsp;<span>2.7</span></a> のようになる．</p>
+<div id="fig-typical-frequency" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typical-frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/three_frequencies.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typical-frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.7: 地球磁気圏における3つの周期運動の周波数 <span class="citation" data-cites="KivelsonRussell1995">(<a href="references.html#ref-KivelsonRussell1995" role="doc-biblioref">Kivelson and Russell 1995</a>)</span>
+</figcaption>
 </figure>
 </div>
 <div id="exr-three-motion-timescale" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.11 </strong></span>双極子磁場のような軸対称な磁場構造中における十分エネルギーの小さな荷電粒子は，ジャイロ運動，バウンス運動，ドリフト運動，の時間スケールの異なる3つの周期運動をする．粒子のジャイロ半径 <span class="math inline">r_g</span> と系の典型的な空間スケール <span class="math inline">L</span> の比を <span class="math inline">\epsilon = r_g/L (\ll 1)</span> とするとき，3つの周期運動の時間スケール <span class="math inline">T_\text{gyro}, T_\text{bounce}, T_\text{drift}</span> がそれぞれ，<span class="math inline">\Omega_c T_\text{gyro} \sim O(1)</span>，<span class="math inline">\Omega_c T_\text{bounce} \sim O(\epsilon^{-1})</span>, <span class="math inline">\Omega_c T_\text{drift} \sim O(\epsilon^{-2})</span> となることを確かめよ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.11</strong></span> 双極子磁場のような軸対称な磁場構造中における十分エネルギーの小さな荷電粒子は，ジャイロ運動，バウンス運動，ドリフト運動，の時間スケールの異なる3つの周期運動をする．粒子のジャイロ半径 <span class="math inline">r_g</span> と系の典型的な空間スケール <span class="math inline">L</span> の比を <span class="math inline">\epsilon = r_g/L (\ll 1)</span> とするとき，3つの周期運動の時間スケール <span class="math inline">T_\text{gyro}, T_\text{bounce}, T_\text{drift}</span> がそれぞれ，<span class="math inline">\Omega_c T_\text{gyro} \sim O(1)</span>，<span class="math inline">\Omega_c T_\text{bounce} \sim O(\epsilon^{-1})</span>, <span class="math inline">\Omega_c T_\text{drift} \sim O(\epsilon^{-2})</span> となることを確かめよ．</p>
 </div>
 <div id="exr-axisymmetric-problem" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.12 </strong></span>円筒座標系<span class="math inline">(r, \phi, z)</span>を用いて，時間定常で軸対称なベクトルポテンシャル <span class="math display">
+<p><span class="theorem-title"><strong>演習問題 2.12</strong></span> 円筒座標系<span class="math inline">(r, \phi, z)</span>を用いて，時間定常で軸対称なベクトルポテンシャル <span class="math display">
 A = A_{\phi} \bm{e}_{\phi} = \frac{1}{2} r
 \left[ 1 + \left(\frac{z}{L}\right)^2 \right] B_0 \bm{e}_{\phi}
 </span> で与えられる磁場中の荷電粒子の運動について考える．ただし粒子のエネルギーは十分小さく，軌道は <span class="math inline">r \ll L</span>, <span class="math inline">\left| z \right| \ll L</span> に限られると仮定してよい．</p>
@@ -526,7 +591,7 @@ A = A_{\phi} \bm{e}_{\phi} = \frac{1}{2} r
 </ol>
 </div>
 <div id="exr-drift-energy-gain" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.13 </strong></span>電磁場が <span class="math inline">B = B(x) \, \bm{e}_z</span>, <span class="math inline">E = E_0 \, \bm{e}_y</span> で与えられる場合を考える．</p>
+<p><span class="theorem-title"><strong>演習問題 2.13</strong></span> 電磁場が <span class="math inline">B = B(x) \, \bm{e}_z</span>, <span class="math inline">E = E_0 \, \bm{e}_y</span> で与えられる場合を考える．</p>
 <ol type="1">
 <li>磁場は一定( <span class="math inline">B(x) = B = {\rm const.}</span> )と仮定し，電場ドリフトの向きおよび大きさを求めよ．</li>
 <li>電場がない場合( <span class="math inline">E_0 = 0</span>) を考え， <span class="math inline">x = 0</span> の十分近傍の磁場を以下のように近似する． <span class="math display">
@@ -551,10 +616,14 @@ B(x) \simeq B_0 + \frac{\partial B}{\partial x} \Biggr|_{x=0} x
 <li>地球向きの対流が発生</li>
 </ol>
 <p>のように磁気圏全体の巨視的な対流が駆動される．これをDungeyサイクルと呼ぶ．</p>
-<div id="fig-magnetospheric-convection" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/magnetosphere.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;2.8: 地球磁気圏の巨視的対流の模式図 <span class="citation" data-cites="GurnettBattacharjee2017">(<a href="references.html#ref-GurnettBattacharjee2017" role="doc-biblioref">Gurnett and Bhattacharjee 2017</a>)</span></figcaption>
+<div id="fig-magnetospheric-convection" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-magnetospheric-convection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/magnetosphere.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-magnetospheric-convection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.8: 地球磁気圏の巨視的対流の模式図 <span class="citation" data-cites="GurnettBattacharjee2017">(<a href="references.html#ref-GurnettBattacharjee2017" role="doc-biblioref">Gurnett and Bhattacharjee 2017</a>)</span>
+</figcaption>
 </figure>
 </div>
 </section>
@@ -565,19 +634,23 @@ B(x) \simeq B_0 + \frac{\partial B}{\partial x} \Biggr|_{x=0} x
 </span> であり，粒子軌道は静電ポテンシャル <span class="math inline">\Phi</span> の等高線に等しい．静電ポテンシャルを極座標で書くと <span id="eq-lowenergy-drift"><span class="math display">
 \Phi = \Phi_{\rm c} + \Phi_{\rm sw} =
 - \frac{B_E \Omega_E R_E^3}{r} - r E_0 \sin \phi
-\qquad(2.7)</span></span> となり，粒子軌道は <a href="#fig-lowenergy-drift">図&nbsp;<span>2.9</span></a> のようになる． 軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる． 典型的なプラズマ圏の大きさは地球半径の数倍程度である．</p>
-<div class="cell" data-execution_count="4">
+\qquad(2.7)</span></span> となり，粒子軌道は <a href="#fig-lowenergy-drift" class="quarto-xref">図&nbsp;<span>2.9</span></a> のようになる． 軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる． 典型的なプラズマ圏の大きさは地球半径の数倍程度である．</p>
+<div id="cell-fig-lowenergy-drift" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
-<div id="fig-lowenergy-drift" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap02_files/figure-html/fig-lowenergy-drift-output-1.png" width="440" height="416" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;2.9: 地球磁気圏内の低エネルギー粒子の軌道</figcaption>
+<div id="fig-lowenergy-drift" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lowenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap02_files/figure-html/fig-lowenergy-drift-output-1.png" width="440" height="416" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lowenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.9: 地球磁気圏内の低エネルギー粒子の軌道
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="exr-lowenergy-drift" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.14 </strong></span><a href="#eq-lowenergy-drift">式&nbsp;<span>2.7</span></a> を微分することによって，共回転電場に伴う電場と太陽風起源の電場によるドリフトが打ち消し合う淀み点の位置が <span class="math inline">r = \left( B_E \Omega_E R_E^3 / E_0 \right)^{1/2}</span>, <span class="math inline">\sin \phi = 1</span> で与えられることを確かめよ．<a href="#fig-lowenergy-drift">図&nbsp;<span>2.9</span></a> の点線は淀み点のポテンシャルを通る等高線である．</p>
+<p><span class="theorem-title"><strong>演習問題 2.14</strong></span> <a href="#eq-lowenergy-drift" class="quarto-xref">式&nbsp;<span>2.7</span></a> を微分することによって，共回転電場に伴う電場と太陽風起源の電場によるドリフトが打ち消し合う淀み点の位置が <span class="math inline">r = \left( B_E \Omega_E R_E^3 / E_0 \right)^{1/2}</span>, <span class="math inline">\sin \phi = 1</span> で与えられることを確かめよ．<a href="#fig-lowenergy-drift" class="quarto-xref">図&nbsp;<span>2.9</span></a> の点線は淀み点のポテンシャルを通る等高線である．</p>
 </div>
 </section>
 <section id="内部磁気圏における粒子軌道高エネルギー粒子" class="level3">
@@ -586,13 +659,17 @@ B(x) \simeq B_0 + \frac{\partial B}{\partial x} \Biggr|_{x=0} x
 v_{E} \propto \frac{E_0}{B} \propto r^3,
 \quad
 v_{G} \propto \mu \frac{1}{B} \frac{\partial B}{\partial r} \propto \frac{1}{r}
-</span> となり，遠方では電場ドリフトが優勢だが，地球に近いほど磁場勾配ドリフトが優勢になることが分かる． ここで粒子のエネルギー太陽風電場の強さによって，粒子の到達できる限界の位置が決まっていることに注意． 実際に典型的な粒子の軌道を図示したものが <a href="#fig-highenergy-drift">図&nbsp;<span>2.10</span></a> である．</p>
-<div class="cell" data-execution_count="5">
+</span> となり，遠方では電場ドリフトが優勢だが，地球に近いほど磁場勾配ドリフトが優勢になることが分かる． ここで粒子のエネルギー太陽風電場の強さによって，粒子の到達できる限界の位置が決まっていることに注意． 実際に典型的な粒子の軌道を図示したものが <a href="#fig-highenergy-drift" class="quarto-xref">図&nbsp;<span>2.10</span></a> である．</p>
+<div id="cell-fig-highenergy-drift" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
-<div id="fig-highenergy-drift" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap02_files/figure-html/fig-highenergy-drift-output-1.png" width="340" height="654" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;2.10: 地球磁気圏内の低エネルギー粒子の軌道</figcaption>
+<div id="fig-highenergy-drift" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-highenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap02_files/figure-html/fig-highenergy-drift-output-1.png" width="340" height="654" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-highenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2.10: 地球磁気圏内の低エネルギー粒子の軌道
+</figcaption>
 </figure>
 </div>
 </div>
@@ -602,7 +679,7 @@ v_{G} \propto \mu \frac{1}{B} \frac{\partial B}{\partial r} \propto \frac{1}{r}
 \frac{\bm{B} \times \nabla \left(q \Phi + \frac{1}{2} m v_{\perp}^2 \right)}{q B^2}
 </span> のように書けることから，粒子のドリフト軌道に沿って全エネルギー <span class="math inline">K = \frac{1}{2} m v_{\perp}^2 + q \Phi</span> は保存する．</p>
 <div id="exr-highenergy-drift" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.15 </strong></span>第一断熱不変量 <span class="math inline">\mu</span> を保存しながらより磁場の大きい地球近傍に運ばれた粒子のエネルギーは増大することになる．このとき粒子のエネルギー増大（粒子がされた仕事）の起源は何か考えよ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.15</strong></span> 第一断熱不変量 <span class="math inline">\mu</span> を保存しながらより磁場の大きい地球近傍に運ばれた粒子のエネルギーは増大することになる．このとき粒子のエネルギー増大（粒子がされた仕事）の起源は何か考えよ．</p>
 </div>
 </section>
 <section id="磁気嵐" class="level3">
@@ -615,14 +692,14 @@ W_B = \int d \phi \int d (\cos \theta) \int_{R_E}^{\infty} r^2 dr \frac{B^2}{2 \
 \qquad(2.8)</span></span> は双極子磁場のエネルギーを表す．</p>
 <p>Dessler-Parker-Sckopke関係を使うと地表面で観測された地磁気変動から宇宙空間に存在するプラズマ（リングカレント）の総エネルギーを概算することができる．</p>
 <div id="exr-dessler-parker-sckopke" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.16 </strong></span>Dessler-Parker-Sckopke関係を示そう．</p>
+<p><span class="theorem-title"><strong>演習問題 2.16</strong></span> Dessler-Parker-Sckopke関係を示そう．</p>
 <ol type="1">
 <li>磁気流体力学の運動方程式 <span class="math display">
 \rho \frac{d \bm{v}}{d t} = - \nabla P + \bm{J} \times \bm{B}
 </span> において，左辺が無視できる（時間定常で流体速度が十分に小さい）場合を考えると，磁場に垂直方向の電流が <span class="math display">
 \bm{J}_{\perp} = \bm{b} \times \frac{\nabla P}{B}
 </span> で表されることを示せ．</li>
-<li>地球の磁場を双極子と近似しよう．このとき， <a href="#eq-dipole-field-energy">式&nbsp;<span>2.8</span></a> で表される双極子磁場が持つエネルギーを宇宙空間全体( <span class="math inline">r &gt; R_E</span> )で積分した量が <span class="math display">
+<li>地球の磁場を双極子と近似しよう．このとき， <a href="#eq-dipole-field-energy" class="quarto-xref">式&nbsp;<span>2.8</span></a> で表される双極子磁場が持つエネルギーを宇宙空間全体( <span class="math inline">r &gt; R_E</span> )で積分した量が <span class="math display">
 W_B = \frac{4 \pi}{3 \mu_0} B_E^2 R_E^3
 </span> と書けることを示せ．ただし <span class="math inline">B_E</span> は地球表面の赤道面における磁場強度で，双極子磁場は極座標で <span class="math display">
 \bm{B} = - B_E \left( \frac{R_E}{r} \right)^3
@@ -640,7 +717,7 @@ W_p = \int_{R_E}^{\infty} 2\pi r P(r) dr
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-GurnettBattacharjee2017" class="csl-entry" role="listitem">
 Gurnett, Donald A., and Amitava Bhattacharjee. 2017. <em><span class="nocase">Introduction to Plasma Physics: With Space, Laboratory and Astrophysical Applications</span></em>.
 </div>
@@ -687,18 +764,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -730,11 +796,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -744,8 +849,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -757,7 +871,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -801,6 +1038,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -826,6 +1064,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -887,17 +1151,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chap01.html" class="pagination-link">
+      <a href="./chap01.html" class="pagination-link" aria-label="はじめに">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">はじめに</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chap03.html" class="pagination-link">
+      <a href="./chap03.html" class="pagination-link" aria-label="自己無撞着なプラズマの記述">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">自己無撞着なプラズマの記述</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

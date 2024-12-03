@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>宇宙空間物理学II - 4&nbsp; 冷たいプラズマ中の波動</title>
+<title>4&nbsp; 冷たいプラズマ中の波動 – 宇宙空間物理学II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,13 +62,14 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
-  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -77,7 +84,34 @@ ul.task-list li input[type="checkbox"] {
    });
 }}});
   </script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="katex-style.css">
 </head>
@@ -88,13 +122,13 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chap04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">冷たいプラズマ中の波動</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chap04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">冷たいプラズマ中の波動</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -103,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">宇宙空間物理学II</a> 
@@ -161,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -206,7 +240,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <section id="プラズマ波動の一般論" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="プラズマ波動の一般論"><span class="header-section-number">4.1</span> プラズマ波動の一般論</h2>
@@ -274,7 +310,7 @@ L = \frac{c}{\Omega_{cs}}
 </span> が定義できる．ただし <span class="math inline">c/\Omega_{cs}</span> は相対論的な状況以外では直接現れることはまれである．</p></li>
 </ul>
 <div id="exr-alfven-speed" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.1 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.1</strong></span> &nbsp;</p>
 <ol type="1">
 <li><p>粒子種<span class="math inline">s</span>の密度および質量を用いて <span class="math inline">V_{\rm As}= B / \sqrt{\mu_0 n_s m_s}</span> なる速度を定義する．（例えば<span class="math inline">s</span>として電子を考えて定義した<span class="math inline">V_{\rm A e}</span>のことを電子Alfven速度と呼ぶ．）このとき， <span class="math display">
 \frac{\Omega_{cs}}{\omega_{ps}} = \frac{V_{\rm As}}{c}
@@ -322,7 +358,7 @@ d_s = \frac{c}{\omega_{ps}} = \frac{V_{\rm As}}{\Omega_{cs}}
 \underbrace{
 \frac{\partial}{\partial \tilde{\bm{E}}} \tilde{\bm{J}} \bigg|_{\tilde{\bm{E}} = 0}
 }_{\bm{\sigma}} \cdot \tilde{\bm{E}} + O(\tilde{\bm{E}}^2)
-</span> のように展開できる．したがって，<a href="#eq-general-dispersion-relation">式&nbsp;<span>4.1</span></a> はこの1次の項の寄与だけを 考えたこと（線形近似）に相当している．</p>
+</span> のように展開できる．したがって，<a href="#eq-general-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.1</span></a> はこの1次の項の寄与だけを 考えたこと（線形近似）に相当している．</p>
 <p>多成分系についても，線形近似のもとでは電気伝導度への寄与は各成分の和となる． <span class="math display">
 \tilde{\bm{J}} = \sum_{s} \tilde{\bm{J}}_s =
 \sum_{s} \bm{\sigma}_{s} \cdot \tilde{\bm{E}}
@@ -330,10 +366,10 @@ d_s = \frac{c}{\omega_{ps}} = \frac{V_{\rm As}}{\Omega_{cs}}
 \bm{\sigma} = \sum_{s} \bm{\sigma}_s
 </span> をとれば全体としての応答が求まる． すなわち，分散関係を求める問題は各粒子種の <span class="math inline">\bm{\sigma}_s</span> または <span class="math inline">\bm{\chi}_s</span> を 求める問題に帰着される．</p>
 <div id="exr-general-dispersion-relation" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.2 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.2</strong></span> &nbsp;</p>
 <ol type="1">
-<li><a href="#eq-general-dispersion-relation">式&nbsp;<span>4.1</span></a> を示せ．</li>
-<li>真空の場合は<span class="math inline">\bm{\sigma} = 0</span>である． このとき <a href="#eq-general-dispersion-relation">式&nbsp;<span>4.1</span></a> から真空中の電磁波 <span id="eq-vacuum-emwave"><span class="math display">
+<li><a href="#eq-general-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.1</span></a> を示せ．</li>
+<li>真空の場合は<span class="math inline">\bm{\sigma} = 0</span>である． このとき <a href="#eq-general-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.1</span></a> から真空中の電磁波 <span id="eq-vacuum-emwave"><span class="math display">
 \omega^2 = k^2 c^2
 \qquad(4.2)</span></span> が得られることを示せ．</li>
 <li>磁場の揺らぎがない（すなわち <span class="math inline">\partial \bm{B}/\partial t = 0</span> を満たす）とき， 電場が静電ポテンシャルのみ <span id="eq-electrostatic-approx"><span class="math display">
@@ -364,20 +400,24 @@ d_s = \frac{c}{\omega_{ps}} = \frac{V_{\rm As}}{\Omega_{cs}}
 \left( C_{s}^2 \equiv \frac{\gamma P_{s,0}}{n_0 m_s} \right)
 </span> 摂動電流は <span class="math display">
 \tilde{J}_{s} = q_s n_0 \tilde{v}_{s}
-</span> と書けるから（静電近似の分散関係 <a href="#eq-electrostatic-dispersion-relation">式&nbsp;<span>4.4</span></a> を用いて） <span id="eq-unmagnetized-dispersion-relation"><span class="math display">
+</span> と書けるから（静電近似の分散関係 <a href="#eq-electrostatic-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.4</span></a> を用いて） <span id="eq-unmagnetized-dispersion-relation"><span class="math display">
 1
 - \frac{\omega_{pe}^2}{\omega^2 - k^2 C_e^2}
 - \frac{\omega_{pi}^2}{\omega^2 - k^2 C_i^2}
 = 0
 \quad \quad
 \left( \omega_{ps}^2 = \frac{n_0 e^2}{\epsilon_0 m_s} \right)
-\qquad(4.6)</span></span> を得る．この数値解の例を <a href="#fig-disp-langmuir-acoustic">図&nbsp;<span>4.1</span></a> に示す．</p>
-<div class="cell" data-execution_count="1">
+\qquad(4.6)</span></span> を得る．この数値解の例を <a href="#fig-disp-langmuir-acoustic" class="quarto-xref">図&nbsp;<span>4.1</span></a> に示す．</p>
+<div id="cell-fig-disp-langmuir-acoustic" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<div id="fig-disp-langmuir-acoustic" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-disp-langmuir-acoustic-output-1.png" width="611" height="451" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.1: Langmuir波とイオン音波の分散関係</figcaption>
+<div id="fig-disp-langmuir-acoustic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-disp-langmuir-acoustic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-disp-langmuir-acoustic-output-1.png" width="611" height="451" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-disp-langmuir-acoustic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.1: Langmuir波とイオン音波の分散関係
+</figcaption>
 </figure>
 </div>
 </div>
@@ -387,13 +427,17 @@ d_s = \frac{c}{\omega_{ps}} = \frac{V_{\rm As}}{\Omega_{cs}}
 <p>高周波(<span class="math inline">\omega^2/k^2 \gg C_e^2 \gg C_i^2</span>)のとき，分散関係は以下で与えられる． <span class="math display">
 \omega^2 \approx \omega_{pe}^2 (1 + \gamma k^2 \lambda_{De}^2)
 </span> 軽い電子のみが電場に反応し，重たいイオンはほぼ静止しているため電荷密度(<span class="math inline">n_i \neq n_e</span>)の摂動を伴う．</p>
-<p>実際に電子とイオンの密度揺らぎの関係（固有ベクトル）を図示すると <a href="#fig-eigenvector-langmuir">図&nbsp;<span>4.2</span></a> となり，イオン密度の揺らぎはほとんどないことが分かる．</p>
-<div class="cell" data-execution_count="2">
+<p>実際に電子とイオンの密度揺らぎの関係（固有ベクトル）を図示すると <a href="#fig-eigenvector-langmuir" class="quarto-xref">図&nbsp;<span>4.2</span></a> となり，イオン密度の揺らぎはほとんどないことが分かる．</p>
+<div id="cell-fig-eigenvector-langmuir" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div id="fig-eigenvector-langmuir" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-eigenvector-langmuir-output-1.png" width="600" height="450" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.2: Langmuir波の固有ベクトル</figcaption>
+<div id="fig-eigenvector-langmuir" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenvector-langmuir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-eigenvector-langmuir-output-1.png" width="600" height="450" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenvector-langmuir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.2: Langmuir波の固有ベクトル
+</figcaption>
 </figure>
 </div>
 </div>
@@ -408,22 +452,26 @@ d_s = \frac{c}{\omega_{ps}} = \frac{V_{\rm As}}{\Omega_{cs}}
     V_{s}^2 \equiv \frac{\gamma (p_{e,0} + p_{i,0})}{n_0 m_i}
 \right)
 </span> となる．十分低周波・長波長のため電子とイオンが同位相で反応し，ほぼ電荷中性(<span class="math inline">n_i \approx n_e</span>)が保たれる．これは通常の流体力学的な音波に対応する．復元力には電子・イオン両方の圧力が寄与する．</p>
-<p>Langmuir波の場合と同様に電子とイオンの密度揺らぎの関係（固有ベクトル）を図示すると <a href="#fig-eigenvector-ionacoustic">図&nbsp;<span>4.3</span></a> となり，イオンと電子の密度の揺らぎはほとんど一致していることが分かる．</p>
-<div class="cell" data-execution_count="3">
+<p>Langmuir波の場合と同様に電子とイオンの密度揺らぎの関係（固有ベクトル）を図示すると <a href="#fig-eigenvector-ionacoustic" class="quarto-xref">図&nbsp;<span>4.3</span></a> となり，イオンと電子の密度の揺らぎはほとんど一致していることが分かる．</p>
+<div id="cell-fig-eigenvector-ionacoustic" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
-<div id="fig-eigenvector-ionacoustic" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-eigenvector-ionacoustic-output-1.png" width="600" height="450" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.3: イオン音波の固有ベクトル</figcaption>
+<div id="fig-eigenvector-ionacoustic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eigenvector-ionacoustic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-eigenvector-ionacoustic-output-1.png" width="600" height="450" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eigenvector-ionacoustic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.3: イオン音波の固有ベクトル
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="exr-unmagnetized-electrostatic-wave" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.3 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.3</strong></span> &nbsp;</p>
 <ol type="1">
-<li><a href="#eq-unmagneized-linearized-fluid">式&nbsp;<span>4.5</span></a> を示せ．</li>
-<li><a href="#eq-unmagnetized-dispersion-relation">式&nbsp;<span>4.6</span></a> を示せ．</li>
+<li><a href="#eq-unmagneized-linearized-fluid" class="quarto-xref">式&nbsp;<span>4.5</span></a> を示せ．</li>
+<li><a href="#eq-unmagnetized-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.6</span></a> を示せ．</li>
 <li>電場と電子およびイオンの密度の関係（固有ベクトル）が <span class="math display">
 \begin{aligned}
 \frac{\tilde{n}_e}{n_0} &amp;=
@@ -482,12 +530,12 @@ n_z^2 - \epsilon_1 &amp; -i \epsilon_2              &amp; -n_x n_z
 \end{aligned}
 </span> と定義した．</p>
 <div id="exr-magnetized-velocity" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.4 </strong></span><a href="#eq-magnetized-velocity">式&nbsp;<span>4.7</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 4.4</strong></span> <a href="#eq-magnetized-velocity" class="quarto-xref">式&nbsp;<span>4.7</span></a> を示せ．</p>
 </div>
 </section>
 <section id="平行伝播-bmk-parallel-bmb_0" class="level3">
 <h3 class="anchored" data-anchor-id="平行伝播-bmk-parallel-bmb_0">平行伝播: <span class="math inline">\bm{k} \parallel \bm{B}_0</span></h3>
-<p><span class="math inline">\bm{n} = (0, 0, n)</span>を <a href="#eq-magnetized-dispersion-relation">式&nbsp;<span>4.8</span></a> に代入して <span id="eq-magnetized-dispersion-relation-original"><span class="math display">
+<p><span class="math inline">\bm{n} = (0, 0, n)</span>を <a href="#eq-magnetized-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.8</span></a> に代入して <span id="eq-magnetized-dispersion-relation-original"><span class="math display">
 \begin{pmatrix}
 n^2 - \epsilon_1 &amp; -i \epsilon_2    &amp; 0
 \\
@@ -519,7 +567,7 @@ n^2 - \epsilon_R &amp; 0 &amp; 0 \\
 \end{aligned}
 </span> と定義した．</p>
 <div id="exr-magnetized-dispersion-relation" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.5 </strong></span><a href="#eq-magnetized-dispersion-relation-diagonalized">式&nbsp;<span>4.10</span></a> を示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 4.5</strong></span> <a href="#eq-magnetized-dispersion-relation-diagonalized" class="quarto-xref">式&nbsp;<span>4.10</span></a> を示せ．</p>
 </div>
 <section id="縦波" class="level4">
 <h4 class="anchored" data-anchor-id="縦波">縦波</h4>
@@ -536,21 +584,25 @@ n^2 - \epsilon_R &amp; 0 &amp; 0 \\
 \quad
 \tilde{E}_{y} (t) = A \exp \left[ i \left(\omega t - \frac{\pi}{2} \right) \right],
 </span> で与えられる．すなわち波は円偏光で<span class="math inline">E_y</span>は<span class="math inline">E_x</span>に対して位相が<span class="math inline">\pi/2</span>だけ遅れる．</p>
-<p>このときの波動を <strong>右回り（R-mode）</strong> と定義する． <span class="math inline">x-y</span>平面での波動ベクトルの回転は反時計回りで，負電荷の粒子の回転方向と同じ向き． （<a href="#fig-polarization">図&nbsp;<span>4.4</span></a> 参照）</p></li>
+<p>このときの波動を <strong>右回り（R-mode）</strong> と定義する． <span class="math inline">x-y</span>平面での波動ベクトルの回転は反時計回りで，負電荷の粒子の回転方向と同じ向き． （<a href="#fig-polarization" class="quarto-xref">図&nbsp;<span>4.4</span></a> 参照）</p></li>
 <li><p><span class="math inline">\tilde{E}_R = 0, \tilde{E}_L \neq 0</span> のとき</p>
 <p>分散関係は <span class="math inline">n^2 = \epsilon_L</span>であり，波の電場は <span class="math display">
 \tilde{E}_{x} (t) = A \exp \left[ i \omega t \right],
 \quad
 \tilde{E}_{y} (t) = A \exp \left[ i \left(\omega t + \frac{\pi}{2} \right) \right],
 </span> で与えられる．すなわち波は円偏光で，<span class="math inline">E_y</span>は<span class="math inline">E_x</span>に対して位相が<span class="math inline">\pi/2</span>だけ進む．</p>
-<p>このときの波動を <strong>左回り（L-mode）</strong> と定義する． <span class="math inline">x-y</span>平面での波動ベクトルの回転は時計回りで，正電荷の粒子の回転方向と同じ向き． （<a href="#fig-polarization">図&nbsp;<span>4.4</span></a> 参照）</p></li>
+<p>このときの波動を <strong>左回り（L-mode）</strong> と定義する． <span class="math inline">x-y</span>平面での波動ベクトルの回転は時計回りで，正電荷の粒子の回転方向と同じ向き． （<a href="#fig-polarization" class="quarto-xref">図&nbsp;<span>4.4</span></a> 参照）</p></li>
 </ul>
-<div class="cell" data-execution_count="4">
+<div id="cell-fig-polarization" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
-<div id="fig-polarization" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-polarization-output-1.png" width="389" height="389" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.4: 円偏波の定義</figcaption>
+<div id="fig-polarization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-polarization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-polarization-output-1.png" width="389" height="389" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polarization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.4: 円偏波の定義
+</figcaption>
 </figure>
 </div>
 </div>
@@ -559,7 +611,7 @@ n^2 - \epsilon_R &amp; 0 &amp; 0 \\
 n^2 = 1 - \sum_{s} \frac{\omega_{ps}^2}{\omega (\omega + \Omega_{cs})}
 \qquad(4.11)</span></span> で<span class="math inline">\omega \rightarrow - \omega</span>と置き換えるとL-modeの分散関係が得られる． すなわち，R-modeの分散関係のみを扱い， <span class="math inline">\omega &gt; 0</span> の解を右回り， <span class="math inline">\omega &lt; 0</span> の 解を左回りと解釈すればよい．</p>
 <div id="exr-polarization" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.6 </strong></span>固有ベクトルが<span class="math inline">\tilde{E}_R \neq 0, \tilde{E}_L = 0</span> のときは右回り円偏波，<span class="math inline">\tilde{E}_R = 0, \tilde{E}_L \neq 0</span> のときは左回り円偏波となることを確かめよ．</p>
+<p><span class="theorem-title"><strong>演習問題 4.6</strong></span> 固有ベクトルが<span class="math inline">\tilde{E}_R \neq 0, \tilde{E}_L = 0</span> のときは右回り円偏波，<span class="math inline">\tilde{E}_R = 0, \tilde{E}_L \neq 0</span> のときは左回り円偏波となることを確かめよ．</p>
 </div>
 </section>
 <section id="共鳴とカットオフ" class="level4">
@@ -567,13 +619,17 @@ n^2 = 1 - \sum_{s} \frac{\omega_{ps}^2}{\omega (\omega + \Omega_{cs})}
 <p>以下で<span class="math inline">g(\omega)</span>を定義すると分散関係の解は<span class="math inline">n^2 = g(\omega)</span>で与えられる． <span class="math display">
 g(\omega) = 1 - \frac{\omega_{pe}^2}{\omega (\omega + \Omega_{ce})} - \frac{\omega_{pi}^2}{\omega(\omega + \Omega_{ci})}
 </span></p>
-<p><span class="math inline">g(\omega)</span>の概形は <a href="#fig-gomega-function">図&nbsp;<span>4.5</span></a> のようになる．</p>
-<div class="cell" data-execution_count="5">
+<p><span class="math inline">g(\omega)</span>の概形は <a href="#fig-gomega-function" class="quarto-xref">図&nbsp;<span>4.5</span></a> のようになる．</p>
+<div id="cell-fig-gomega-function" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
-<div id="fig-gomega-function" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-gomega-function-output-1.png" width="547" height="400" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.5: <span class="math inline">g(\omega)</span>のグラフ</figcaption>
+<div id="fig-gomega-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gomega-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-gomega-function-output-1.png" width="547" height="400" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gomega-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.5: <span class="math inline">g(\omega)</span>のグラフ
+</figcaption>
 </figure>
 </div>
 </div>
@@ -591,13 +647,17 @@ g(\omega) = 1 - \frac{\omega_{pe}^2}{\omega (\omega + \Omega_{ce})} - \frac{\ome
     - \Omega_{ce}\pm \sqrt{\Omega_{ce}^2 + 4 \omega_{pe}^2}
 \right]
 \qquad(4.12)</span></span> 符号正の解がR-modeのカットオフ周波数( <span class="math inline">\omega_{\rm R,co}</span> )，負の解がL-modeのカットオフ周波数( <span class="math inline">\omega_{\rm L,co}</span> )である．</p>
-<p>分散関係は <a href="#fig-disp-highfreq-parallel-emwave">図&nbsp;<span>4.6</span></a> のようになり，短波長・高周波で真空中の電磁波の分散関係 <span class="math inline">\omega^2 = k^2 c^2</span> に漸近し，低周波・長波長でプラズマの影響を受けてカットオフが生じる．</p>
-<div class="cell" data-execution_count="6">
+<p>分散関係は <a href="#fig-disp-highfreq-parallel-emwave" class="quarto-xref">図&nbsp;<span>4.6</span></a> のようになり，短波長・高周波で真空中の電磁波の分散関係 <span class="math inline">\omega^2 = k^2 c^2</span> に漸近し，低周波・長波長でプラズマの影響を受けてカットオフが生じる．</p>
+<div id="cell-fig-disp-highfreq-parallel-emwave" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
-<div id="fig-disp-highfreq-parallel-emwave" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-disp-highfreq-parallel-emwave-output-1.png" width="584" height="454" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.6: 磁力線平行に伝播する高周波電磁波</figcaption>
+<div id="fig-disp-highfreq-parallel-emwave" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-disp-highfreq-parallel-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-disp-highfreq-parallel-emwave-output-1.png" width="584" height="454" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-disp-highfreq-parallel-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.6: 磁力線平行に伝播する高周波電磁波
+</figcaption>
 </figure>
 </div>
 </div>
@@ -606,18 +666,18 @@ g(\omega) = 1 - \frac{\omega_{pe}^2}{\omega (\omega + \Omega_{ce})} - \frac{\ome
 \omega^2 \approx \omega_{pe}^2 + k^2 c^2
 \qquad(4.13)</span></span> のように簡単化できる．</p>
 <div id="exr-cutoff-freq" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.7 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.7</strong></span> &nbsp;</p>
 <ol type="1">
-<li><a href="#eq-cutoff-freq">式&nbsp;<span>4.12</span></a> を示せ．</li>
+<li><a href="#eq-cutoff-freq" class="quarto-xref">式&nbsp;<span>4.12</span></a> を示せ．</li>
 <li><span class="math inline">|\omega_{\rm R, co}| &gt; |\omega_{\rm L, co}|</span>であることを示せ．</li>
 </ol>
 </div>
 <div id="exr-wave-reflection" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.8 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.8</strong></span> &nbsp;</p>
 <ol type="1">
 <li>磁場の影響が無視できるとき，プラズマ中を伝播する線形の電磁波は以下の形の波動方程式（Kline-Gordon方程式）によって記述される． <span class="math display">
 \frac{\partial^2}{\partial t^2} E = c^2 \frac{\partial^2}{\partial x^2} E - \omega_{pe}^2 E
-</span> この波動方程式から得られる分散関係が <a href="#eq-unmagnetized-em-dispersion-relation">式&nbsp;<span>4.13</span></a> と一致することを確かめよ．</li>
+</span> この波動方程式から得られる分散関係が <a href="#eq-unmagnetized-em-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.13</span></a> と一致することを確かめよ．</li>
 <li>周波数<span class="math inline">\omega</span>を持つ波動 <span class="math inline">E(x, t) = \tilde{E} (x) \exp \left( i \omega t \right)</span> を考え，<span class="math inline">\tilde{E} (x)</span> が満たす微分方程式を求めよ．</li>
 <li>プラズマの密度分布として，<span class="math inline">x &lt; 0</span>は真空領域，<span class="math inline">x &gt; 0</span>は有限の密度を持ったプラズマで一様に満たされている場合を考えよう． すなわち，<span class="math inline">\omega_{pe}</span>は <span class="math display">
 \omega_{pe}= \begin{cases}
@@ -653,12 +713,12 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx
 \approx \left( \frac{c}{V_{\rm A}} \right)^2
 </span> となり磁気流体力学近似のAlfven波の分散関係 <span class="math inline">\omega^2 = k^2 V_{\rm A}^2</span> が得られる．</p>
 <div id="exr-alfven-wave-dispersion-relation" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.9 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.9</strong></span> &nbsp;</p>
 <ol type="1">
 <li>平衡状態で電荷中性が成り立っているとき， <span class="math display">
 \frac{\omega_{pe}^2}{\Omega_{ce}} + \frac{\omega_{pi}^2}{\Omega_{ci}} = 0
 </span> となることを示せ．（サイクロトロン周波数が符号付きで定義されていることに注意せよ．）</li>
-<li>電荷中性が成り立つとき，<span class="math inline">|\omega/\Omega_{ce}| \ll 1, |\omega/\Omega_{ci}| \ll 1</span> を用いて <a href="#eq-alfven-wave-derivation">式&nbsp;<span>4.14</span></a> を示せ．</li>
+<li>電荷中性が成り立つとき，<span class="math inline">|\omega/\Omega_{ce}| \ll 1, |\omega/\Omega_{ci}| \ll 1</span> を用いて <a href="#eq-alfven-wave-derivation" class="quarto-xref">式&nbsp;<span>4.14</span></a> を示せ．</li>
 </ol>
 </div>
 </section>
@@ -676,26 +736,30 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx
 \right] \omega^2 +
 \left( \Omega_{ci}+ \Omega_{ce}\right) \omega +
 \Omega_{ci}\Omega_{ce}= 0.
-\qquad(4.15)</span></span> に書き直せるので解析的にも解ける．<a href="#fig-disp-lowfreq-parallel-emwave">図&nbsp;<span>4.7</span></a> に分散関係を示す． 右回りのモードは電子サイクロトロン波動（ホイッスラー波動），左回りのモードはイオンサイクロトロン波動と呼ばれる．</p>
+\qquad(4.15)</span></span> に書き直せるので解析的にも解ける．<a href="#fig-disp-lowfreq-parallel-emwave" class="quarto-xref">図&nbsp;<span>4.7</span></a> に分散関係を示す． 右回りのモードは電子サイクロトロン波動（ホイッスラー波動），左回りのモードはイオンサイクロトロン波動と呼ばれる．</p>
 <p>さらに簡単にするため，<span class="math inline">\omega \ll \lvert \Omega_{ce}\rvert</span> の近似を適用すると <span id="eq-approx-cyclotron-wave-dispersion"><span class="math display">
 \left( \frac{k c}{\omega_{pi}} \right)^2 =
 \frac{\left( \omega/\Omega_{ci}\right)^2}{\omega/\Omega_{ci}+ 1}
 \qquad(4.16)</span></span> を得る．これより，低周波極限 （<span class="math inline">\omega/\Omega_{ci}\ll 1</span>）では<span class="math inline">\omega</span>の正負に関わらず分散関係が <span class="math inline">\omega^2 = k^2 V_{\rm A}^2</span> で与えられるのに対して，<span class="math inline">\omega / \Omega_{ci}\sim 1</span> ， <span class="math inline">k c/\omega_{pi}\sim 1</span> （イオン慣性長と同程度の波長）では <span class="math inline">\omega</span> の正負に依存する分散性（<span class="math inline">d \omega / dk \neq 0</span>）が現れることが分かる．これは電子とイオンの慣性の差(Hall効果)によるものである．</p>
-<div class="cell" data-execution_count="7">
+<div id="cell-fig-disp-lowfreq-parallel-emwave" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
-<div id="fig-disp-lowfreq-parallel-emwave" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-disp-lowfreq-parallel-emwave-output-1.png" width="601" height="454" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.7: 磁力線平行に伝播する低周波電磁波（対数表示であることに注意）</figcaption>
+<div id="fig-disp-lowfreq-parallel-emwave" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-disp-lowfreq-parallel-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-disp-lowfreq-parallel-emwave-output-1.png" width="601" height="454" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-disp-lowfreq-parallel-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.7: 磁力線平行に伝播する低周波電磁波（対数表示であることに注意）
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div id="exr-cyclotron-wave-dispersion" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.10 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.10</strong></span> &nbsp;</p>
 <ol type="1">
-<li><a href="#eq-cyclotron-wave-dispersion">式&nbsp;<span>4.15</span></a> を示せ．</li>
-<li><a href="#eq-approx-cyclotron-wave-dispersion">式&nbsp;<span>4.16</span></a> を示せ．</li>
+<li><a href="#eq-cyclotron-wave-dispersion" class="quarto-xref">式&nbsp;<span>4.15</span></a> を示せ．</li>
+<li><a href="#eq-approx-cyclotron-wave-dispersion" class="quarto-xref">式&nbsp;<span>4.16</span></a> を示せ．</li>
 </ol>
 </div>
 </section>
@@ -724,9 +788,9 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx
 \\
 \bm{\tilde{B}} = E_0 \, (0, -k/\omega, 0)
 \end{cases}
-\qquad(4.17)</span></span> となり，通常の電磁波の偏光と同じ性質を持つことから正常波（ordinary modeまたはO-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave">図&nbsp;<span>4.8</span></a> 参照．</p>
+\qquad(4.17)</span></span> となり，通常の電磁波の偏光と同じ性質を持つことから正常波（ordinary modeまたはO-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.8</span></a> 参照．</p>
 <div id="exr-o-mode-eigenvector" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.11 </strong></span><a href="#eq-o-mode-eigenvector">式&nbsp;<span>4.17</span></a> およびこれに対応する荷電粒子の速度の摂動が <span class="math display">
+<p><span class="theorem-title"><strong>演習問題 4.11</strong></span> <a href="#eq-o-mode-eigenvector" class="quarto-xref">式&nbsp;<span>4.17</span></a> およびこれに対応する荷電粒子の速度の摂動が <span class="math display">
 \tilde{\bm{v}} = E_0 \, \left( 0, 0, \frac{q}{m} \frac{i}{\omega} \right)
 </span> となることを示せ．</p>
 </div>
@@ -746,20 +810,24 @@ n^2 =\frac
 \\
 \bm{\tilde{B}} = E_0 \, (0, 0, k/\omega)
 \end{cases}
-</span> で与えれ，通常の電磁波の偏光と異なり <span class="math inline">\bm{k}</span> と平行成分の電場を持つ． このためこのモードは異常波（extraordinary modeまたはX-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave">図&nbsp;<span>4.8</span></a> 参照．</p>
+</span> で与えれ，通常の電磁波の偏光と異なり <span class="math inline">\bm{k}</span> と平行成分の電場を持つ． このためこのモードは異常波（extraordinary modeまたはX-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.8</span></a> 参照．</p>
 <div id="exr-x-mode-dispersion" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.12 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.12</strong></span> &nbsp;</p>
 <ol type="1">
-<li><a href="#eq-x-mode-dispersion">式&nbsp;<span>4.19</span></a> を示せ．</li>
+<li><a href="#eq-x-mode-dispersion" class="quarto-xref">式&nbsp;<span>4.19</span></a> を示せ．</li>
 <li><span class="math inline">\omega_{\rm L,co}^2 &lt; \omega_{\rm UH}^2 &lt; \omega_{\rm R,co}^2</span> を確かめよ．</li>
 </ol>
 </div>
-<div class="cell" data-execution_count="8">
+<div id="cell-fig-disp-highfreq-perpendicular-emwave" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
-<div id="fig-disp-highfreq-perpendicular-emwave" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-disp-highfreq-perpendicular-emwave-output-1.png" width="584" height="454" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.8: 磁力線垂直に伝播する高周波電磁波</figcaption>
+<div id="fig-disp-highfreq-perpendicular-emwave" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-disp-highfreq-perpendicular-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-disp-highfreq-perpendicular-emwave-output-1.png" width="584" height="454" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-disp-highfreq-perpendicular-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.8: 磁力線垂直に伝播する高周波電磁波
+</figcaption>
 </figure>
 </div>
 </div>
@@ -767,7 +835,7 @@ n^2 =\frac
 </section>
 <section id="低周波極限-1" class="level4">
 <h4 class="anchored" data-anchor-id="低周波極限-1">低周波極限</h4>
-<p><a href="#eq-magnetized-perpendicular-dispersion-relation">式&nbsp;<span>4.18</span></a> において，電荷中性条件に注意して <span class="math inline">\omega \rightarrow 0</span> とすると <span id="eq-magnetized-perpendicular-lowfreq-dispersion"><span class="math display">
+<p><a href="#eq-magnetized-perpendicular-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.18</span></a> において，電荷中性条件に注意して <span class="math inline">\omega \rightarrow 0</span> とすると <span id="eq-magnetized-perpendicular-lowfreq-dispersion"><span class="math display">
 \begin{aligned}
 &amp; \epsilon_1 \approx 1 + \left( \frac{c}{V_{\rm A}} \right)^2
 \\
@@ -781,20 +849,24 @@ n^2 =\frac
 - \frac{\omega_{pi}^2}{\omega^2 - \Omega_{ci}^2}
 </span> これより共鳴周波数は <span id="eq-lower-hybrid-freq"><span class="math display">
 \omega_{\rm LH}^2 \approx \lvert \Omega_{ci}\Omega_{ce}\rvert
-\qquad(4.21)</span></span> ただし， <span class="math inline">\omega_{pi}\gg \Omega_{ci}</span> および <span class="math inline">\omega_{pe}\gg \Omega_{ce}</span> を仮定した． <span class="math inline">\omega_{\rm LH}</span> は低域混成周波数(lower hybrid frequency)と呼ばれる． <a href="#fig-disp-lowfreq-perpendicular-emwave">図&nbsp;<span>4.9</span></a> 参照．</p>
+\qquad(4.21)</span></span> ただし， <span class="math inline">\omega_{pi}\gg \Omega_{ci}</span> および <span class="math inline">\omega_{pe}\gg \Omega_{ce}</span> を仮定した． <span class="math inline">\omega_{\rm LH}</span> は低域混成周波数(lower hybrid frequency)と呼ばれる． <a href="#fig-disp-lowfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.9</span></a> 参照．</p>
 <div id="exr-magnetized-perpendicular-lowfreq" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 4.13 </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>演習問題 4.13</strong></span> &nbsp;</p>
 <ol type="1">
-<li><a href="#eq-magnetized-perpendicular-lowfreq-dispersion">式&nbsp;<span>4.20</span></a> を示せ．</li>
-<li><a href="#eq-lower-hybrid-freq">式&nbsp;<span>4.21</span></a> を示せ．</li>
+<li><a href="#eq-magnetized-perpendicular-lowfreq-dispersion" class="quarto-xref">式&nbsp;<span>4.20</span></a> を示せ．</li>
+<li><a href="#eq-lower-hybrid-freq" class="quarto-xref">式&nbsp;<span>4.21</span></a> を示せ．</li>
 </ol>
 </div>
-<div class="cell" data-execution_count="9">
+<div id="cell-fig-disp-lowfreq-perpendicular-emwave" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
-<div id="fig-disp-lowfreq-perpendicular-emwave" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="chap04_files/figure-html/fig-disp-lowfreq-perpendicular-emwave-output-1.png" width="611" height="454" class="figure-img"></p>
-<figcaption class="figure-caption">図&nbsp;4.9: 磁力線垂直に伝播する低周波電磁波（対数表示であることに注意）</figcaption>
+<div id="fig-disp-lowfreq-perpendicular-emwave" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-disp-lowfreq-perpendicular-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chap04_files/figure-html/fig-disp-lowfreq-perpendicular-emwave-output-1.png" width="611" height="454" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-disp-lowfreq-perpendicular-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.9: 磁力線垂直に伝播する低周波電磁波（対数表示であることに注意）
+</figcaption>
 </figure>
 </div>
 </div>
@@ -835,7 +907,7 @@ t_p = \int_{0}^{d} \frac{ds}{v_g}
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/bailes_2022_science.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Bailes (2022, Science)</figcaption>
+<figcaption>Bailes (2022, Science)</figcaption>
 </figure>
 </div>
 </section>
@@ -857,8 +929,7 @@ t_p = \int_{0}^{d} \frac{ds}{v_g}
 \right]
 \, {\rm s}
 </span> となる．</p>
-<p>GPSの周波数（1.2 GHzおよび1.5 GHz）を使うと，典型的な時間遅れが <span class="math inline">\Delta t \sim 1 \, {\rm ns}</span>程度となることが分かる．これを測定すれば， GPS電波の伝達経路に沿った電離層の全電子数（Total Electron Content）を 求めることができる．<br>
-慣習的に用いられる <span class="math inline">1 \, {\rm TEC} = 10^{16} \, {\rm m}^{-2}</span> なる単位を使うと， 日本上空での典型的な電子密度は <span class="math inline">1-10 \, {\rm TEC}</span> 程度となることが知られている．</p>
+<p>これを測定することで，GPS電波の伝播経路に沿った電離層の全電子数（Total Electron Content）を求めることができる．電離層の文脈では慣習的にDMの単位として <span class="math inline">1 \, {\rm TEC} = 10^{16} \, {\rm m}^{-2}</span> なる単位が使われる． 日本上空での典型的な全電子数は <span class="math inline">1-10 \, {\rm TEC}</span> 程度となることが知られており，GPSの周波数（1.2 GHzおよび1.5 GHz）を使うと，これに対応する典型的な時間遅れが<span class="math inline">\Delta t \sim 1-10 \, {\rm ns}</span>程度となることが分かる．これに光速をかけて距離に換算した値（数m程度）が電離層による遅延を起源とするGPS測位誤差となる．（実際には2周波の観測を用いることでこの誤差は補正することができる．）</p>
 
 
 </section>
@@ -901,18 +972,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -944,11 +1004,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -958,8 +1057,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -971,7 +1079,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1015,6 +1246,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1040,6 +1272,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1101,17 +1359,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chap03.html" class="pagination-link">
+      <a href="./chap03.html" class="pagination-link" aria-label="自己無撞着なプラズマの記述">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">自己無撞着なプラズマの記述</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chap05.html" class="pagination-link">
+      <a href="./chap05.html" class="pagination-link" aria-label="熱いプラズマ中の波動">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">熱いプラズマ中の波動</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
