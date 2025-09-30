@@ -149,7 +149,7 @@ $$
 ## バウンス運動
 @fig-magnetic-bottle に示すような時間的に定常な「磁気ボトル」形状を考える．
 
-![磁気ボトル [@GurnettBattacharjee2017]](figures/magnetic_bottle.png){width=80% #fig-magnetic-bottle}
+![磁気ボトル [@GurnettBhattacharjee2017]](figures/magnetic_bottle.png){width=80% #fig-magnetic-bottle}
 
 磁気ボトル中の荷電粒子の運動について考えると，時間的に定常な磁場構造の中では荷電粒子のエネルギーは保存することから
 $$
@@ -297,7 +297,7 @@ $$
 $$
 これを磁場曲率ドリフトと呼ぶ．ただし $\bm{b} = \bm{B} / B$ は磁場の単位ベクトルである．
 
-![磁場曲率ドリフト [@GurnettBattacharjee2017]](figures/curvature_b.png){width=80% #fig-curv-drift}
+![磁場曲率ドリフト [@GurnettBhattacharjee2017]](figures/curvature_b.png){width=80% #fig-curv-drift}
 
 ::: {#exr-curv-vector}
 $$
@@ -403,7 +403,7 @@ $$
 
 のように磁気圏全体の巨視的な対流が駆動される．これをDungeyサイクルと呼ぶ．
 
-![地球磁気圏の巨視的対流の模式図 [@GurnettBattacharjee2017]](figures/magnetosphere.png){#fig-magnetospheric-convection}
+![地球磁気圏の巨視的対流の模式図 [@GurnettBhattacharjee2017]](figures/magnetosphere.png){#fig-magnetospheric-convection}
 
 ### 内部磁気圏における粒子軌道(低エネルギー粒子)
 ゼロエネルギーの粒子の赤道面における輸送は$E \times B$ドリフトで決定される．磁気圏には地球の自転に起因する共回転電場と太陽風の持つ電場の2種類の電場がかかる．$E \times B$ドリフト速度は

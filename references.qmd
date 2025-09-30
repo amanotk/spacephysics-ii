@@ -1,4 +1,16 @@
 # 参考文献 {.unnumbered}
 
-::: {#refs}
-:::
+
+## 和書
+- Francis F. Chen（内田 岱二郎 訳） （1977） 『プラズマ物理学入門』，丸善出版．  
+- 寺澤敏夫（2002）『太陽圏の物理』（地球と宇宙の物理 2），岩波書店．  
+- 高原文郎（2002）『天体高エネルギー現象』（地球と宇宙の物理 4），岩波書店．  
+- 観山正見・野本憲一・二間瀬敏史（編）（2008）『天体物理学の基礎 II』（シリーズ現代の天文学 12），日本評論社．  
+- 小野高幸・三好由純（2012）『太陽地球圏』（現代地球科学入門シリーズ 2），共立出版．  
+- 梅田隆行（編）（2024）『プラズマの計算科学』（計算科学講座 8），共立出版．  
+- 柴田一成・上出洋介（編）（2002）『総説 宇宙天気』，京都大学学術出版会．  
+
+## 洋書
+- Margaret G. Kivelson, Christopher T. Russell (1995). *Introduction to Space Physics*. Cambridge University Press.  
+- Wolfgang Baumjohann, Rudolf A. Treumann (1996). *Basic Space Plasma Physics*. Imperial College Press.  
+- Donald A. Gurnett, Amitava Bhattacharjee (2017). *Introduction to Plasma Physics: With Space and Laboratory Applications*. Cambridge University Press.  

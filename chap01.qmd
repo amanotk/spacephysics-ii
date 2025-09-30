@@ -164,8 +164,6 @@ $$
 ### Friedrichsダイアグラム
 磁気流体波動の異方性を表すために @fig-freidrichs-beta-08 や @fig-freidrichs-beta-10 のようなFreidrichsダイアグラムが用いられることがある．
 
-::: {layout-ncol=2}
-![$\beta = 0.8$](figures/friedrichs_beta_08.png){width=40% #fig-freidrichs-beta-08}
+![$\beta = 0.8$](figures/friedrichs_beta_08.png){width=70% #fig-freidrichs-beta-08}
 
-![$\beta = 1.2$](figures/friedrichs_beta_12.png){width=40% #fig-freidrichs-beta-10}
-:::
+![$\beta = 1.2$](figures/friedrichs_beta_12.png){width=70% #fig-freidrichs-beta-10}

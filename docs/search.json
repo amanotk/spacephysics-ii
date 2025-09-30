@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "宇宙空間物理学II",
     "section": "",
-    "text": "この文書について\nこれは東京大学理学部の講義「宇宙空間物理学II」のレジュメです．\n教科書ではありませんので，これだけを見て分かるように意図して書いたものではありません．あくまでもレジュメとして講義内容を補間するために利用してください．",
+    "text": "この文書について\nこれは東京大学理学部の講義「宇宙空間物理学II」のレジュメです．\n教科書ではありませんので，これだけを見て分かるように意図して書いたものではありません．\nあくまでもレジュメとして講義内容を補完するために利用してください．\nより詳しく勉強したい人は適宜 参考文献 を参照してください．",
     "crumbs": [
       "この文書について"
     ]
@@ -14,7 +14,7 @@
     "href": "chap01.html",
     "title": "1  はじめに",
     "section": "",
-    "text": "1.1 プラズマの例\n対象によってパラメータは大きく異なり，例えば電離圏や原始惑星系円盤は弱電離プラズマ，高エネルギー天体近傍では相対論的プラズマになっているが，そのダイナミクスはプラズマ物理の考え方で理解できる．",
+    "text": "1.1 プラズマの例\n地球近傍の宇宙空間には高温で希薄なプラズマが存在する．宇宙空間プラズマの多くが\nとなっている．大雑把に言えばプラズマ \\approx 電磁場と相互作用する流体である．\n歴史的には太陽風と地球磁気圏の相互作用の理解から発展したが，現在ではより一般に宇宙におけるプラズマ(磁場)の果たす役割の重要性が認識されるようになっている．\n対象によってパラメータは大きく異なり，例えば電離圏や原始惑星系円盤は弱電離プラズマ，高エネルギー天体近傍では相対論的プラズマになっているが，そのダイナミクスはプラズマ物理の考え方で理解できる．",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>はじめに</span>"
     ]
@@ -54,7 +54,7 @@
     "href": "chap01.html#磁気流体力学",
     "title": "1  はじめに",
     "section": "1.4 磁気流体力学",
-    "text": "1.4 磁気流体力学\nプラズマの巨視的なダイナミクスを自己無撞着に記述する方程式系として，以下の磁気流体力学(MHD; Magnetohydrodynamics)方程式がよく用いられる． \n\\begin{aligned}\n& \\frac{\\partial \\rho}{\\partial t} +\n\\nabla \\cdot \\left( \\rho \\bm{v} \\right) = 0,\n\\\\\n& \\rho \\frac{d \\bm{v}}{dt} = - \\nabla p + \\bm{J} \\times \\bm{B},\n\\\\\n& \\frac{d}{dt} \\left( \\frac{p}{\\rho^{\\gamma}} \\right) = 0,\n\\\\\n& \\frac{\\partial \\bm{B}}{\\partial t} - \\nabla \\times\n\\left( \\bm{v} \\times \\bm{B} \\right) = 0,\n\\\\\n& \\nabla \\cdot \\bm{B} = 0.\n\\end{aligned}\n\nここではMHDは本題ではないので，以下に特徴を簡単に述べるにとどめる．\n\n流体 + 外力としてのローレンツ力（\\bm{J} \\times \\bm{B}）が働く．\nプラズマが完全導体のとき，磁場とプラズマは「凍結」している．\nガス圧力と磁気圧力の比で定義されるプラズマベータ \\beta = P/(B^2/2\\mu_0) が重要なパラメータとなる．\n\n\n演習問題 1.5 ローレンツ力は \n\\bm{J} \\times \\bm{B} =\n\\frac{\\left( \\bm{B} \\cdot \\nabla \\right) \\bm{B}}{\\mu_0} -\n\\nabla \\left( \\frac{B^2}{2 \\mu_0} \\right)\n と書き直せる．このことを示せ．ここで第1項，第2項の磁場に垂直な成分がそれぞれ磁気張力と磁気圧力勾配力を表す．\n\n\n磁気流体力学波動\n通常の（中性）流体力学方程式から得られる波動は音波のみであるのに対して，磁気流体力学では以下の3種類の波動が存在する． これらの波動は磁場の方向に対する伝播方向によって異なる位相速度を持つ．これはプラズマが異方性を持った媒質であることを意味する．\n\nシアAlfven波: 非圧縮(磁気張力が復元力)\n速い磁気音波: \\delta p_{g} \\delta p_{m} &gt; 0\n遅い磁気音波: \\delta p_{g} \\delta p_{m} &lt; 0\n\n\n\nFriedrichsダイアグラム\n磁気流体波動の異方性を表すために 図 1.2 や 図 1.3 のようなFreidrichsダイアグラムが用いられることがある．\n\n\n\n\n\n\n\n\n\n\n\n\n図 1.2: \\beta = 0.8\n\n\n\n\n\n\n\n\n\n\n\n図 1.3: \\beta = 1.2",
+    "text": "1.4 磁気流体力学\nプラズマの巨視的なダイナミクスを自己無撞着に記述する方程式系として，以下の磁気流体力学(MHD; Magnetohydrodynamics)方程式がよく用いられる． \n\\begin{aligned}\n& \\frac{\\partial \\rho}{\\partial t} +\n\\nabla \\cdot \\left( \\rho \\bm{v} \\right) = 0,\n\\\\\n& \\rho \\frac{d \\bm{v}}{dt} = - \\nabla p + \\bm{J} \\times \\bm{B},\n\\\\\n& \\frac{d}{dt} \\left( \\frac{p}{\\rho^{\\gamma}} \\right) = 0,\n\\\\\n& \\frac{\\partial \\bm{B}}{\\partial t} - \\nabla \\times\n\\left( \\bm{v} \\times \\bm{B} \\right) = 0,\n\\\\\n& \\nabla \\cdot \\bm{B} = 0.\n\\end{aligned}\n\nここではMHDは本題ではないので，以下に特徴を簡単に述べるにとどめる．\n\n流体 + 外力としてのローレンツ力（\\bm{J} \\times \\bm{B}）が働く．\nプラズマが完全導体のとき，磁場とプラズマは「凍結」している．\nガス圧力と磁気圧力の比で定義されるプラズマベータ \\beta = P/(B^2/2\\mu_0) が重要なパラメータとなる．\n\n\n演習問題 1.5 ローレンツ力は \n\\bm{J} \\times \\bm{B} =\n\\frac{\\left( \\bm{B} \\cdot \\nabla \\right) \\bm{B}}{\\mu_0} -\n\\nabla \\left( \\frac{B^2}{2 \\mu_0} \\right)\n と書き直せる．このことを示せ．ここで第1項，第2項の磁場に垂直な成分がそれぞれ磁気張力と磁気圧力勾配力を表す．\n\n\n磁気流体力学波動\n通常の（中性）流体力学方程式から得られる波動は音波のみであるのに対して，磁気流体力学では以下の3種類の波動が存在する． これらの波動は磁場の方向に対する伝播方向によって異なる位相速度を持つ．これはプラズマが異方性を持った媒質であることを意味する．\n\nシアAlfven波: 非圧縮(磁気張力が復元力)\n速い磁気音波: \\delta p_{g} \\delta p_{m} &gt; 0\n遅い磁気音波: \\delta p_{g} \\delta p_{m} &lt; 0\n\n\n\nFriedrichsダイアグラム\n磁気流体波動の異方性を表すために 図 1.2 や 図 1.3 のようなFreidrichsダイアグラムが用いられることがある．\n\n\n\n\n\n\n図 1.2: \\beta = 0.8\n\n\n\n\n\n\n\n\n\n図 1.3: \\beta = 1.2",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>はじめに</span>"
     ]
@@ -114,7 +114,7 @@
     "href": "chap02.html#磁気圏物理学への応用",
     "title": "2  単一粒子の運動",
     "section": "2.6 磁気圏物理学への応用",
-    "text": "2.6 磁気圏物理学への応用\n\nDungeyの開いた磁気圏モデル\n太陽風の磁場（惑星間空間磁場）が南向きのとき\n\n地球磁気圏と太陽風の昼側境界(磁気圏界面)に反平行磁場ができる\n磁気リコネクションが発生\n地球につながった磁力線が尾部に運ばれる\n尾部に反平行磁場の領域が形成\n尾部でも磁気リコネクションが発生\n地球向きの対流が発生\n\nのように磁気圏全体の巨視的な対流が駆動される．これをDungeyサイクルと呼ぶ．\n\n\n\n\n\n\n図 2.8: 地球磁気圏の巨視的対流の模式図 (Gurnett and Bhattacharjee 2017)\n\n\n\n\n\n内部磁気圏における粒子軌道(低エネルギー粒子)\nゼロエネルギーの粒子の赤道面における輸送はE \\times Bドリフトで決定される．磁気圏には地球の自転に起因する共回転電場と太陽風の持つ電場の2種類の電場がかかる．E \\times Bドリフト速度は \n\\bm{v}_E = \\frac{\\bm{B} \\times \\nabla \\Phi}{B^2}\n であり，粒子軌道は静電ポテンシャル \\Phi の等高線に等しい．静電ポテンシャルを極座標で書くと \n\\Phi = \\Phi_{\\rm c} + \\Phi_{\\rm sw} =\n- \\frac{B_E \\Omega_E R_E^3}{r} - r E_0 \\sin \\phi\n\\qquad(2.7) となり，粒子軌道は 図 2.9 のようになる． 軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる． 典型的なプラズマ圏の大きさは地球半径の数倍程度である．\n\n\n\n\n\n\n\n\n図 2.9: 地球磁気圏内の低エネルギー粒子の軌道\n\n\n\n\n\n\n演習問題 2.14 式 2.7 を微分することによって，共回転電場に伴う電場と太陽風起源の電場によるドリフトが打ち消し合う淀み点の位置が r = \\left( B_E \\Omega_E R_E^3 / E_0 \\right)^{1/2}, \\sin \\phi = 1 で与えられることを確かめよ．図 2.9 の点線は淀み点のポテンシャルを通る等高線である．\n\n\n\n内部磁気圏における粒子軌道(高エネルギー粒子)\n簡単のためピッチ角90度の粒子を考えると，赤道面内での磁場勾配ドリフトと電場ドリフトのみ考慮すればよい．\\mu = {\\rm const.}として，簡単のため電場を一定だと仮定すると \nv_{E} \\propto \\frac{E_0}{B} \\propto r^3,\n\\quad\nv_{G} \\propto \\mu \\frac{1}{B} \\frac{\\partial B}{\\partial r} \\propto \\frac{1}{r}\n となり，遠方では電場ドリフトが優勢だが，地球に近いほど磁場勾配ドリフトが優勢になることが分かる． ここで粒子のエネルギー太陽風電場の強さによって，粒子の到達できる限界の位置が決まっていることに注意． 実際に典型的な粒子の軌道を図示したものが 図 2.10 である．\n\n\n\n\n\n\n\n\n図 2.10: 地球磁気圏内の低エネルギー粒子の軌道\n\n\n\n\n\nなお，電場ドリフトと磁場勾配ドリフトの和は \n\\bm{v}_E + \\bm{v}_G =\n\\frac{\\bm{B} \\times \\nabla \\left(q \\Phi + \\frac{1}{2} m v_{\\perp}^2 \\right)}{q B^2}\n のように書けることから，粒子のドリフト軌道に沿って全エネルギー K = \\frac{1}{2} m v_{\\perp}^2 + q \\Phi は保存する．\n\n演習問題 2.15 第一断熱不変量 \\mu を保存しながらより磁場の大きい地球近傍に運ばれた粒子のエネルギーは増大することになる．このとき粒子のエネルギー増大（粒子がされた仕事）の起源は何か考えよ．\n\n\n\n磁気嵐\n太陽風の磁場が継続的に南向きになった場合などには，磁気圏全体に大きな電場（静電ポテンシャル）がかかり，大量のプラズマが磁気圏尾部から地球近傍に運ばれる．この粒子が磁場ドリフトによって地球を取り囲む円環状の大電流（リングカレント）を作り，近地球の宇宙空間に大きな擾乱を発生させる．これを磁気嵐と呼ぶ．\n地上での磁場変動\\Delta Bとリングカレントプラズマの全エネルギーW_pの間には \n\\frac{\\Delta B}{B_E} =- \\frac{2}{3} \\frac{W_p}{W_B}\n なる関係がある．これをDessler-Parker-Sckopke関係と呼ぶ．ただし \nW_B = \\int d \\phi \\int d (\\cos \\theta) \\int_{R_E}^{\\infty} r^2 dr \\frac{B^2}{2 \\mu_0}\n\\qquad(2.8) は双極子磁場のエネルギーを表す．\nDessler-Parker-Sckopke関係を使うと地表面で観測された地磁気変動から宇宙空間に存在するプラズマ（リングカレント）の総エネルギーを概算することができる．\n\n演習問題 2.16 Dessler-Parker-Sckopke関係を示そう．\n\n磁気流体力学の運動方程式 \n\\rho \\frac{d \\bm{v}}{d t} = - \\nabla P + \\bm{J} \\times \\bm{B}\n において，左辺が無視できる（時間定常で流体速度が十分に小さい）場合を考えると，磁場に垂直方向の電流が \n\\bm{J}_{\\perp} = \\bm{b} \\times \\frac{\\nabla P}{B}\n で表されることを示せ．\n地球の磁場を双極子と近似しよう．このとき， 式 2.8 で表される双極子磁場が持つエネルギーを宇宙空間全体( r &gt; R_E )で積分した量が \nW_B = \\frac{4 \\pi}{3 \\mu_0} B_E^2 R_E^3\n と書けることを示せ．ただし B_E は地球表面の赤道面における磁場強度で，双極子磁場は極座標で \n\\bm{B} = - B_E \\left( \\frac{R_E}{r} \\right)^3\n\\left(\n  2 \\cos \\theta \\, \\bm{e}_r + \\sin \\theta \\, \\bm{e}_{\\theta}\n\\right)\n と表される．\nビオ・サバールの法則を用いてDessler-Parker-Sckopke関係式を示せ．ただし軸対称性およびリングカレントプラズマが赤道面にのみ分布すること，すなわち円筒座標で \nP(r, \\phi, z) = P(r) \\delta(z)\n と表されると仮定してよい．このときリングカレントプラズマの全エネルギー W_P は \nW_p = \\int_{R_E}^{\\infty} 2\\pi r P(r) dr\n となる．ここで P はプラズマの圧力であり，地球表面 r = R_E および無限遠方 r = \\infty では P = 0 となることを仮定せよ．\n赤道近傍の地表面で磁気嵐に伴う地磁気変動として\\Delta B \\sim 300 \\textrm{ nT}が観測されたとしよう．このときのリングカレントを担うプラズマの全エネルギーを概算せよ．\n\n\n\n\n\n\nGurnett, Donald A., and Amitava Bhattacharjee. 2017. Introduction to Plasma Physics: With Space, Laboratory and Astrophysical Applications.\n\n\nKivelson, Margaret G., and Christopher T. Russell. 1995. Introduction to Space Physics.",
+    "text": "2.6 磁気圏物理学への応用\n\nDungeyの開いた磁気圏モデル\n太陽風の磁場（惑星間空間磁場）が南向きのとき\n\n地球磁気圏と太陽風の昼側境界(磁気圏界面)に反平行磁場ができる\n磁気リコネクションが発生\n地球につながった磁力線が尾部に運ばれる\n尾部に反平行磁場の領域が形成\n尾部でも磁気リコネクションが発生\n地球向きの対流が発生\n\nのように磁気圏全体の巨視的な対流が駆動される．これをDungeyサイクルと呼ぶ．\n\n\n\n\n\n\n図 2.8: 地球磁気圏の巨視的対流の模式図 (Gurnett and Bhattacharjee 2017)\n\n\n\n\n\n内部磁気圏における粒子軌道(低エネルギー粒子)\nゼロエネルギーの粒子の赤道面における輸送はE \\times Bドリフトで決定される．磁気圏には地球の自転に起因する共回転電場と太陽風の持つ電場の2種類の電場がかかる．E \\times Bドリフト速度は \n\\bm{v}_E = \\frac{\\bm{B} \\times \\nabla \\Phi}{B^2}\n であり，粒子軌道は静電ポテンシャル \\Phi の等高線に等しい．静電ポテンシャルを極座標で書くと \n\\Phi = \\Phi_{\\rm c} + \\Phi_{\\rm sw} =\n- \\frac{B_E \\Omega_E R_E^3}{r} - r E_0 \\sin \\phi\n\\qquad(2.7) となり，粒子軌道は 図 2.9 のようになる． 軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる． 典型的なプラズマ圏の大きさは地球半径の数倍程度である．\n\n\n\n\n\n\n\n\n図 2.9: 地球磁気圏内の低エネルギー粒子の軌道\n\n\n\n\n\n\n演習問題 2.14 式 2.7 を微分することによって，共回転電場に伴う電場と太陽風起源の電場によるドリフトが打ち消し合う淀み点の位置が r = \\left( B_E \\Omega_E R_E^3 / E_0 \\right)^{1/2}, \\sin \\phi = 1 で与えられることを確かめよ．図 2.9 の点線は淀み点のポテンシャルを通る等高線である．\n\n\n\n内部磁気圏における粒子軌道(高エネルギー粒子)\n簡単のためピッチ角90度の粒子を考えると，赤道面内での磁場勾配ドリフトと電場ドリフトのみ考慮すればよい．\\mu = {\\rm const.}として，簡単のため電場を一定だと仮定すると \nv_{E} \\propto \\frac{E_0}{B} \\propto r^3,\n\\quad\nv_{G} \\propto \\mu \\frac{1}{B} \\frac{\\partial B}{\\partial r} \\propto \\frac{1}{r}\n となり，遠方では電場ドリフトが優勢だが，地球に近いほど磁場勾配ドリフトが優勢になることが分かる． ここで粒子のエネルギー太陽風電場の強さによって，粒子の到達できる限界の位置が決まっていることに注意． 実際に典型的な粒子の軌道を図示したものが 図 2.10 である．\n\n\n\n\n\n\n\n\n図 2.10: 地球磁気圏内の低エネルギー粒子の軌道\n\n\n\n\n\nなお，電場ドリフトと磁場勾配ドリフトの和は \n\\bm{v}_E + \\bm{v}_G =\n\\frac{\\bm{B} \\times \\nabla \\left(q \\Phi + \\frac{1}{2} m v_{\\perp}^2 \\right)}{q B^2}\n のように書けることから，粒子のドリフト軌道に沿って全エネルギー K = \\frac{1}{2} m v_{\\perp}^2 + q \\Phi は保存する．\n\n演習問題 2.15 第一断熱不変量 \\mu を保存しながらより磁場の大きい地球近傍に運ばれた粒子のエネルギーは増大することになる．このとき粒子のエネルギー増大（粒子がされた仕事）の起源は何か考えよ．\n\n\n\n磁気嵐\n太陽風の磁場が継続的に南向きになった場合などには，磁気圏全体に大きな電場（静電ポテンシャル）がかかり，大量のプラズマが磁気圏尾部から地球近傍に運ばれる．この粒子が磁場ドリフトによって地球を取り囲む円環状の大電流（リングカレント）を作り，近地球の宇宙空間に大きな擾乱を発生させる．これを磁気嵐と呼ぶ．\n地上での磁場変動\\Delta Bとリングカレントプラズマの全エネルギーW_pの間には \n\\frac{\\Delta B}{B_E} =- \\frac{2}{3} \\frac{W_p}{W_B}\n なる関係がある．これをDessler-Parker-Sckopke関係と呼ぶ．ただし \nW_B = \\int d \\phi \\int d (\\cos \\theta) \\int_{R_E}^{\\infty} r^2 dr \\frac{B^2}{2 \\mu_0}\n\\qquad(2.8) は双極子磁場のエネルギーを表す．\nDessler-Parker-Sckopke関係を使うと地表面で観測された地磁気変動から宇宙空間に存在するプラズマ（リングカレント）の総エネルギーを概算することができる．\n\n演習問題 2.16 Dessler-Parker-Sckopke関係を示そう．\n\n磁気流体力学の運動方程式 \n\\rho \\frac{d \\bm{v}}{d t} = - \\nabla P + \\bm{J} \\times \\bm{B}\n において，左辺が無視できる（時間定常で流体速度が十分に小さい）場合を考えると，磁場に垂直方向の電流が \n\\bm{J}_{\\perp} = \\bm{b} \\times \\frac{\\nabla P}{B}\n で表されることを示せ．\n地球の磁場を双極子と近似しよう．このとき， 式 2.8 で表される双極子磁場が持つエネルギーを宇宙空間全体( r &gt; R_E )で積分した量が \nW_B = \\frac{4 \\pi}{3 \\mu_0} B_E^2 R_E^3\n と書けることを示せ．ただし B_E は地球表面の赤道面における磁場強度で，双極子磁場は極座標で \n\\bm{B} = - B_E \\left( \\frac{R_E}{r} \\right)^3\n\\left(\n  2 \\cos \\theta \\, \\bm{e}_r + \\sin \\theta \\, \\bm{e}_{\\theta}\n\\right)\n と表される．\nビオ・サバールの法則を用いてDessler-Parker-Sckopke関係式を示せ．ただし軸対称性およびリングカレントプラズマが赤道面にのみ分布すること，すなわち円筒座標で \nP(r, \\phi, z) = P(r) \\delta(z)\n と表されると仮定してよい．このときリングカレントプラズマの全エネルギー W_P は \nW_p = \\int_{R_E}^{\\infty} 2\\pi r P(r) dr\n となる．ここで P はプラズマの圧力であり，地球表面 r = R_E および無限遠方 r = \\infty では P = 0 となることを仮定せよ．\n赤道近傍の地表面で磁気嵐に伴う地磁気変動として\\Delta B \\sim 300 \\textrm{ nT}が観測されたとしよう．このときのリングカレントを担うプラズマの全エネルギーを概算せよ．",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>単一粒子の運動</span>"
     ]
@@ -244,7 +244,27 @@
     "href": "references.html",
     "title": "参考文献",
     "section": "",
-    "text": "Gurnett, Donald A., and Amitava Bhattacharjee. 2017. Introduction to Plasma Physics: With Space, Laboratory\nand Astrophysical Applications.\n\n\nKivelson, Margaret G., and Christopher T. Russell. 1995. Introduction to Space Physics.",
+    "text": "和書",
+    "crumbs": [
+      "参考文献"
+    ]
+  },
+  {
+    "objectID": "references.html#和書",
+    "href": "references.html#和書",
+    "title": "参考文献",
+    "section": "",
+    "text": "Francis F. Chen（内田 岱二郎 訳） （1977） 『プラズマ物理学入門』，丸善出版．\n\n寺澤敏夫（2002）『太陽圏の物理』（地球と宇宙の物理 2），岩波書店．\n\n高原文郎（2002）『天体高エネルギー現象』（地球と宇宙の物理 4），岩波書店．\n\n観山正見・野本憲一・二間瀬敏史（編）（2008）『天体物理学の基礎 II』（シリーズ現代の天文学 12），日本評論社．\n\n小野高幸・三好由純（2012）『太陽地球圏』（現代地球科学入門シリーズ 2），共立出版．\n\n梅田隆行（編）（2024）『プラズマの計算科学』（計算科学講座 8），共立出版．\n\n柴田一成・上出洋介（編）（2002）『総説 宇宙天気』，京都大学学術出版会．",
+    "crumbs": [
+      "参考文献"
+    ]
+  },
+  {
+    "objectID": "references.html#洋書",
+    "href": "references.html#洋書",
+    "title": "参考文献",
+    "section": "洋書",
+    "text": "洋書\n\nMargaret G. Kivelson, Christopher T. Russell (1995). Introduction to Space Physics. Cambridge University Press.\n\nWolfgang Baumjohann, Rudolf A. Treumann (1996). Basic Space Plasma Physics. Imperial College Press.\n\nDonald A. Gurnett, Amitava Bhattacharjee (2017). Introduction to Plasma Physics: With Space and Laboratory Applications. Cambridge University Press.",
     "crumbs": [
       "参考文献"
     ]
