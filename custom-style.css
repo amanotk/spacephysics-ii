@@ -1,0 +1,31 @@
+/* KaTeX style */
+.katex {
+    font-size: 1.0em;
+}
+
+.cjk_fallback {
+  font-family: "Noto Sans CJK JP", sans-serif !important;
+}
+
+/* Exercise style */
+.theorem.exercise,
+.exercise,
+div.theorem.exercise {
+  position: relative;
+  border: 2px solid rgba(11,78,162,0.12);
+  padding: 0.9rem 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.02);
+}
+
+.theorem.exercise .theorem-title,
+.exercise .theorem-title {
+  display: inline-block;
+  color: #0b3fa0;
+  font-weight: 700;
+  font-size: 1.02rem;
+  padding: 0.12rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.35rem;
+}
