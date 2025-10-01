@@ -207,8 +207,8 @@ window.Quarto = {
   <li><a href="#プラズマの自己無撞着性" id="toc-プラズマの自己無撞着性" class="nav-link" data-scroll-target="#プラズマの自己無撞着性"><span class="header-section-number">1.3</span> プラズマの自己無撞着性</a></li>
   <li><a href="#磁気流体力学" id="toc-磁気流体力学" class="nav-link" data-scroll-target="#磁気流体力学"><span class="header-section-number">1.4</span> 磁気流体力学</a>
   <ul class="collapse">
-  <li><a href="#磁気流体力学波動" id="toc-磁気流体力学波動" class="nav-link" data-scroll-target="#磁気流体力学波動">磁気流体力学波動</a></li>
-  <li><a href="#friedrichsダイアグラム" id="toc-friedrichsダイアグラム" class="nav-link" data-scroll-target="#friedrichsダイアグラム">Friedrichsダイアグラム</a></li>
+  <li><a href="#基礎方程式" id="toc-基礎方程式" class="nav-link" data-scroll-target="#基礎方程式">基礎方程式</a></li>
+  <li><a href="#磁気流体波動" id="toc-磁気流体波動" class="nav-link" data-scroll-target="#磁気流体波動">磁気流体波動</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -247,16 +247,18 @@ window.Quarto = {
 <ul>
 <li>地球近傍
 <ul>
-<li>太陽・太陽風</li>
+<li>太陽・太陽風（惑星間空間）</li>
 <li>地球・惑星の磁気圏および電離圏</li>
 </ul></li>
 <li>天体プラズマ
 <ul>
-<li>原始惑星系円盤</li>
+<li>恒星・恒星風</li>
 <li>星間物質や銀河間物質</li>
-<li>高エネルギー天体近傍</li>
+<li>原始惑星系円盤</li>
+<li>超新星残骸</li>
+<li>中性子星・ブラックホール近傍</li>
 </ul></li>
-<li>実験室プラズマ
+<li>実験室プラズマ（<span class="math inline">\approx</span> 核融合プラズマ）
 <ul>
 <li>磁場閉じ込めプラズマ</li>
 <li>レーザープラズマ</li>
@@ -297,7 +299,7 @@ window.Quarto = {
 n_e m_e \frac{d v_e}{d t} = -n_e e E - \frac{\partial}{\partial x} p_e
 </span> において， <span class="math inline">p_e = n_e k_B T</span> ， <span class="math inline">T = {\rm const}</span>, <span class="math inline">dv_e/dt \approx 0</span> (定常かつ静止した状態)を仮定すると，電子密度はBoltzmann分布 <span class="math display">
 n_e \approx n_0 \exp \left( \frac{e \phi}{k_B T_e} \right)
-</span> に従う．このことを示せ．</p>
+</span> に従う．ただし，<span class="math inline">\phi \rightarrow 0</span>において<span class="math inline">n \rightarrow n_0</span>とする．このことを示せ．</p>
 </div>
 <div id="exr-yukawa-potential" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 1.2</strong></span> Poisson方程式 <span class="math display">
@@ -320,60 +322,87 @@ n_e \approx n_0 \exp \left( \frac{e \phi}{k_B T_e} \right)
 \\
 \frac{\partial \bm{B}}{\partial t} &amp;=-\nabla \times \bm{E}
 \\
-\nabla \cdot \bm{E} &amp;= \frac{1}{\epsilon_0} \rho
+\nabla \cdot \bm{E} &amp;= \frac{1}{\epsilon_0} \varrho
 \\
 \nabla \cdot \bm{B} &amp;= 0
 \end{aligned}
 </span> に従って発展する．この電磁場に影響を受けたプラズマ中の荷電粒子が作る電荷と電流 <span class="math display">
 \begin{aligned}
-\rho(x) &amp;= \sum_{i} q_i \delta (x_i - x)
+\varrho(x) &amp;= \sum_{i} q_i \delta (x_i - x)
 \\
 \bm{J}(x) &amp;= \sum_{i} q_i \bm{v}_i \delta (x_i - x)
 \end{aligned}
-</span> がMaxwell方程式に影響を与える．真空中のMaxwell方程式は線形であるが，プラズマが作る電荷・電流によるフィードバックまで考えると極度に非線形なシステムとなる．</p>
+</span> がMaxwell方程式に影響を与える．これらの荷電粒子は以下の運動方程式に従う． <span class="math display">
+\frac{d\bm{x}}{dt} = \bm{v}, \quad
+\frac{d\bm{v}}{dt} = \frac{q}{m} \left( \bm{E} + \bm{v} \times \bm{B} \right)
+</span></p>
+<p>真空中のMaxwell方程式は与えられた<span class="math inline">(\varrho, \bm{J})</span>のもとで線形であり，また荷電粒子の運動方程式も与えられた<span class="math inline">(\bm{E}, \bm{B})</span>のもとで線形である． しかし，電荷・電流を介した電磁場と荷電粒子のフィードバックまで考えると極度に非線形なシステムとなる．</p>
 </section>
 <section id="磁気流体力学" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="磁気流体力学"><span class="header-section-number">1.4</span> 磁気流体力学</h2>
-<p>プラズマの巨視的なダイナミクスを自己無撞着に記述する方程式系として，以下の磁気流体力学(MHD; Magnetohydrodynamics)方程式がよく用いられる． <span class="math display">
+<p>プラズマの巨視的なダイナミクスを自己無撞着に記述する方程式系として，磁気流体力学(MHD; Magnetohydrodynamics)方程式がよく用いられる． これはこの講義の本題ではないが概要を復習しておこう．</p>
+<section id="基礎方程式" class="level3">
+<h3 class="anchored" data-anchor-id="基礎方程式">基礎方程式</h3>
+<p>MHDは大雑把には流体力学方程式にローレンツ力を加えたものと考えればよく，例えば断熱の状態方程式を仮定した場合には以下のように書ける． <span class="math display">
 \begin{aligned}
 &amp; \frac{\partial \rho}{\partial t} +
 \nabla \cdot \left( \rho \bm{v} \right) = 0,
 \\
-&amp; \rho \frac{d \bm{v}}{dt} = - \nabla p + \bm{J} \times \bm{B},
+&amp; \rho \frac{d \bm{v}}{dt} = - \nabla p + \cancel{\varrho \bm{E}} + \bm{J} \times \bm{B},
+\\
+&amp; \frac{d}{dt} \left( \frac{p}{\rho^{\gamma}} \right) = 0,
+\end{aligned}
+</span> ただし，プラズマが準中性状態にあることから，電気力<span class="math inline">\varrho \bm{E}</span>の項は無視できる． また，低周波近似では変位電流<span class="math inline">\epsilon_0 \partial \bm{E}/\partial t</span>を無視して Ampereの法則は <span class="math display">
+\nabla \times \bm{B} = \mu_0 \bm{J}
+</span> と書ける． また，磁場の発展方程式はFaradayの法則 <span class="math display">
+\frac{\partial \bm{B}}{\partial t} = - \nabla \times \bm{E}
+</span> で与えられ．通常宇宙のプラズマは電気伝導性が非常に良いため，Ohmの法則を考えると流体静止系の電場<span class="math inline">\bm{E}'</span>が無視できる． 観測者系では誘導電場<span class="math inline">-\bm{v} \times \bm{B}</span>が現れることを考慮すると， <span class="math display">
+\bm{E}' = \bm{E} + \bm{v} \times \bm{B} = 0
+</span> と書ける．</p>
+<p>これらをまとめると，MHD方程式は以下のように書ける． <span class="math display">
+\begin{aligned}
+&amp; \frac{\partial \rho}{\partial t} +
+\nabla \cdot \left( \rho \bm{v} \right) = 0,
+\\
+&amp; \rho \frac{d \bm{v}}{dt} = - \nabla p + \frac{1}{\mu_0} (\nabla \times \bm{B}) \times \bm{B},
 \\
 &amp; \frac{d}{dt} \left( \frac{p}{\rho^{\gamma}} \right) = 0,
 \\
 &amp; \frac{\partial \bm{B}}{\partial t} - \nabla \times
-\left( \bm{v} \times \bm{B} \right) = 0,
-\\
-&amp; \nabla \cdot \bm{B} = 0.
+\left( \bm{v} \times \bm{B} \right) = 0.
 \end{aligned}
 </span></p>
-<p>ここではMHDは本題ではないので，以下に特徴を簡単に述べるにとどめる．</p>
+<p>MHDの特徴として以下のような点が挙げられる．</p>
 <ul>
-<li>流体 + 外力としてのローレンツ力（<span class="math inline">\bm{J} \times \bm{B}</span>）が働く．</li>
-<li>プラズマが完全導体のとき，磁場とプラズマは「凍結」している．</li>
-<li>ガス圧力と磁気圧力の比で定義されるプラズマベータ <span class="math inline">\beta = P/(B^2/2\mu_0)</span> が重要なパラメータとなる．</li>
+<li>磁場の影響によって異方性が現れる．</li>
+<li>磁場とプラズマは「凍結」している．</li>
+<li>通常のガス圧勾配力に加えて，ローレンツ力によって磁気圧勾配力や磁気張力が働く．</li>
+<li>ガス圧と磁気圧の比で定義されるプラズマベータ <span class="math inline">\beta = P/(B^2/2\mu_0)</span> が重要なパラメータとなる．</li>
 </ul>
 <div id="exr-jxb-force" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 1.5</strong></span> ローレンツ力は <span class="math display">
+<p><span class="theorem-title"><strong>演習問題 1.5</strong></span> ローレンツ力が <span class="math display">
 \bm{J} \times \bm{B} =
 \frac{\left( \bm{B} \cdot \nabla \right) \bm{B}}{\mu_0} -
 \nabla \left( \frac{B^2}{2 \mu_0} \right)
-</span> と書き直せる．このことを示せ．ここで第1項，第2項の磁場に垂直な成分がそれぞれ磁気張力と磁気圧力勾配力を表す．</p>
+</span> と書き表されることを示せ．ここで第1項，第2項の磁場に垂直な成分がそれぞれ磁気張力と磁気圧力勾配力を表す．</p>
 </div>
-<section id="磁気流体力学波動" class="level3">
-<h3 class="anchored" data-anchor-id="磁気流体力学波動">磁気流体力学波動</h3>
-<p>通常の（中性）流体力学方程式から得られる波動は音波のみであるのに対して，磁気流体力学では以下の3種類の波動が存在する． これらの波動は磁場の方向に対する伝播方向によって異なる位相速度を持つ．これはプラズマが異方性を持った媒質であることを意味する．</p>
-<ul>
-<li>シアAlfven波: 非圧縮(磁気張力が復元力)</li>
-<li>速い磁気音波: <span class="math inline">\delta p_{g} \delta p_{m} &gt; 0</span></li>
-<li>遅い磁気音波: <span class="math inline">\delta p_{g} \delta p_{m} &lt; 0</span></li>
-</ul>
 </section>
-<section id="friedrichsダイアグラム" class="level3">
-<h3 class="anchored" data-anchor-id="friedrichsダイアグラム">Friedrichsダイアグラム</h3>
-<p>磁気流体波動の異方性を表すために <a href="#fig-freidrichs-beta-08" class="quarto-xref">図&nbsp;<span>1.2</span></a> や <a href="#fig-freidrichs-beta-10" class="quarto-xref">図&nbsp;<span>1.3</span></a> のようなFreidrichsダイアグラムが用いられることがある．</p>
+<section id="磁気流体波動" class="level3">
+<h3 class="anchored" data-anchor-id="磁気流体波動">磁気流体波動</h3>
+<p>通常の（中性）流体力学方程式から得られる波動は音波のみであるのに対して，磁気流体力学では以下の3種類の波動が存在する．</p>
+<ul>
+<li>シアAlfven波<br>
+位相速度: <span class="math inline">v_p^2 = V_{\mathrm A}^2 \cos^2 \theta</span><br>
+性質: 非圧縮(磁気張力が復元力)<br>
+</li>
+<li>速い磁気音波・遅い磁気音波<br>
+位相速度: <span class="math inline">v_p^2 = (V_{\mathrm A}^2 + V_{\mathrm S}^2)/2 \pm \left[ ((V_{\mathrm A}^2 - V_{\mathrm S}^2)/2)^2 + V_{\mathrm A}^2 V_{\mathrm S}^2 \sin^2 \theta \right]^{1/2}</span><br>
+（ただし，<span class="math inline">+</span>が速い磁気音波，<span class="math inline">-</span>が遅い磁気音波）<br>
+性質: 速い磁気音波はガス圧力と磁気圧力の揺らぎが同位相，遅い磁気音波は逆位相で振動する．</li>
+</ul>
+<p>ここで<span class="math inline">V_{\mathrm A} = B/\sqrt{\mu_0 \rho}</span>はAlfven速度，<span class="math inline">V_{\mathrm S} = \sqrt{\gamma p/\rho}</span>は音速，<span class="math inline">\theta</span>は磁場と波動の伝播方向のなす角である．<br>
+このように磁気流体波動は磁場の方向に対する伝播方向によって異なる位相速度を持っており，これはプラズマが異方性を持った媒質であることを意味する．<br>
+磁気流体波動の異方性を表すために <a href="#fig-freidrichs-beta-08" class="quarto-xref">図&nbsp;<span>1.2</span></a> や <a href="#fig-freidrichs-beta-10" class="quarto-xref">図&nbsp;<span>1.3</span></a> のようなFreidrichsダイアグラムが用いられることがある． これはそれぞれのモードについて，磁場に対する伝播角と位相速度の関係を表したものである．</p>
 <div id="fig-freidrichs-beta-08" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-freidrichs-beta-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -393,6 +422,11 @@ n_e \approx n_0 \exp \left( \frac{e \phi}{k_B T_e} \right)
 図&nbsp;1.3: <span class="math inline">\beta = 1.2</span>
 </figcaption>
 </figure>
+</div>
+<div id="exr-beta" class="theorem exercise">
+<p><span class="theorem-title"><strong>演習問題 1.6</strong></span> プラズマベータ <span class="math inline">\beta</span> が <span class="math display">
+\beta = \frac{2}{\gamma} \frac{V_{\mathrm S}^2}{V_{\mathrm A}^2}
+</span> と書けることを示せ．</p>
 </div>
 
 

@@ -272,11 +272,11 @@ v_z = v_{\parallel}
 \end{cases}
 \quad \quad
 \begin{cases}
-x = - r_g \sin \Omega_c t + x_0 \\
-y = - r_g \cos \Omega_c t + y_0 \\
+x = - r_c \sin \Omega_c t + x_0 \\
+y = - r_c \cos \Omega_c t + y_0 \\
 z = v_{\parallel} t + z_0
 \end{cases}
-</span> これより荷電粒子は磁場に対して垂直な面内では旋回運動をすることが分かる（<a href="#fig-helix" class="quarto-xref">図&nbsp;<span>2.1</span></a> 参照）．これをジャイロ運動（もしくはサイクロトロン運動，ラーマー運動）と呼ぶ．ここで，<span class="math inline">\Omega_c = q B/m</span>をジャイロ周波数，<span class="math inline">r_g = v_{\perp}/\Omega_c</span>をジャイロ半径である．このとき，<span class="math inline">\Omega_c</span>は符号付きで定義されていることに注意しよう．</p>
+</span> これより荷電粒子は磁場に対して垂直な面内では旋回運動をすることが分かる（<a href="#fig-helix" class="quarto-xref">図&nbsp;<span>2.1</span></a> 参照）．これをジャイロ運動（もしくはサイクロトロン運動，ラーマー運動）と呼ぶ．ここで，<span class="math inline">\Omega_c = q B/m</span>をジャイロ周波数，<span class="math inline">r_c = v_{\perp}/\Omega_c</span>をジャイロ半径である．このとき，<span class="math inline">\Omega_c</span>は符号付きで定義されていることに注意しよう．</p>
 <div id="cell-fig-helix" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div id="fig-helix" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -307,7 +307,7 @@ z = v_{\parallel} t + z_0
 </div>
 </div>
 <div id="exr-typical-values" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.1</strong></span> 磁場強度を <span class="math inline">B = 10 \, {\rm nT}</span> , エネルギー <span class="math inline">W_{\perp} = 1 \, {\rm keV}</span> とし，電子および陽子のジャイロ周波数 <span class="math inline">\Omega_{c}</span> およびジャイロ半径 <span class="math inline">r_g = v_{\perp}/\Omega_{c}</span> をそれぞれ求めよ．ただし， <span class="math inline">v_{\perp} = \sqrt{2 q W_{\perp} / m}</span> とする．</p>
+<p><span class="theorem-title"><strong>演習問題 2.1</strong></span> 磁場強度を <span class="math inline">B = 10 \, {\rm nT}</span> , エネルギー <span class="math inline">W_{\perp} = 1 \, {\rm keV}</span> とし，電子および陽子のジャイロ周波数 <span class="math inline">\Omega_{c}</span> およびジャイロ半径 <span class="math inline">r_c = v_{\perp}/\Omega_{c}</span> をそれぞれ求めよ．ただし， <span class="math inline">v_{\perp} = \sqrt{2 q W_{\perp} / m}</span> とする．</p>
 </div>
 <section id="第一断熱不変量" class="level3">
 <h3 class="anchored" data-anchor-id="第一断熱不変量">第一断熱不変量</h3>
@@ -315,8 +315,8 @@ z = v_{\parallel} t + z_0
 J = \oint p dq
 </span> このとき，外部からの十分ゆっくりとした摂動に対しては<span class="math inline">J</span>を近似的に一定とみなすことができる．このような<span class="math inline">J</span>を断熱不変量と呼ぶ．</p>
 <p>荷電粒子のジャイロ運動について定義される断熱不変量を第一断熱不変量<span class="math inline">J_1</span>と呼ぶ．これは <span id="eq-first-adiabatic-invariant"><span class="math display">
-J_1 = \frac{\pi m}{q} \frac{m v_{\perp}^2}{2 B} \equiv \frac{\pi m}{q} \mu
-\qquad(2.1)</span></span> となることが簡単に示せる．ここで <span class="math inline">\mu</span> を磁気モーメントと呼ぶ．<span class="math inline">\mu</span>は<span class="math inline">J_1</span>と定数倍だけしか違わないので，<span class="math inline">\mu</span>を第一断熱不変量と呼ぶことも多い．</p>
+J_1 = \pi \frac{m v_{\perp}^2}{q B} \equiv 2 \pi \frac{\mu}{q}
+\qquad(2.1)</span></span> となることが簡単に示せる．ここで<span class="math inline">\mu = m v_{\perp}^2 / 2 B</span>を磁気モーメントと呼ぶ． <span class="math inline">\mu</span>は<span class="math inline">J_1</span>と定数倍だけしか違わないので，<span class="math inline">\mu</span>を第一断熱不変量と呼ぶことも多い．</p>
 <div id="exr-adiabatic-invariant" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.2</strong></span> 調和振動子 <span class="math display">
 \frac{dq}{dt} = p, \quad \frac{dp}{dt} = - \omega^2 q
@@ -329,7 +329,7 @@ q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
 </ol>
 </div>
 <div id="exr-first-adiabatic-invariant" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.3</strong></span> 第一断熱不変量が <a href="#eq-first-adiabatic-invariant" class="quarto-xref">式&nbsp;<span>2.1</span></a> で与えられることを示せ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.3</strong></span> ジャイロ運動を調和振動子と考えることで第一断熱不変量が <a href="#eq-first-adiabatic-invariant" class="quarto-xref">式&nbsp;<span>2.1</span></a> で与えられることを示せ．</p>
 </div>
 <div id="exr-magnetic-flux-thgough-gyroarea" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.4</strong></span> 第一断熱不変量 <a href="#eq-first-adiabatic-invariant" class="quarto-xref">式&nbsp;<span>2.1</span></a> は荷電粒子のジャイロ運動が囲む面積を貫く磁束に比例することを示せ．</p>
@@ -362,8 +362,9 @@ q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
 \frac{1}{2} m v_{\parallel}^2 + \mu B = {\rm const.}
 \qquad(2.2)</span></span> が成り立つ．さらに，<span class="math inline">(ジャイロ半径) \ll (空間スケール)</span>が成り立つとき，磁力線平行方向の運動方程式は <span id="eq-mirror-force"><span class="math display">
 m \frac{d v_{\parallel}}{dt} \approx
-\underbrace{- \mu \frac{\partial B}{\partial s}}_{\text{磁気ミラー力}}
-\qquad(2.3)</span></span> と書ける．ここで<span class="math inline">s</span>は磁力線に沿って定義した座標である．これは荷電粒子は磁場が強い方から弱い方に向かって実効的な力を受けることを意味しており，これを磁気ミラー力と呼ぶ．</p>
+\underbrace{- \mu \left(\bm{b} \cdot \nabla \right) B}_{\text{磁気ミラー力}}
+= - \mu \frac{\partial B}{\partial s}
+\qquad(2.3)</span></span> と書ける．ここで<span class="math inline">\bm{b} = \bm{B} / B</span>は磁場の単位ベクトル，<span class="math inline">s</span>は磁力線に沿って定義した座標である． これは荷電粒子は磁場が強い方から弱い方に向かって実効的な力を受けることを意味しており，これを磁気ミラー力と呼ぶ．</p>
 <div id="exr-mirror-force" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.6</strong></span> <a href="#eq-energy-conservation" class="quarto-xref">式&nbsp;<span>2.2</span></a> において， <span class="math inline">(ジャイロ半径) \ll (空間スケール)</span> を仮定することで <a href="#eq-mirror-force" class="quarto-xref">式&nbsp;<span>2.3</span></a> を示せ．</p>
 </div>
@@ -444,7 +445,7 @@ v_y = + v_{\perp} \sin \Omega_c t
 F_c = - m \frac{v_{\parallel}^2}{R_c} \bm{e}_c
 </span> を感じる．ここで <span class="math inline">R_c</span> は曲率半径，<span class="math inline">\bm{e}_c</span> は曲率中心に向かう単位ベクトル．この力によって粒子はドリフト運動する． <span class="math display">
 \bm{v}_{C} = \frac{m v_{\parallel}^2}{q B} \bm{b} \times (\bm{b} \cdot \nabla) \bm{b}
-</span> これを磁場曲率ドリフトと呼ぶ．ただし <span class="math inline">\bm{b} = \bm{B} / B</span> は磁場の単位ベクトルである．</p>
+</span> これを磁場曲率ドリフトと呼ぶ．</p>
 <div id="fig-curv-drift" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-curv-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -525,7 +526,7 @@ F_c = - m \frac{v_{\parallel}^2}{R_c} \bm{e}_c
 <section id="第3断熱不変量" class="level3">
 <h3 class="anchored" data-anchor-id="第3断熱不変量">第3断熱不変量</h3>
 <p>軸対称な磁場中では粒子の磁場勾配・曲率ドリフトの軌道は閉じるので断熱不変量を定義できる． ジャイロ運動に対して定義された第1断熱不変量は <span class="math display">
-J_1 \propto \pi r_g^2 B
+J_1 \propto \pi r_c^2 B
 </span> であったが，これはジャイロ運動が囲む領域を貫く磁束に対応している． ドリフト運動についても同様にドリフト軌道が囲む領域を貫く磁束 <span class="math display">
 J_3 = \int \bm{B} \cdot d\bm{S} = \int_0^{R} 2 \pi r B_z(r) dr
 </span> が保存する．これを第3断熱不変量と呼ぶ．ただし <span class="math inline">R</span> はドリフト軌道の対称軸からの距離である．</p>
@@ -544,7 +545,7 @@ J_3 = \int \bm{B} \cdot d\bm{S} = \int_0^{R} 2 \pi r B_z(r) dr
 </figcaption>
 </figure>
 </div>
-<p>微小パラメータを <span class="math inline">\epsilon = r_g/L \ll 1</span> と定義すると，3つの運動の時間スケールがそれぞれ <span class="math inline">\epsilon</span> のオーダーだけ異なる．従って第1断熱不変量は最も保存されやすく，逆に第3断熱不変量は最も保存されにくい．</p>
+<p>微小パラメータを <span class="math inline">\epsilon = r_c/L \ll 1</span> と定義すると，3つの運動の時間スケールがそれぞれ <span class="math inline">\epsilon</span> のオーダーだけ異なる．従って第1断熱不変量は最も保存されやすく，逆に第3断熱不変量は最も保存されにくい．</p>
 <p>3つの周期運動の地球磁気圏における典型的な時間スケールは <a href="#fig-typical-frequency" class="quarto-xref">図&nbsp;<span>2.7</span></a> のようになる．</p>
 <div id="fig-typical-frequency" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -557,7 +558,7 @@ J_3 = \int \bm{B} \cdot d\bm{S} = \int_0^{R} 2 \pi r B_z(r) dr
 </figure>
 </div>
 <div id="exr-three-motion-timescale" class="theorem exercise">
-<p><span class="theorem-title"><strong>演習問題 2.11</strong></span> 双極子磁場のような軸対称な磁場構造中における十分エネルギーの小さな荷電粒子は，ジャイロ運動，バウンス運動，ドリフト運動，の時間スケールの異なる3つの周期運動をする．粒子のジャイロ半径 <span class="math inline">r_g</span> と系の典型的な空間スケール <span class="math inline">L</span> の比を <span class="math inline">\epsilon = r_g/L (\ll 1)</span> とするとき，3つの周期運動の時間スケール <span class="math inline">T_\text{gyro}, T_\text{bounce}, T_\text{drift}</span> がそれぞれ，<span class="math inline">\Omega_c T_\text{gyro} \sim O(1)</span>，<span class="math inline">\Omega_c T_\text{bounce} \sim O(\epsilon^{-1})</span>, <span class="math inline">\Omega_c T_\text{drift} \sim O(\epsilon^{-2})</span> となることを確かめよ．</p>
+<p><span class="theorem-title"><strong>演習問題 2.11</strong></span> 双極子磁場のような軸対称な磁場構造中における十分エネルギーの小さな荷電粒子は，ジャイロ運動，バウンス運動，ドリフト運動，の時間スケールの異なる3つの周期運動をする．粒子のジャイロ半径 <span class="math inline">r_c</span> と系の典型的な空間スケール <span class="math inline">L</span> の比を <span class="math inline">\epsilon = r_c/L (\ll 1)</span> とするとき，3つの周期運動の時間スケール <span class="math inline">T_\text{gyro}, T_\text{bounce}, T_\text{drift}</span> がそれぞれ，<span class="math inline">\Omega_c T_\text{gyro} \sim O(1)</span>，<span class="math inline">\Omega_c T_\text{bounce} \sim O(\epsilon^{-1})</span>, <span class="math inline">\Omega_c T_\text{drift} \sim O(\epsilon^{-2})</span> となることを確かめよ．</p>
 </div>
 <div id="exr-axisymmetric-problem" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.12</strong></span> 円筒座標系<span class="math inline">(r, \phi, z)</span>を用いて，時間定常で軸対称なベクトルポテンシャル <span class="math display">

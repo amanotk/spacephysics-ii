@@ -9,13 +9,15 @@
 
 ## プラズマの例
 * 地球近傍
-    * 太陽・太陽風
+    * 太陽・太陽風（惑星間空間）
     * 地球・惑星の磁気圏および電離圏
 * 天体プラズマ
-    * 原始惑星系円盤
+    * 恒星・恒星風
     * 星間物質や銀河間物質
-    * 高エネルギー天体近傍
-* 実験室プラズマ
+    * 原始惑星系円盤
+    * 超新星残骸
+    * 中性子星・ブラックホール近傍
+* 実験室プラズマ（$\approx$ 核融合プラズマ）
     * 磁場閉じ込めプラズマ
     * レーザープラズマ
 
@@ -76,7 +78,7 @@ $$
 $$
 n_e \approx n_0 \exp \left( \frac{e \phi}{k_B T_e} \right)
 $$
-に従う．このことを示せ．
+に従う．ただし，$\phi \rightarrow 0$において$n \rightarrow n_0$とする．このことを示せ．
 :::
 
 ::: {#exr-yukawa-potential}
@@ -104,7 +106,7 @@ $$
 \\
 \frac{\partial \bm{B}}{\partial t} &=-\nabla \times \bm{E}
 \\
-\nabla \cdot \bm{E} &= \frac{1}{\epsilon_0} \rho
+\nabla \cdot \bm{E} &= \frac{1}{\epsilon_0} \varrho
 \\
 \nabla \cdot \bm{B} &= 0
 \end{aligned}
@@ -112,58 +114,111 @@ $$
 に従って発展する．この電磁場に影響を受けたプラズマ中の荷電粒子が作る電荷と電流
 $$
 \begin{aligned}
-\rho(x) &= \sum_{i} q_i \delta (x_i - x)
+\varrho(x) &= \sum_{i} q_i \delta (x_i - x)
 \\
 \bm{J}(x) &= \sum_{i} q_i \bm{v}_i \delta (x_i - x)
 \end{aligned}
 $$
-がMaxwell方程式に影響を与える．真空中のMaxwell方程式は線形であるが，プラズマが作る電荷・電流によるフィードバックまで考えると極度に非線形なシステムとなる．
+がMaxwell方程式に影響を与える．これらの荷電粒子は以下の運動方程式に従う．
+$$
+\frac{d\bm{x}}{dt} = \bm{v}, \quad
+\frac{d\bm{v}}{dt} = \frac{q}{m} \left( \bm{E} + \bm{v} \times \bm{B} \right)
+$$
+
+真空中のMaxwell方程式は与えられた$(\varrho, \bm{J})$のもとで線形であり，また荷電粒子の運動方程式も与えられた$(\bm{E}, \bm{B})$のもとで線形である．
+しかし，電荷・電流を介した電磁場と荷電粒子のフィードバックまで考えると極度に非線形なシステムとなる．
 
 ## 磁気流体力学
-プラズマの巨視的なダイナミクスを自己無撞着に記述する方程式系として，以下の磁気流体力学(MHD; Magnetohydrodynamics)方程式がよく用いられる．
+プラズマの巨視的なダイナミクスを自己無撞着に記述する方程式系として，磁気流体力学(MHD; Magnetohydrodynamics)方程式がよく用いられる．
+これはこの講義の本題ではないが概要を復習しておこう．
+
+### 基礎方程式
+MHDは大雑把には流体力学方程式にローレンツ力を加えたものと考えればよく，例えば断熱の状態方程式を仮定した場合には以下のように書ける．
 $$
 \begin{aligned}
 & \frac{\partial \rho}{\partial t} +
 \nabla \cdot \left( \rho \bm{v} \right) = 0,
 \\
-& \rho \frac{d \bm{v}}{dt} = - \nabla p + \bm{J} \times \bm{B},
+& \rho \frac{d \bm{v}}{dt} = - \nabla p + \cancel{\varrho \bm{E}} + \bm{J} \times \bm{B},
+\\
+& \frac{d}{dt} \left( \frac{p}{\rho^{\gamma}} \right) = 0,
+\end{aligned}
+$$
+ただし，プラズマが準中性状態にあることから，電気力$\varrho \bm{E}$の項は無視できる．
+また，低周波近似では変位電流$\epsilon_0 \partial \bm{E}/\partial t$を無視して
+Ampereの法則は
+$$
+\nabla \times \bm{B} = \mu_0 \bm{J}
+$$
+と書ける．
+また，磁場の発展方程式はFaradayの法則
+$$
+\frac{\partial \bm{B}}{\partial t} = - \nabla \times \bm{E}
+$$
+で与えられ．通常宇宙のプラズマは電気伝導性が非常に良いため，Ohmの法則を考えると流体静止系の電場$\bm{E}'$が無視できる．
+観測者系では誘導電場$-\bm{v} \times \bm{B}$が現れることを考慮すると，
+$$
+\bm{E}' = \bm{E} + \bm{v} \times \bm{B} = 0
+$$
+と書ける．
+
+これらをまとめると，MHD方程式は以下のように書ける．
+$$
+\begin{aligned}
+& \frac{\partial \rho}{\partial t} +
+\nabla \cdot \left( \rho \bm{v} \right) = 0,
+\\
+& \rho \frac{d \bm{v}}{dt} = - \nabla p + \frac{1}{\mu_0} (\nabla \times \bm{B}) \times \bm{B},
 \\
 & \frac{d}{dt} \left( \frac{p}{\rho^{\gamma}} \right) = 0,
 \\
 & \frac{\partial \bm{B}}{\partial t} - \nabla \times
-\left( \bm{v} \times \bm{B} \right) = 0,
-\\
-& \nabla \cdot \bm{B} = 0.
+\left( \bm{v} \times \bm{B} \right) = 0.
 \end{aligned}
 $$
 
-ここではMHDは本題ではないので，以下に特徴を簡単に述べるにとどめる．
+MHDの特徴として以下のような点が挙げられる．
 
-- 流体 + 外力としてのローレンツ力（$\bm{J} \times \bm{B}$）が働く．
-- プラズマが完全導体のとき，磁場とプラズマは「凍結」している．
-- ガス圧力と磁気圧力の比で定義されるプラズマベータ $\beta = P/(B^2/2\mu_0)$ が重要なパラメータとなる．
+- 磁場の影響によって異方性が現れる．
+- 磁場とプラズマは「凍結」している．
+- 通常のガス圧勾配力に加えて，ローレンツ力によって磁気圧勾配力や磁気張力が働く．
+- ガス圧と磁気圧の比で定義されるプラズマベータ $\beta = P/(B^2/2\mu_0)$ が重要なパラメータとなる．
 
 ::: {#exr-jxb-force}
-ローレンツ力は
+ローレンツ力が
 $$
 \bm{J} \times \bm{B} =
 \frac{\left( \bm{B} \cdot \nabla \right) \bm{B}}{\mu_0} -
 \nabla \left( \frac{B^2}{2 \mu_0} \right)
 $$
-と書き直せる．このことを示せ．ここで第1項，第2項の磁場に垂直な成分がそれぞれ磁気張力と磁気圧力勾配力を表す．
+と書き表されることを示せ．ここで第1項，第2項の磁場に垂直な成分がそれぞれ磁気張力と磁気圧力勾配力を表す．
 :::
 
-### 磁気流体力学波動
+### 磁気流体波動
 通常の（中性）流体力学方程式から得られる波動は音波のみであるのに対して，磁気流体力学では以下の3種類の波動が存在する．
-これらの波動は磁場の方向に対する伝播方向によって異なる位相速度を持つ．これはプラズマが異方性を持った媒質であることを意味する．
 
-- シアAlfven波: 非圧縮(磁気張力が復元力)
-- 速い磁気音波: $\delta p_{g} \delta p_{m} > 0$
-- 遅い磁気音波: $\delta p_{g} \delta p_{m} < 0$
+- シアAlfven波  
+  位相速度: $v_p^2 = V_{\mathrm A}^2 \cos^2 \theta$  
+  性質: 非圧縮(磁気張力が復元力)  
+- 速い磁気音波・遅い磁気音波  
+  位相速度:
+  $v_p^2 = (V_{\mathrm A}^2 + V_{\mathrm S}^2)/2 \pm \left[ ((V_{\mathrm A}^2 - V_{\mathrm S}^2)/2)^2 + V_{\mathrm A}^2 V_{\mathrm S}^2 \sin^2 \theta \right]^{1/2}$  
+  （ただし，$+$が速い磁気音波，$-$が遅い磁気音波）  
+  性質: 速い磁気音波はガス圧力と磁気圧力の揺らぎが同位相，遅い磁気音波は逆位相で振動する．  
 
-### Friedrichsダイアグラム
+ここで$V_{\mathrm A} = B/\sqrt{\mu_0 \rho}$はAlfven速度，$V_{\mathrm S} = \sqrt{\gamma p/\rho}$は音速，$\theta$は磁場と波動の伝播方向のなす角である．  
+このように磁気流体波動は磁場の方向に対する伝播方向によって異なる位相速度を持っており，これはプラズマが異方性を持った媒質であることを意味する．  
 磁気流体波動の異方性を表すために @fig-freidrichs-beta-08 や @fig-freidrichs-beta-10 のようなFreidrichsダイアグラムが用いられることがある．
+これはそれぞれのモードについて，磁場に対する伝播角と位相速度の関係を表したものである．
 
 ![$\beta = 0.8$](figures/friedrichs_beta_08.png){width=70% #fig-freidrichs-beta-08}
 
 ![$\beta = 1.2$](figures/friedrichs_beta_12.png){width=70% #fig-freidrichs-beta-10}
+
+::: {#exr-beta}
+プラズマベータ $\beta$ が
+$$
+\beta = \frac{2}{\gamma} \frac{V_{\mathrm S}^2}{V_{\mathrm A}^2}
+$$
+と書けることを示せ．
+:::
