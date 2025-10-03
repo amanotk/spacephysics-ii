@@ -254,7 +254,7 @@
     "href": "references.html#和書",
     "title": "参考文献",
     "section": "",
-    "text": "Francis F. Chen（内田 岱二郎 訳） （1977） 『プラズマ物理学入門』，丸善出版．\n\n寺澤敏夫（2002）『太陽圏の物理』（地球と宇宙の物理 2），岩波書店．\n\n高原文郎（2002）『天体高エネルギー現象』（地球と宇宙の物理 4），岩波書店．\n\n観山正見・野本憲一・二間瀬敏史（編）（2008）『天体物理学の基礎 II』（シリーズ現代の天文学 12），日本評論社．\n\n小野高幸・三好由純（2012）『太陽地球圏』（現代地球科学入門シリーズ 2），共立出版．\n\n梅田隆行（編）（2024）『プラズマの計算科学』（計算科学講座 8），共立出版．\n\n柴田一成・上出洋介（編）（2002）『総説 宇宙天気』，京都大学学術出版会．",
+    "text": "Francis F. Chen（内田 岱二郎 訳） （1977） 『プラズマ物理学入門』，丸善出版．\n古典的によく読まれている教科書だが，和訳は初版しかない．核融合プラズマ寄りの話題が多い．\n\n小野高幸・三好由純（2012）『太陽地球圏』（現代地球科学入門シリーズ 2），共立出版．\nプラズマ物理学の基礎に加えて太陽や地球，惑星周辺のプラズマの現象論までを概説している．この分野に興味のある人への日本語の入門書としては最適．\n\n観山正見・野本憲一・二間瀬敏史（編）（2008）『天体物理学の基礎 II』（シリーズ現代の天文学 12），日本評論社．\n第2章でプラズマ物理学の基礎を扱っており，前半は「宇宙空間物理学I」，後半は「宇宙空間物理学II」の内容に近い．\n\n寺澤敏夫（2002）『太陽圏の物理』（地球と宇宙の物理 2），岩波書店．\n太陽圏のいくつかの現象に対するプラズマ物理学の応用な内容を扱っている．\n\n柴田一成・上出洋介（編）（2011）『総説 宇宙天気』，京都大学学術出版会．\n太陽活動に起因する宇宙環境の変動（宇宙天気）の予測に関する教科書．宇宙天気に興味のある人には参考になるだろう．\n梅田隆行（編）（2024）『プラズマの計算科学』（計算科学講座 8），共立出版．\nプラズマの数値シミュレーションに関する教科書だが，第1章にはプラズマ物理学が概説されている．やや専門的だが数値シミュレーションに興味のある人にはよいかもしれない．",
     "crumbs": [
       "参考文献"
     ]
@@ -264,7 +264,7 @@
     "href": "references.html#洋書",
     "title": "参考文献",
     "section": "洋書",
-    "text": "洋書\n\nMargaret G. Kivelson, Christopher T. Russell (1995). Introduction to Space Physics. Cambridge University Press.\n\nWolfgang Baumjohann, Rudolf A. Treumann (1996). Basic Space Plasma Physics. Imperial College Press.\n\nDonald A. Gurnett, Amitava Bhattacharjee (2017). Introduction to Plasma Physics: With Space and Laboratory Applications. Cambridge University Press.",
+    "text": "洋書\n\nFrancis F. Chen (2015). Introduction to Plasma Physics and Controlled Fusion. Springer.\n『プラズマ物理学入門』の原著第3版．\n\nMargaret G. Kivelson, Christopher T. Russell (1995). Introduction to Space Physics. Cambridge University Press.\n太陽，地球，惑星プラズマの現象論からそれを記述するプラズマ物理学を扱っており，イメージとしては『太陽地球圏』に近いか．新板が出ているようだが，内容は未確認．\n\nWolfgang Baumjohann, Rudolf A. Treumann (1996). Basic Space Plasma Physics. Imperial College Press.\n現象論は少なめだが，宇宙プラズマを対象とした標準的なプラズマ物理学の教科書である．\n\nDonald A. Gurnett, Amitava Bhattacharjee (2017). Introduction to Plasma Physics: With Space and Laboratory Applications. Cambridge University Press.\n宇宙プラズマと実験室プラズマのどちらも対象にしており，プラズマ物理学の内容は一通り網羅した教科書である．\n\nPeter A. Sturrock (1994). Plasma Physics: An Introduction to the Theory of Astrophysical, Geophysical and Laboratory Plasmas. Cambridge University Press.\n現象論はほとんどないが，プラズマ物理学の標準的な教科書である．\n\nRussell M. Kulsrud (2005). Plasma Physics for Astrophysics. Princeton University Press.\nプラズマ物理学の基礎から宇宙・天体物理学を対象にしたやや高度な内容までを扱う教科書である．",
     "crumbs": [
       "参考文献"
     ]
