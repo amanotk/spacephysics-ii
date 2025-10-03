@@ -213,7 +213,7 @@ $$
 
 ```{python}
 #| label: fig-exb-drift
-#| fig-cap: 電場ドリフト
+#| fig-cap: 電場ドリフト．陽子と電子は旋回方向は異なるが，平均的なドリフト速度は変わらない．
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -231,11 +231,15 @@ def exb_drift(x0, y0, tmax, wc, vexb, vperp):
   return x, y
 
 # proton
-ax.plot(*exb_drift(0.2, 0.2, 20, +1.0, 0.1, 1.0), label='proton')
-
+x_p, y_p = exb_drift(0.2, 0.2, 20, +1.0, 0.1, 1.0)
+ax.plot(x_p, y_p, label='proton')
+ax.annotate('', xy=(x_p[-1], y_p[-1]), xytext=(x_p[-2], y_p[-2]),
+            arrowprops=dict(arrowstyle='->', color='tab:blue', lw=2))
 # electron
-ax.plot(*exb_drift(0.2, 1.5, 20, -5.0, 0.1, 1.0), label='electron')
-
+x_e, y_e = exb_drift(0.2, 1.5, 20, -5.0, 0.1, 1.0)
+ax.plot(x_e, y_e, label='electron')
+ax.annotate('', xy=(x_e[-1], y_e[-1]), xytext=(x_e[-2], y_e[-2]),
+            arrowprops=dict(arrowstyle='->', color='tab:orange', lw=2))
 kwargs = {
   'color' : 'k',
   'arrowstyle' : '-|>',
@@ -361,7 +365,109 @@ $$
 
 3つの周期運動の地球磁気圏における典型的な時間スケールは @fig-typical-frequency のようになる．
 
-![地球磁気圏における3つの周期運動の周波数 [@KivelsonRussell1995]](figures/three_frequencies.png){width=80% #fig-typical-frequency}
+```{python}
+#| label: fig-typical-frequency
+#| fig-cap: 地球磁気圏における3つの周期運動の周波数．各プロットの縦軸は粒子のエネルギー，横軸は地球からの距離（$L$値）を表わす．
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+
+def log_tick_fmt(y, pos):
+    return r"$10^{%d}$" % y
+
+def sci_fmt(x, pos):
+    if x == 0:
+        return "0"
+    exp = int(np.floor(np.log10(x)))
+    coeff = x / 10**exp
+    return r"$%g \times 10^{%d}$" % (coeff, exp)
+
+fmt = ticker.FuncFormatter(sci_fmt)
+
+c = 3.0e+8
+mu0 = 1.257e-6
+qmi = 9.58e+7
+qme = qmi * 1836
+mic2 = 938e+6
+mec2 = 0.511e+6
+R_E = 6.37e+6
+M_E = 8.22e+22
+B_E = mu0 / (4*np.pi) * M_E / R_E**3
+
+L = np.linspace(1, 8, 100)[np.newaxis, :].repeat(100, axis=0)
+W = np.geomspace(1.0e+3, 1.0e+9, 100)[:, np.newaxis].repeat(100, axis=1)
+
+gmi = 1 + W / mic2
+gme = 1 + W / mec2
+kev = np.log10(W * 1.0e-3)
+
+fig, axs = plt.subplots(3, 2, figsize=(8, 10))
+fig.subplots_adjust(hspace=0.25, wspace=0.20)
+
+# gyrofrequency
+fg_p = 1/(2*np.pi) * qmi/gmi * B_E / L**3
+fg_e = 1/(2*np.pi) * qme/gme * B_E / L**3
+
+plt.sca(axs[0, 0])
+levels = np.array([1, 3, 10, 30, 100, 300])
+cntrs = plt.contour(L, kev, fg_p, levels=levels, colors='k')
+plt.clabel(cntrs, levels, inline=True, fmt=fmt)
+plt.title("Proton Gyro Frequency [Hz]")
+
+plt.sca(axs[0, 1])
+levels = np.array([1e+1, 3e+1, 1e+2, 3e+2, 1e+3, 3e+3, 1e+4, 3e+4, 1e+5])
+cntrs = plt.contour(L, kev, fg_e, levels=levels, colors='k')
+plt.clabel(cntrs, levels, inline=True, fmt=fmt)
+plt.title("Electron Gyro Frequency [Hz]")
+
+# bounce frequency
+v_p = c * np.sqrt(1 - 1/gmi**2)
+v_e = c * np.sqrt(1 - 1/gme**2)
+fb_p = 0.338 * v_p / (L * R_E)
+fb_e = 0.338 * v_e / (L * R_E)
+
+plt.sca(axs[1, 0])
+levels = [1e-2, 3e-2, 1e-1, 3e-1, 1e+0, 3e+0, 1e+1]
+cntrs = plt.contour(L, kev, fb_p, levels=levels, colors='k')
+plt.clabel(cntrs, levels, inline=True, fmt=fmt)
+plt.title("Proton Bounce Frequency [Hz]")
+
+plt.sca(axs[1, 1])
+levels = [3e-1, 1e+0, 3e+0, 1e+1]
+cntrs = plt.contour(L, kev, fb_e, levels=levels, colors='k')
+plt.clabel(cntrs, levels, inline=True, fmt=fmt)
+plt.title("Electron Bounce Frequency [Hz]")
+
+# drift frequency
+fd = 3 * L * W /(2*np.pi * B_E * R_E**2)
+fd_p = fd
+fd_e = fd
+
+plt.sca(axs[2, 0])
+levels = [1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1e+0]
+cntrs = plt.contour(L, kev, fd_p, levels=levels, colors='k')
+plt.clabel(cntrs, levels, inline=True, fmt=fmt)
+plt.title("Proton Drift Frequency [Hz]")
+
+plt.sca(axs[2, 1])
+levels = [1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1e+0]
+cntrs = plt.contour(L, kev, fd_e, levels=levels, colors='k')
+plt.clabel(cntrs, levels, inline=True, fmt=fmt)
+plt.title("Electron Drift Frequency [Hz]")
+
+for ax in axs.ravel():
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(log_tick_fmt))
+    ax.set_xlim(1, 8)
+    ax.set_ylim(0, 6)
+
+for ax in axs[:, 0]:
+  ax.set_ylabel("Kinetic Energy [keV]")
+
+for ax in axs[2, :]:
+  ax.set_xlabel(r"$L [R_E]$")
+
+plt.show()
+```
 
 ::: {#exr-three-motion-timescale}
 双極子磁場のような軸対称な磁場構造中における十分エネルギーの小さな荷電粒子は，ジャイロ運動，バウンス運動，ドリフト運動，の時間スケールの異なる3つの周期運動をする．粒子のジャイロ半径 $r_c$ と系の典型的な空間スケール $L$ の比を $\epsilon = r_c/L (\ll 1)$ とするとき，3つの周期運動の時間スケール $T_\text{gyro}, T_\text{bounce}, T_\text{drift}$ がそれぞれ，$\Omega_c T_\text{gyro} \sim O(1)$，$\Omega_c T_\text{bounce} \sim O(\epsilon^{-1})$, $\Omega_c T_\text{drift} \sim O(\epsilon^{-2})$ となることを確かめよ．
@@ -434,14 +540,14 @@ mu0 = 1.257e-6
 W_E = 2*np.pi / (60*60*24)
 R_E = 6.37e+6
 V_E = R_E * W_E
-M_E = 7.8e+22
+M_E = 8.22e+22
 B_E = mu0 / (4*np.pi) * M_E / R_E**3
 
 Vsw = 400 * 1e+3 # m/s
 Bsw = 1   * 1e-9 # T
 Esw = (Vsw/V_E) * (Bsw/B_E)
 
-fig = plt.figure()
+fig = plt.figure(figsize=(6, 6))
 ax = plt.subplot()
 
 def potential(x, y):
@@ -513,7 +619,7 @@ W_E = 2*np.pi / (60*60*24)
 R_E = 6.37e+6
 V_E = R_E * W_E
 K_E = 0.5 * V_E**2 / qmi
-M_E = 7.8e+22
+M_E = 8.22e+22
 B_E = mu0 / (4*np.pi) * M_E / R_E**3
 
 Vsw = 400 * 1e+3 # m/s
@@ -526,7 +632,7 @@ K0 = 10.0e+3
 B0 = B_E / R0**3 * 1e+9
 M0 = K0 / B0 / (K_E / B_E)
 
-fig, axs = plt.subplots(2, 1, figsize=(6, 8))
+fig, axs = plt.subplots(2, 1, figsize=(10, 12))
 
 def potential(x, y, q):
   r = np.sqrt(x**2 + y**2) + 1e-32

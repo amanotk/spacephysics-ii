@@ -409,7 +409,7 @@ v_y = + v_{\perp} \sin \Omega_c t
 <img src="chap02_files/figure-html/fig-exb-drift-output-1.png" width="540" height="381" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exb-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;2.4: 電場ドリフト
+図&nbsp;2.4: 電場ドリフト．陽子と電子は旋回方向は異なるが，平均的なドリフト速度は変わらない．
 </figcaption>
 </figure>
 </div>
@@ -547,15 +547,19 @@ J_3 = \int \bm{B} \cdot d\bm{S} = \int_0^{R} 2 \pi r B_z(r) dr
 </div>
 <p>微小パラメータを <span class="math inline">\epsilon = r_c/L \ll 1</span> と定義すると，3つの運動の時間スケールがそれぞれ <span class="math inline">\epsilon</span> のオーダーだけ異なる．従って第1断熱不変量は最も保存されやすく，逆に第3断熱不変量は最も保存されにくい．</p>
 <p>3つの周期運動の地球磁気圏における典型的な時間スケールは <a href="#fig-typical-frequency" class="quarto-xref">図&nbsp;<span>2.7</span></a> のようになる．</p>
+<div id="cell-fig-typical-frequency" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
 <div id="fig-typical-frequency" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-typical-frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/three_frequencies.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="chap02_files/figure-html/fig-typical-frequency-output-1.png" width="670" height="820" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typical-frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;2.7: 地球磁気圏における3つの周期運動の周波数 <span class="citation" data-cites="KivelsonRussell1995">(Kivelson and Russell 1995)</span>
+図&nbsp;2.7: 地球磁気圏における3つの周期運動の周波数．各プロットの縦軸は粒子のエネルギー，横軸は地球からの距離（<span class="math inline">L</span>値）を表わす．
 </figcaption>
 </figure>
+</div>
+</div>
 </div>
 <div id="exr-three-motion-timescale" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.11</strong></span> 双極子磁場のような軸対称な磁場構造中における十分エネルギーの小さな荷電粒子は，ジャイロ運動，バウンス運動，ドリフト運動，の時間スケールの異なる3つの周期運動をする．粒子のジャイロ半径 <span class="math inline">r_c</span> と系の典型的な空間スケール <span class="math inline">L</span> の比を <span class="math inline">\epsilon = r_c/L (\ll 1)</span> とするとき，3つの周期運動の時間スケール <span class="math inline">T_\text{gyro}, T_\text{bounce}, T_\text{drift}</span> がそれぞれ，<span class="math inline">\Omega_c T_\text{gyro} \sim O(1)</span>，<span class="math inline">\Omega_c T_\text{bounce} \sim O(\epsilon^{-1})</span>, <span class="math inline">\Omega_c T_\text{drift} \sim O(\epsilon^{-2})</span> となることを確かめよ．</p>
@@ -616,12 +620,12 @@ B(x) \simeq B_0 + \frac{\partial B}{\partial x} \Biggr|_{x=0} x
 \Phi = \Phi_{\rm c} + \Phi_{\rm sw} =
 - \frac{B_E \Omega_E R_E^3}{r} - r E_0 \sin \phi
 \qquad(2.7)</span></span> となり，粒子軌道は <a href="#fig-lowenergy-drift" class="quarto-xref">図&nbsp;<span>2.9</span></a> のようになる． 軌道が閉じた領域は地球の電離圏起源のプラズマで満たされており，プラズマ圏と呼ばれる． 典型的なプラズマ圏の大きさは地球半径の数倍程度である．</p>
-<div id="cell-fig-lowenergy-drift" class="cell" data-execution_count="4">
+<div id="cell-fig-lowenergy-drift" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-lowenergy-drift" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lowenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chap02_files/figure-html/fig-lowenergy-drift-output-1.png" width="440" height="416" class="figure-img">
+<img src="chap02_files/figure-html/fig-lowenergy-drift-output-1.png" width="514" height="490" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lowenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 図&nbsp;2.9: 地球磁気圏内の低エネルギー粒子の軌道
@@ -641,12 +645,12 @@ v_{E} \propto \frac{E_0}{B} \propto r^3,
 \quad
 v_{G} \propto \mu \frac{1}{B} \frac{\partial B}{\partial r} \propto \frac{1}{r}
 </span> となり，遠方では電場ドリフトが優勢だが，地球に近いほど磁場勾配ドリフトが優勢になることが分かる． ここで粒子のエネルギー太陽風電場の強さによって，粒子の到達できる限界の位置が決まっていることに注意． 実際に典型的な粒子の軌道を図示したものが <a href="#fig-highenergy-drift" class="quarto-xref">図&nbsp;<span>2.10</span></a> である．</p>
-<div id="cell-fig-highenergy-drift" class="cell" data-execution_count="5">
+<div id="cell-fig-highenergy-drift" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div id="fig-highenergy-drift" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-highenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="chap02_files/figure-html/fig-highenergy-drift-output-1.png" width="339" height="654" class="figure-img">
+<img src="chap02_files/figure-html/fig-highenergy-drift-output-1.png" width="474" height="950" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-highenergy-drift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 図&nbsp;2.10: 地球磁気圏内の低エネルギー粒子の軌道
