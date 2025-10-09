@@ -115,14 +115,27 @@ $\mu$は$J_1$と定数倍だけしか違わないので，$\mu$を第一断熱�
 $$
 \frac{dq}{dt} = p, \quad \frac{dp}{dt} = - \omega^2 q
 $$
-について考える．
+について考える．ただし周波数は $\omega = \omega(t)$ のように時間の関数で書けるとする．
 
-1. 断熱不変量 $J$ を求めよ．
-1. 調和振動子の周波数が $\omega = \omega(t)$ のように時間の関数として周期よりも十分ゆっくり変化する場合に断熱不変量 $J$ が保存することを示せ．ここで
+1. $\omega$ が定数のとき，定義にしたがって断熱不変量 $J$ を求めよ．
+1. 一般に $\omega = \omega(t)$ のときの解の形として以下を仮定しよう．
 $$
-q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
+q(t) = A(t) \exp \left[ i \int^{t} \omega(t') dt' \right]
 $$
-のような解の形(いわゆるWKB近似)を仮定するとよい．
+これを微分方程式に代入することによって $A(t)$ が以下の微分方程式を満たすことを示せ．
+$$
+\ddot{A} + i \left( 2 \dot{A} \omega + A \dot{\omega} \right) = 0
+$$
+1. 断熱不変量 $J$ が保存する条件が
+$$
+\frac{\ddot{A}}{A \omega^2} \ll 1
+$$
+と書けることを示せ．
+1. 断熱不変量 $J$ が近似的に保存することを仮定し $A$ を $\omega$ で表すと，断熱不変量が保存する条件が
+$$
+\omega^2 \gg \frac{3}{4} \left( \frac{\dot{\omega}}{\omega} \right)^2 - \frac{1}{2} \frac{\ddot{\omega}}{\omega}
+$$
+と書けることを示せ．
 :::
 
 ::: {#exr-first-adiabatic-invariant}

@@ -320,12 +320,20 @@ J_1 = \pi \frac{m v_{\perp}^2}{q B} \equiv 2 \pi \frac{\mu}{q}
 <div id="exr-adiabatic-invariant" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 2.2</strong></span> 調和振動子 <span class="math display">
 \frac{dq}{dt} = p, \quad \frac{dp}{dt} = - \omega^2 q
-</span> について考える．</p>
+</span> について考える．ただし周波数は <span class="math inline">\omega = \omega(t)</span> のように時間の関数で書けるとする．</p>
 <ol type="1">
-<li>断熱不変量 <span class="math inline">J</span> を求めよ．</li>
-<li>調和振動子の周波数が <span class="math inline">\omega = \omega(t)</span> のように時間の関数として周期よりも十分ゆっくり変化する場合に断熱不変量 <span class="math inline">J</span> が保存することを示せ．ここで <span class="math display">
-q(t) = A(t) \exp \left[ \pm i \int^{t} \omega(t') dt' \right]
-</span> のような解の形(いわゆるWKB近似)を仮定するとよい．</li>
+<li><span class="math inline">\omega</span> が定数のとき，定義にしたがって断熱不変量 <span class="math inline">J</span> を求めよ．</li>
+<li>一般に <span class="math inline">\omega = \omega(t)</span> のときの解の形として以下を仮定しよう． <span class="math display">
+q(t) = A(t) \exp \left[ i \int^{t} \omega(t') dt' \right]
+</span> これを微分方程式に代入することによって <span class="math inline">A(t)</span> が以下の微分方程式を満たすことを示せ． <span class="math display">
+\ddot{A} + i \left( 2 \dot{A} \omega + A \dot{\omega} \right) = 0
+</span></li>
+<li>断熱不変量 <span class="math inline">J</span> が保存する条件が <span class="math display">
+\frac{\ddot{A}}{A \omega^2} \ll 1
+</span> と書けることを示せ．</li>
+<li>断熱不変量 <span class="math inline">J</span> が近似的に保存することを仮定し <span class="math inline">A</span> を <span class="math inline">\omega</span> で表すと，断熱不変量が保存する条件が <span class="math display">
+\omega^2 \gg \frac{3}{4} \left( \frac{\dot{\omega}}{\omega} \right)^2 - \frac{1}{2} \frac{\ddot{\omega}}{\omega}
+</span> と書けることを示せ．</li>
 </ol>
 </div>
 <div id="exr-first-adiabatic-invariant" class="theorem exercise">
