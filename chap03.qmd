@@ -204,7 +204,7 @@ $$
 \frac{q}{m} \left( \bm{E} + \frac{\bm{v}}{c} \times \bm{B} \right)
 \cdot \frac{\partial f_s}{\partial \bm{v}} = 0,
 \\
-&\epsilon_0 \frac{\partial \bm{E}}{\partial t} = \nabla \times \bm{B} - \mu_0 \bm{J},
+&\epsilon_0 \mu_0 \frac{\partial \bm{E}}{\partial t} = \nabla \times \bm{B} - \mu_0 \bm{J},
 \\
 &\frac{\partial \bm{B}}{\partial t} = - \nabla \times \bm{E},
 \\
