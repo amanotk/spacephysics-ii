@@ -296,12 +296,12 @@ $$
 \begin{aligned}
 &\frac{\partial}{\partial t}
 \biggl(
-  \underbrace{\frac{1}{2} n m \bm{V}^2}_{運動エネルギー} +
+  \underbrace{\frac{1}{2} n m V^2}_{運動エネルギー} +
   \underbrace{\frac{3}{2} P}_{熱エネルギー}
 \biggr) + \\
 & \nabla \cdot
 \biggl(
-  \underbrace{\frac{1}{2} n m \bm{V}^3}_{運動エネルギー流束} +
+  \underbrace{\frac{1}{2} n m V^2 \bm{V}}_{運動エネルギー流束} +
   \underbrace{\frac{5}{2} P \bm{V}}_{熱エネルギー流束}
 \biggr) =
 q n \bm{V} \cdot \bm{E}
@@ -329,9 +329,11 @@ $$
 n_s q_s  \left( \bm{E}_s + \bm{V}_s \times \bm{B} \right)
 \\
 & \frac{\partial}{\partial t}
-\left( \frac{1}{2} n_s m_s \bm{V}_s^2 + \frac{P_s}{\gamma-1} \right) +
+\left( \frac{1}{2} n_s m_s V_s^2 + \frac{P_s}{\gamma-1} \right) +
 \nabla \cdot
-\left( \frac{1}{2} n_s m_s \bm{V}_s^3 + \frac{\gamma}{\gamma-1} P_s \bm{V}_s \right)
+\left( \left(
+  \frac{1}{2} n_s m_s V_s^2 + \frac{\gamma}{\gamma-1} P_s
+\right) \bm{V}_s \right)
 = q_s n_s \bm{V}_s \cdot \bm{E}
 \end{aligned}
 $$
@@ -378,11 +380,11 @@ $$
 \bm{J} \times \bm{B}
 \\
 & \frac{\partial}{\partial t}
-\left( \frac{1}{2} \rho \bm{V}^2 + \frac{P}{\gamma-1} \right) +
+\left( \frac{1}{2} \rho V^2 + \frac{P}{\gamma-1} \right) +
 \nabla \cdot
-\left(
-  \frac{1}{2} \rho \bm{V}^3 + \frac{\gamma}{\gamma-1} P \bm{V}
-\right)
+\left( \left(
+  \frac{1}{2} \rho V^2 + \frac{\gamma}{\gamma-1} P
+\right) \bm{V} \right)
 = \bm{J} \cdot \bm{E}
 \end{aligned}
 $$ {#eq-one-flud-equations}
@@ -479,10 +481,11 @@ $$
 = \frac{1}{\mu_0} \left( \nabla \times \bm{B} \right) \times \bm{B}
 \\
 & \frac{\partial}{\partial t}
-\left( \frac{1}{2} \rho \bm{V}^2 + \frac{P}{\gamma-1} \right)
-+ \nabla \cdot \left(
-  \frac{1}{2} \rho \bm{V}^3 + \frac{\gamma}{\gamma-1} P \bm{V}
-\right) \\
+\left( \frac{1}{2} \rho V^2 + \frac{P}{\gamma-1} \right)
++ \nabla \cdot
+\left( \left(
+  \frac{1}{2} \rho V^2 + \frac{\gamma}{\gamma-1} P
+\right) \bm{V} \right) \\
 & \quad \quad \quad
 = \frac{1}{\mu_0} \left( \nabla \times \bm{B} \right) \cdot \bm{E}
 \\
@@ -530,10 +533,10 @@ $$
 = 0,
 \\
 & \frac{\partial}{\partial t}
-\left( \frac{1}{2} \rho \bm{V}^2 + \frac{P}{\gamma-1} + \frac{B^2}{2 \mu_0} \right)
+\left( \frac{1}{2} \rho V^2 + \frac{P}{\gamma-1} + \frac{B^2}{2 \mu_0} \right)
 + \nabla \cdot \left[
 \left(
-  \frac{1}{2} \rho \bm{V}^2 + \frac{\gamma}{\gamma-1} P + \frac{B^2}{\mu_0}
+  \frac{1}{2} \rho V^2 + \frac{\gamma}{\gamma-1} P + \frac{B^2}{\mu_0}
 \right) \bm{V} - \frac{\bm{B} (\bm{B} \cdot \bm{V})}{\mu_0}
 \right] = 0,
 \\
