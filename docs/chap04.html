@@ -513,9 +513,9 @@ d_s = \frac{c}{\omega_{ps}} = \frac{V_{\rm As}}{\Omega_{cs}}
 \cdot \tilde{\bm{E}}
 \qquad(4.7)</span></span> となり，これを代入することで最終的な分散関係は <span id="eq-magnetized-dispersion-relation"><span class="math display">
 \begin{pmatrix}
-n_z^2 - \epsilon_1 &amp; -i \epsilon_2              &amp; -n_x n_z
+n_z^2 - \epsilon_1 &amp; +i \epsilon_2              &amp; -n_x n_z
 \\
-+i \epsilon_2      &amp; n_x^2 + n_z^2 - \epsilon_1 &amp; 0
+-i \epsilon_2      &amp; n_x^2 + n_z^2 - \epsilon_1 &amp; 0
 \\
 -n_x n_z           &amp; 0                          &amp; n_x^2 - \epsilon_3
 \end{pmatrix}
@@ -537,9 +537,9 @@ n_z^2 - \epsilon_1 &amp; -i \epsilon_2              &amp; -n_x n_z
 <h3 class="anchored" data-anchor-id="平行伝播-bmk-parallel-bmb_0">平行伝播: <span class="math inline">\bm{k} \parallel \bm{B}_0</span></h3>
 <p><span class="math inline">\bm{n} = (0, 0, n)</span>を <a href="#eq-magnetized-dispersion-relation" class="quarto-xref">式&nbsp;<span>4.8</span></a> に代入して <span id="eq-magnetized-dispersion-relation-original"><span class="math display">
 \begin{pmatrix}
-n^2 - \epsilon_1 &amp; -i \epsilon_2    &amp; 0
+n^2 - \epsilon_1 &amp; +i \epsilon_2    &amp; 0
 \\
-+i \epsilon_2    &amp; n^2 - \epsilon_1 &amp; 0
+-i \epsilon_2    &amp; n^2 - \epsilon_1 &amp; 0
 \\
 0                &amp; 0                &amp; - \epsilon_3
 \end{pmatrix}
@@ -547,8 +547,8 @@ n^2 - \epsilon_1 &amp; -i \epsilon_2    &amp; 0
 = 0
 \qquad(4.9)</span></span> を得る．これを <span class="math display">
 \begin{aligned}
-\tilde{E}_R = (\tilde{E}_x + i \tilde{E}_y) / \sqrt{2}, \quad
-\tilde{E}_L = (\tilde{E}_x - i \tilde{E}_y) / \sqrt{2}
+\tilde{E}_R = (\tilde{E}_x - i \tilde{E}_y) / \sqrt{2}, \quad
+\tilde{E}_L = (\tilde{E}_x + i \tilde{E}_y) / \sqrt{2}
 \end{aligned}
 </span> を使って書き直すと <span id="eq-magnetized-dispersion-relation-diagonalized"><span class="math display">
 \begin{pmatrix}
@@ -580,17 +580,17 @@ n^2 - \epsilon_R &amp; 0 &amp; 0 \\
 <ul>
 <li><p><span class="math inline">\tilde{E}_R \neq 0, \tilde{E}_L = 0</span> のとき</p>
 <p>分散関係は <span class="math inline">n^2 = \epsilon_R</span>であり，波の電場は <span class="math display">
-\tilde{E}_{x} (t) = A \exp \left[ i \omega t \right],
+\tilde{E}_{x} (t) = A \exp \left[ - i \omega t \right],
 \quad
-\tilde{E}_{y} (t) = A \exp \left[ i \left(\omega t - \frac{\pi}{2} \right) \right],
-</span> で与えられる．すなわち波は円偏光で<span class="math inline">E_y</span>は<span class="math inline">E_x</span>に対して位相が<span class="math inline">\pi/2</span>だけ遅れる．</p>
+\tilde{E}_{y} (t) = A \exp \left[ - i \left(\omega t - \frac{\pi}{2} \right) \right],
+</span> で与えられる．すなわち波は円偏光で<span class="math inline">E_y</span>は<span class="math inline">E_x</span>に対して位相が<span class="math inline">\pi/2</span>だけ遅れている．</p>
 <p>このときの波動を <strong>右回り（R-mode）</strong> と定義する． <span class="math inline">x-y</span>平面での波動ベクトルの回転は反時計回りで，負電荷の粒子の回転方向と同じ向き． （<a href="#fig-polarization" class="quarto-xref">図&nbsp;<span>4.4</span></a> 参照）</p></li>
 <li><p><span class="math inline">\tilde{E}_R = 0, \tilde{E}_L \neq 0</span> のとき</p>
 <p>分散関係は <span class="math inline">n^2 = \epsilon_L</span>であり，波の電場は <span class="math display">
-\tilde{E}_{x} (t) = A \exp \left[ i \omega t \right],
+\tilde{E}_{x} (t) = A \exp \left[ - i \omega t \right],
 \quad
-\tilde{E}_{y} (t) = A \exp \left[ i \left(\omega t + \frac{\pi}{2} \right) \right],
-</span> で与えられる．すなわち波は円偏光で，<span class="math inline">E_y</span>は<span class="math inline">E_x</span>に対して位相が<span class="math inline">\pi/2</span>だけ進む．</p>
+\tilde{E}_{y} (t) = A \exp \left[ - i \left(\omega t + \frac{\pi}{2} \right) \right],
+</span> で与えられる．すなわち波は円偏光で，<span class="math inline">E_y</span>は<span class="math inline">E_x</span>に対して位相が<span class="math inline">\pi/2</span>だけ進んでいる．</p>
 <p>このときの波動を <strong>左回り（L-mode）</strong> と定義する． <span class="math inline">x-y</span>平面での波動ベクトルの回転は時計回りで，正電荷の粒子の回転方向と同じ向き． （<a href="#fig-polarization" class="quarto-xref">図&nbsp;<span>4.4</span></a> 参照）</p></li>
 </ul>
 <div id="cell-fig-polarization" class="cell" data-execution_count="4">

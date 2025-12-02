@@ -485,9 +485,9 @@ $$ {#eq-magnetized-velocity}
 となり，これを代入することで最終的な分散関係は
 $$
 \begin{pmatrix}
-n_z^2 - \epsilon_1 & -i \epsilon_2              & -n_x n_z
+n_z^2 - \epsilon_1 & +i \epsilon_2              & -n_x n_z
 \\
-+i \epsilon_2      & n_x^2 + n_z^2 - \epsilon_1 & 0
+-i \epsilon_2      & n_x^2 + n_z^2 - \epsilon_1 & 0
 \\
 -n_x n_z           & 0                          & n_x^2 - \epsilon_3
 \end{pmatrix}
@@ -513,9 +513,9 @@ $$
 $\bm{n} = (0, 0, n)$を @eq-magnetized-dispersion-relation に代入して
 $$
 \begin{pmatrix}
-n^2 - \epsilon_1 & -i \epsilon_2    & 0
+n^2 - \epsilon_1 & +i \epsilon_2    & 0
 \\
-+i \epsilon_2    & n^2 - \epsilon_1 & 0
+-i \epsilon_2    & n^2 - \epsilon_1 & 0
 \\
 0                & 0                & - \epsilon_3
 \end{pmatrix}
@@ -525,8 +525,8 @@ $$  {#eq-magnetized-dispersion-relation-original}
 を得る．これを
 $$
 \begin{aligned}
-\tilde{E}_R = (\tilde{E}_x + i \tilde{E}_y) / \sqrt{2}, \quad
-\tilde{E}_L = (\tilde{E}_x - i \tilde{E}_y) / \sqrt{2}
+\tilde{E}_R = (\tilde{E}_x - i \tilde{E}_y) / \sqrt{2}, \quad
+\tilde{E}_L = (\tilde{E}_x + i \tilde{E}_y) / \sqrt{2}
 \end{aligned}
 $$
 を使って書き直すと
@@ -566,11 +566,11 @@ $$
 
   分散関係は $n^2 = \epsilon_R$であり，波の電場は
   $$
-  \tilde{E}_{x} (t) = A \exp \left[ i \omega t \right],
+  \tilde{E}_{x} (t) = A \exp \left[ - i \omega t \right],
   \quad
-  \tilde{E}_{y} (t) = A \exp \left[ i \left(\omega t - \frac{\pi}{2} \right) \right],
+  \tilde{E}_{y} (t) = A \exp \left[ - i \left(\omega t - \frac{\pi}{2} \right) \right],
   $$
-  で与えられる．すなわち波は円偏光で$E_y$は$E_x$に対して位相が$\pi/2$だけ遅れる．
+  で与えられる．すなわち波は円偏光で$E_y$は$E_x$に対して位相が$\pi/2$だけ遅れている．
 
   このときの波動を **右回り（R-mode）** と定義する．
   $x-y$平面での波動ベクトルの回転は反時計回りで，負電荷の粒子の回転方向と同じ向き．
@@ -580,11 +580,11 @@ $$
 
   分散関係は $n^2 = \epsilon_L$であり，波の電場は
   $$
-  \tilde{E}_{x} (t) = A \exp \left[ i \omega t \right],
+  \tilde{E}_{x} (t) = A \exp \left[ - i \omega t \right],
   \quad
-  \tilde{E}_{y} (t) = A \exp \left[ i \left(\omega t + \frac{\pi}{2} \right) \right],
+  \tilde{E}_{y} (t) = A \exp \left[ - i \left(\omega t + \frac{\pi}{2} \right) \right],
   $$
-  で与えられる．すなわち波は円偏光で，$E_y$は$E_x$に対して位相が$\pi/2$だけ進む．
+  で与えられる．すなわち波は円偏光で，$E_y$は$E_x$に対して位相が$\pi/2$だけ進んでいる．
 
   このときの波動を **左回り（L-mode）** と定義する．
   $x-y$平面での波動ベクトルの回転は時計回りで，正電荷の粒子の回転方向と同じ向き．
