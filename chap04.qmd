@@ -933,6 +933,10 @@ plt.legend(loc='upper left')
 plt.show()
 ```
 
+@fig-whistler-helliwell に地上の受信機で観測されたホイッスラー波の観測結果を示す．このようなホイッスラー波は受信局の逆側の半球における雷放電に伴って放射され，磁力線に沿って伝播方向してきたものと考えられる．ホイッスラー波の持つ分散性（高周波成分ほど群速度が大きい）のため高周波の成分が先に到達し，可聴域の周波数で笛の音のように聞こえるためホイッスラー波と呼ばれるようになった．
+
+![ホイッスラー波の観測 [@GurnettBhattacharjee2017]](figures/whistler_helliwell.png){width=100% #fig-whistler-helliwell}
+
 ::: {#exr-cyclotron-wave-dispersion}
 1. @eq-cyclotron-wave-dispersion を示せ．
 1. @eq-approx-cyclotron-wave-dispersion を示せ．
@@ -944,11 +948,11 @@ $\bm{n} = (n, 0, 0)$を代入すると
 
 $$
 \begin{pmatrix}
-- \epsilon_1 & -i \epsilon_2    & 0
+- \epsilon_1  & +i \epsilon_2    & 0
 \\
-+i \epsilon_2    & n^2 - \epsilon_1 & 0
+-i \epsilon_2 & n^2 - \epsilon_1 & 0
 \\
-0                & 0                & n^2 - \epsilon_3
+0             & 0                & n^2 - \epsilon_3
 \end{pmatrix}
 \cdot \bm{\tilde{E}}
 = 0
@@ -979,7 +983,7 @@ $$
 :::
 
 #### X-mode (異常波, extraordinary mode)
-分散関係は
+$xx$, $xy$, $yx$, $yy$ 成分に関するブロックから分散関係は
 $$
 n^2 = \frac{\epsilon_R \epsilon_L}{\epsilon_1}
 $$ {#eq-magnetized-perpendicular-dispersion-relation}

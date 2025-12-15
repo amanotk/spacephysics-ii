@@ -755,6 +755,17 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx
 </div>
 </div>
 </div>
+<p><a href="#fig-whistler-helliwell" class="quarto-xref">図&nbsp;<span>4.8</span></a> に地上の受信機で観測されたホイッスラー波の観測結果を示す．このようなホイッスラー波は受信局の逆側の半球における雷放電に伴って放射され，磁力線に沿って伝播方向してきたものと考えられる．ホイッスラー波の持つ分散性（高周波成分ほど群速度が大きい）のため高周波の成分が先に到達し，可聴域の周波数で笛の音のように聞こえるためホイッスラー波と呼ばれるようになった．</p>
+<div id="fig-whistler-helliwell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-whistler-helliwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/whistler_helliwell.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-whistler-helliwell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4.8: ホイッスラー波の観測 <span class="citation" data-cites="GurnettBhattacharjee2017">(Gurnett and Bhattacharjee 2017)</span>
+</figcaption>
+</figure>
+</div>
 <div id="exr-cyclotron-wave-dispersion" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 4.10</strong></span> &nbsp;</p>
 <ol type="1">
@@ -769,11 +780,11 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx
 <p><span class="math inline">\bm{n} = (n, 0, 0)</span>を代入すると</p>
 <p><span class="math display">
 \begin{pmatrix}
-- \epsilon_1 &amp; -i \epsilon_2    &amp; 0
+- \epsilon_1  &amp; +i \epsilon_2    &amp; 0
 \\
-+i \epsilon_2    &amp; n^2 - \epsilon_1 &amp; 0
+-i \epsilon_2 &amp; n^2 - \epsilon_1 &amp; 0
 \\
-0                &amp; 0                &amp; n^2 - \epsilon_3
+0             &amp; 0                &amp; n^2 - \epsilon_3
 \end{pmatrix}
 \cdot \bm{\tilde{E}}
 = 0
@@ -788,7 +799,7 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx
 \\
 \bm{\tilde{B}} = E_0 \, (0, -k/\omega, 0)
 \end{cases}
-\qquad(4.17)</span></span> となり，通常の電磁波の偏光と同じ性質を持つことから正常波（ordinary modeまたはO-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.8</span></a> 参照．</p>
+\qquad(4.17)</span></span> となり，通常の電磁波の偏光と同じ性質を持つことから正常波（ordinary modeまたはO-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.9</span></a> 参照．</p>
 <div id="exr-o-mode-eigenvector" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 4.11</strong></span> <a href="#eq-o-mode-eigenvector" class="quarto-xref">式&nbsp;<span>4.17</span></a> およびこれに対応する荷電粒子の速度の摂動が <span class="math display">
 \tilde{\bm{v}} = E_0 \, \left( 0, 0, \frac{q}{m} \frac{i}{\omega} \right)
@@ -797,7 +808,7 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx
 </section>
 <section id="x-mode-異常波-extraordinary-mode" class="level4">
 <h4 class="anchored" data-anchor-id="x-mode-異常波-extraordinary-mode">X-mode (異常波, extraordinary mode)</h4>
-<p>分散関係は <span id="eq-magnetized-perpendicular-dispersion-relation"><span class="math display">
+<p><span class="math inline">xx</span>, <span class="math inline">xy</span>, <span class="math inline">yx</span>, <span class="math inline">yy</span> 成分に関するブロックから分散関係は <span id="eq-magnetized-perpendicular-dispersion-relation"><span class="math display">
 n^2 = \frac{\epsilon_R \epsilon_L}{\epsilon_1}
 \qquad(4.18)</span></span> と書ける．ここで高周波波動を考え，電子の寄与のみを残すと <span id="eq-x-mode-dispersion"><span class="math display">
 n^2 =\frac
@@ -810,7 +821,7 @@ n^2 =\frac
 \\
 \bm{\tilde{B}} = E_0 \, (0, 0, k/\omega)
 \end{cases}
-</span> で与えれ，通常の電磁波の偏光と異なり <span class="math inline">\bm{k}</span> と平行成分の電場を持つ． このためこのモードは異常波（extraordinary modeまたはX-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.8</span></a> 参照．</p>
+</span> で与えれ，通常の電磁波の偏光と異なり <span class="math inline">\bm{k}</span> と平行成分の電場を持つ． このためこのモードは異常波（extraordinary modeまたはX-mode）と呼ばれる． <a href="#fig-disp-highfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.9</span></a> 参照．</p>
 <div id="exr-x-mode-dispersion" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 4.12</strong></span> &nbsp;</p>
 <ol type="1">
@@ -826,7 +837,7 @@ n^2 =\frac
 <img src="chap04_files/figure-html/fig-disp-highfreq-perpendicular-emwave-output-1.png" width="584" height="453" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-disp-highfreq-perpendicular-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;4.8: 磁力線垂直に伝播する高周波電磁波
+図&nbsp;4.9: 磁力線垂直に伝播する高周波電磁波
 </figcaption>
 </figure>
 </div>
@@ -849,7 +860,7 @@ n^2 =\frac
 - \frac{\omega_{pi}^2}{\omega^2 - \Omega_{ci}^2}
 </span> これより共鳴周波数は <span id="eq-lower-hybrid-freq"><span class="math display">
 \omega_{\rm LH}^2 \approx \lvert \Omega_{ci}\Omega_{ce}\rvert
-\qquad(4.21)</span></span> ただし， <span class="math inline">\omega_{pi}\gg \Omega_{ci}</span> および <span class="math inline">\omega_{pe}\gg \Omega_{ce}</span> を仮定した． <span class="math inline">\omega_{\rm LH}</span> は低域混成周波数(lower hybrid frequency)と呼ばれる． <a href="#fig-disp-lowfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.9</span></a> 参照．</p>
+\qquad(4.21)</span></span> ただし， <span class="math inline">\omega_{pi}\gg \Omega_{ci}</span> および <span class="math inline">\omega_{pe}\gg \Omega_{ce}</span> を仮定した． <span class="math inline">\omega_{\rm LH}</span> は低域混成周波数(lower hybrid frequency)と呼ばれる． <a href="#fig-disp-lowfreq-perpendicular-emwave" class="quarto-xref">図&nbsp;<span>4.10</span></a> 参照．</p>
 <div id="exr-magnetized-perpendicular-lowfreq" class="theorem exercise">
 <p><span class="theorem-title"><strong>演習問題 4.13</strong></span> &nbsp;</p>
 <ol type="1">
@@ -865,7 +876,7 @@ n^2 =\frac
 <img src="chap04_files/figure-html/fig-disp-lowfreq-perpendicular-emwave-output-1.png" width="611" height="454" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-disp-lowfreq-perpendicular-emwave-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-図&nbsp;4.9: 磁力線垂直に伝播する低周波電磁波（対数表示であることに注意）
+図&nbsp;4.10: 磁力線垂直に伝播する低周波電磁波（対数表示であることに注意）
 </figcaption>
 </figure>
 </div>
