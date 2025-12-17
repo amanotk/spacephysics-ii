@@ -365,7 +365,7 @@ $$
 \left(
     V_{s}^2 \equiv \frac{\gamma (p_{e,0} + p_{i,0})}{n_0 m_i}
 \right)
-$$
+$$ {#eq-ion-acoustic-dispersion-relation}
 となる．十分低周波・長波長のため電子とイオンが同位相で反応し，ほぼ電荷中性($n_i \approx n_e$)が保たれる．これは通常の流体力学的な音波に対応する．復元力には電子・イオン両方の圧力が寄与する．
 
 Langmuir波の場合と同様に電子とイオンの密度揺らぎの関係（固有ベクトル）を図示すると @fig-eigenvector-ionacoustic となり，イオンと電子の密度の揺らぎはほとんど一致していることが分かる．
@@ -446,9 +446,12 @@ $$
 \frac{k}{\omega^2 - k^2 C_i^2} \tilde{E}
 \end{aligned}
 $$
-で与えられることを示し，長波長近似 $k \lambda_{De} \sim k \lambda_{Di} \ll 1$ で．
-Langmuir波については$| \tilde{n}_i/\tilde{n}_e | \ll 1$，
-イオン音波については $| \tilde{n}_i/\tilde{n}_e | \sim 1$ となることを示せ．
+で与えられることを示し，
+Langmuir波については長波長近似 $k \lambda_{De} \sim k \lambda_{Di} \ll 1$ で，
+$\omega^2 \sim \omega_{pe}^2$ となることから
+$| \tilde{n}_i/\tilde{n}_e | \ll 1$ を，
+イオン音波については @eq-ion-acoustic-dispersion-relation を用いて
+$| \tilde{n}_i/\tilde{n}_e | \sim 1$ となることをそれぞれ示せ．
 :::
 
 ## 磁化プラズマ中の波動
@@ -787,7 +790,7 @@ $$ {#eq-unmagnetized-em-dispersion-relation}
 :::
 
 ::: {#exr-wave-reflection}
-1. 磁場の影響が無視できるとき，プラズマ中を伝播する線形の電磁波は以下の形の波動方程式（Kline-Gordon方程式）によって記述される．
+1. 磁場の影響が無視できるとき，プラズマ中を伝播する線形の電磁波は以下の形の波動方程式（Klein-Gordon方程式）によって記述される．
 $$
 \frac{\partial^2}{\partial t^2} E = c^2 \frac{\partial^2}{\partial x^2} E - \wpe^2 E
 $$
