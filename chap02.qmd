@@ -381,6 +381,7 @@ $$
 ```{python}
 #| label: fig-typical-frequency
 #| fig-cap: 地球磁気圏における3つの周期運動の周波数．各プロットの縦軸は粒子のエネルギー，横軸は地球からの距離（$L$値）を表わす．
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
@@ -544,6 +545,7 @@ $$ {#eq-lowenergy-drift}
 ```{python}
 #| label: fig-lowenergy-drift
 #| fig-cap: 地球磁気圏内の低エネルギー粒子の軌道
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
@@ -621,6 +623,7 @@ $$
 ```{python}
 #| label: fig-highenergy-drift
 #| fig-cap: 地球磁気圏内の低エネルギー粒子の軌道
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches

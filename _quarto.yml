@@ -23,6 +23,7 @@ execute:
 format:
   html:
     theme: cosmo
+    code-fold: true
     html-math-method:
       method: katex
     css: custom-style.css

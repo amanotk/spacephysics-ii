@@ -114,7 +114,7 @@ $$ {#eq-ionacoustic-fluid-dispersion-relation2}
 1. @eq-langmuir-fluid-approximation を示せ．
 1. @eq-langmuir-fluid-dispersion-relation1 において，近似解 $\omega \sim \omega_{pe}$ を代入し，逐次近似によって @eq-langmuir-fluid-dispersion-relation2 が得られることを示せ．
 1. @eq-ionacoustic-fluid-approximation を示せ．
-1. @eq-ionacoustic-fluid-dispersion-relation1 において，$k^2 v_{\rm th,i}^2 \ll \omega^2 \ll \wpi^2$，$k^2 v_{\rm th,e}^2 \ll \wpe^2$ と仮定することで，分散関係 $\omega^2 \approx k^2 v_{\rm th,e}^2$ が得られることを示せ．
+1. @eq-ionacoustic-fluid-dispersion-relation1 において，$k^2 v_{\rm th,i}^2 \ll \omega^2 \ll \omega_{pi}^2$，$k^2 v_{\rm th,e}^2 \ll \omega_{pe}^2$ と仮定することで，分散関係 $\omega^2 \approx k^2 v_{\rm th,e}^2$ が得られることを示せ．
 1. @eq-ionacoustic-fluid-dispersion-relation1 に前問で得た近似解 $\omega^2 \approx k^2 v_{\rm th,e}^2$ を代入し，逐次近似によって @eq-ionacoustic-fluid-dispersion-relation2 が得られることを示せ．（この近似が整合的であるためには $T_e/T_i \gg 1$ の条件が必要である．）
 :::
 
@@ -303,11 +303,12 @@ $$
   - \frac{1}{2 (k \lambda_{De})^2} - \frac{3}{2}
 \right]
 $$ {#eq-langmuir-approx-damping-rate}
-となる．これより $k \lambda_{De} \ll 1$ (長波長)ではLandau減衰の効果は無視できることが分かる．一方で $k \lambda_{De} \gtrsim 1$ においてはLandau減衰の効果が無視できなくなる．これは$\omega/k$ と $v_{\rm th,e}$ との大小関係によって直感的に理解できる．参考までにこの近似解と数値的に求めた厳密解を @fig-langmuir-landau-damping に示す（ここでは厳密な扱いには触れていないことに注意）．
+となる．これより $k \lambda_{De} \ll 1$ (長波長)ではLandau減衰の効果は無視できることが分かる．一方で $k \lambda_{De} \gtrsim 1$ においてはLandau減衰の効果が無視できなくなる．これは$\omega/k$ と $v_{\rm th,e}$ との大小関係によって直感的に理解できる．参考までにこの近似解と厳密な分散関係の数値解を @fig-langmuir-landau-damping に示す．なお，ここでは厳密な扱いには触れていないが，興味のある人は例えば @GurnettBhattacharjee2017 などを参考にして欲しい．
 
 ```{python}
 #| label: fig-langmuir-landau-damping
-#| fig-cap: 運動論モデルで得られるLangmuir波の解．実線は近似解，破線は数値的に求めた厳密解である．
+#| fig-cap: 運動論モデルで得られるLangmuir波の解．実線は近似解，破線は厳密な分散関係の数値解である．
+#| echo: true
 import numpy as np
 from scipy.special import wofz
 import matplotlib.pyplot as plt

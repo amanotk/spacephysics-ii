@@ -237,6 +237,7 @@ $$ {#eq-unmagnetized-dispersion-relation}
 ```{python}
 #| label: fig-disp-langmuir-acoustic
 #| fig-cap: Langmuir波とイオン音波の分散関係
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -299,6 +300,7 @@ $$
 ```{python}
 #| label: fig-eigenvector-langmuir
 #| fig-cap: Langmuir波の固有ベクトル
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -373,6 +375,7 @@ Langmuir波の場合と同様に電子とイオンの密度揺らぎの関係（
 ```{python}
 #| label: fig-eigenvector-ionacoustic
 #| fig-cap: イオン音波の固有ベクトル
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -730,6 +733,7 @@ $$ {#eq-cutoff-freq}
 ```{python}
 #| label: fig-disp-highfreq-parallel-emwave
 #| fig-cap: 磁力線平行に伝播する高周波電磁波
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -881,6 +885,7 @@ $$ {#eq-approx-cyclotron-wave-dispersion}
 ```{python}
 #| label: fig-disp-lowfreq-parallel-emwave
 #| fig-cap: 磁力線平行に伝播する低周波電磁波（対数表示であることに注意）
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1019,6 +1024,7 @@ $$
 ```{python}
 #| label: fig-disp-highfreq-perpendicular-emwave
 #| fig-cap: 磁力線垂直に伝播する高周波電磁波
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1099,6 +1105,7 @@ $$ {#eq-lower-hybrid-freq}
 ```{python}
 #| label: fig-disp-lowfreq-perpendicular-emwave
 #| fig-cap: 磁力線垂直に伝播する低周波電磁波（対数表示であることに注意）
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
