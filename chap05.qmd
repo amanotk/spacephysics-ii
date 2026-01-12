@@ -91,11 +91,18 @@ $$ {#eq-langmuir-fluid-dispersion-relation2}
 これは流体近似のLangmuir波で $\gamma = 3$ (自由度 = 1)としたものに等しい．
 
 #### イオン音波
-$v_{\rm th,i} \ll \omega/k \ll v_{\rm th,e}$ のとき，電子については
+$v_{\rm th,i} \ll \omega/k \ll v_{\rm th,e}$ のとき，イオンについては上記と同じ近似を用いることができる．
+電子についてはMaxwelli分布を仮定し，
 $$
-\int \frac{F_s (v)}{(v - \omega/k)^2} dv \approx \int \frac{F_s (v)}{v^2} dv = -\frac{1}{v_{\rm th,e}^2}
+F_e' (v) = - \frac{v}{v_{\rm th,e}^2} F_e (v)
+$$
+となることを用いると
+$$
+\int \frac{F_e (v)}{(v - \omega/k)^2} dv =
+\int \frac{F_e' (v)}{v - \omega/k} dv \approx
+\int \frac{F_e' (v)}{v} dv \approx -\frac{1}{v_{\rm th,e}^2}
 $$ {#eq-ionacoustic-fluid-approximation}
-なる近似を採用すると，分散関係は
+なる近似を採用する．このとき分散関係は
 $$
 1 + \left( \frac{\omega_{pe}}{k v_{\rm th,e}} \right)^2 -
 \left( \frac{\omega_{pi}}{\omega} \right)^2

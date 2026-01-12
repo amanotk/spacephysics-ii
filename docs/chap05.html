@@ -354,9 +354,13 @@ i k \tilde{E} &amp;= \frac{1}{\epsilon_0} \sum_{s} q_s \int \tilde{f}_s dv.
 </section>
 <section id="イオン音波" class="level4">
 <h4 class="anchored" data-anchor-id="イオン音波">イオン音波</h4>
-<p><span class="math inline">v_{\rm th,i} \ll \omega/k \ll v_{\rm th,e}</span> のとき，電子については <span id="eq-ionacoustic-fluid-approximation"><span class="math display">
-\int \frac{F_s (v)}{(v - \omega/k)^2} dv \approx \int \frac{F_s (v)}{v^2} dv = -\frac{1}{v_{\rm th,e}^2}
-\qquad(5.6)</span></span> なる近似を採用すると，分散関係は <span id="eq-ionacoustic-fluid-dispersion-relation1"><span class="math display">
+<p><span class="math inline">v_{\rm th,i} \ll \omega/k \ll v_{\rm th,e}</span> のとき，イオンについては上記と同じ近似を用いることができる． 電子についてはMaxwelli分布を仮定し， <span class="math display">
+F_e' (v) = - \frac{v}{v_{\rm th,e}^2} F_e (v)
+</span> となることを用いると <span id="eq-ionacoustic-fluid-approximation"><span class="math display">
+\int \frac{F_e (v)}{(v - \omega/k)^2} dv =
+\int \frac{F_e' (v)}{v - \omega/k} dv \approx
+\int \frac{F_e' (v)}{v} dv \approx -\frac{1}{v_{\rm th,e}^2}
+\qquad(5.6)</span></span> なる近似を採用する．このとき分散関係は <span id="eq-ionacoustic-fluid-dispersion-relation1"><span class="math display">
 1 + \left( \frac{\omega_{pe}}{k v_{\rm th,e}} \right)^2 -
 \left( \frac{\omega_{pi}}{\omega} \right)^2
 \left[ 1 + 3 \left( \frac{k v_{\rm th,i}}{\omega} \right)^2 \right]
