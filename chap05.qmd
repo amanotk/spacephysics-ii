@@ -102,7 +102,7 @@ $$
 \int \frac{F_e' (v)}{v - \omega/k} dv \approx
 \int \frac{F_e' (v)}{v} dv \approx -\frac{1}{v_{\rm th,e}^2}
 $$ {#eq-ionacoustic-fluid-approximation}
-なる近似を採用する．このとき分散関係は
+と近似できる．このとき分散関係は
 $$
 1 + \left( \frac{\omega_{pe}}{k v_{\rm th,e}} \right)^2 -
 \left( \frac{\omega_{pi}}{\omega} \right)^2
